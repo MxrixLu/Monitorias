@@ -10,7 +10,9 @@
   },
   "dependencies": {
     "firebase": "^11.5.0",
+    "googleapis": "^148.0.0",
     "lucide-react": "^0.485.0",
+    "monitorias-next": "file:",
     "next": "15.2.4",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"

@@ -4,7 +4,8 @@ const routes = {
     EXPLORE:"/home/explore",
     LOGIN:"/auth/login",
     REGISTER:"/auth/register",
-    PROFILE: "/home/profile"
+    PROFILE: "/home/profile",
+    CALENDAR: "/home/calendar"
 };
 
 export default routes;

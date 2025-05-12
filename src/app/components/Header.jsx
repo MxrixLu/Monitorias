@@ -17,6 +17,7 @@ const Header = () => {
       <nav className='navbar'>
         <Link href = {routes.HOME}>Inicio</Link>
         <Link href = {routes.EXPLORE}>Explorar Materias</Link>
+        <Link href = {routes.CALENDAR}>Calendario</Link>
         <Link href = "/">Buscar Tutores</Link>
         <Link href = "/">Acerca de</Link>
       </nav>

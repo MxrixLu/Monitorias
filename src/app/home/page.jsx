@@ -7,22 +7,29 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import routes from "app/routes";
 
-
 export default function Home(){
     const [materias, setMaterias] = useState([]);
+    const [userEmail, setUserEmail] = useState('');
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
     const router = useRouter();
-    const userEmail = localStorage.getItem('userEmail')
-    const isLoggedIn = localStorage.getItem('isLoggedIn')
 
     useEffect(() => {
-        if (!isLoggedIn) {
-            router.push(routes.LANDING)
-            return
-          }
+        // Acceder a localStorage solo en el cliente
+        const email = localStorage.getItem('userEmail');
+        const loggedIn = localStorage.getItem('isLoggedIn');
+        setUserEmail(email);
+        setIsLoggedIn(loggedIn);
+
+        if (!loggedIn) {
+            router.push(routes.LANDING);
+            return;
+        }
+
         getMaterias().then((materias) => {
             setMaterias(materias);
         });
-    }, []);
+    }, [router]);
+
     return (
         <main className="min-h-screen">
             <WelcomeBanner titulo={`Bienvenido/a ${userEmail}`}/>
@@ -35,7 +42,6 @@ export default function Home(){
                         <BoxSubject key={index} codigo={materia.codigo} nombre={materia.nombre}></BoxSubject>
                     ))}
                 </div>
-
             </div>
         </main>
     );
