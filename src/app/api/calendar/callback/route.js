@@ -8,12 +8,12 @@ export async function GET(request) {
 
     if (error) {
       console.error('OAuth error:', error);
-      return Response.redirect(new URL('/home?error=oauth_error', request.url));
+      return Response.redirect(new URL('/?error=oauth_error', request.url));
     }
 
     if (!code) {
       console.error('No code provided');
-      return Response.redirect(new URL('/home?error=no_code', request.url));
+      return Response.redirect(new URL('/?error=no_code', request.url));
     }
 
     try {
@@ -24,7 +24,7 @@ export async function GET(request) {
       }
 
       // Create the redirect URL
-      const redirectUrl = new URL('/home?success=calendar_connected', request.url);
+      const redirectUrl = new URL('/home', request.url);
       
       // Create the response with the redirect
       const response = new Response(null, {
@@ -69,10 +69,10 @@ export async function GET(request) {
       return response;
     } catch (tokenError) {
       console.error('Error exchanging code for tokens:', tokenError);
-      return Response.redirect(new URL('/home?error=token_exchange_failed', request.url));
+      return Response.redirect(new URL('/?error=token_exchange_failed', request.url));
     }
   } catch (error) {
     console.error('Error in callback:', error);
-    return Response.redirect(new URL('/home?error=server_error', request.url));
+    return Response.redirect(new URL('/?error=server_error', request.url));
   }
 } 

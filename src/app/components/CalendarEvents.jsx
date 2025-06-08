@@ -10,13 +10,17 @@ export default function CalendarEvents() {
   useEffect(() => {
     const fetchEvents = async () => {
       try {
+        setLoading(true);
         const response = await fetch('/api/calendar/events');
         if (!response.ok) {
-          throw new Error('Error al obtener eventos');
+          const errorData = await response.json();
+          throw new Error(errorData.error || 'Error al obtener eventos');
         }
         const data = await response.json();
+        console.log('Eventos recibidos:', data); // Para debugging
         setEvents(data);
       } catch (err) {
+        console.error('Error completo:', err); // Para debugging
         setError(err.message);
       } finally {
         setLoading(false);
@@ -30,16 +34,21 @@ export default function CalendarEvents() {
   if (error) return <div className="p-4 text-red-500">Error: {error}</div>;
 
   return (
-    <div className="p-4">
-      <h2 className="text-2xl font-bold mb-4">Eventos del Calendario</h2>
+    <div className="mt-4">
+      <h2 className="text-xl font-semibold mb-2">Eventos del Calendario</h2>
       {events.length === 0 ? (
-        <p>No hay eventos para mostrar</p>
+        <div className="p-4 bg-gray-50 rounded">
+          <p>No hay eventos programados para los próximos 7 días.</p>
+          <p className="text-sm text-gray-600 mt-2">
+            Los eventos se obtienen de tu calendario principal de Google Calendar.
+          </p>
+        </div>
       ) : (
-        <div className="space-y-4">
+        <div className="space-y-2">
           {events.map((event) => (
-            <div key={event.id} className="border p-4 rounded-lg shadow hover:shadow-md transition-shadow">
-              <h3 className="font-semibold text-lg">{event.summary}</h3>
-              <p className="text-gray-600">
+            <div key={event.id} className="border p-4 rounded shadow-sm hover:shadow-md transition-shadow">
+              <h3 className="font-medium text-lg">{event.summary}</h3>
+              <p className="text-sm text-gray-600">
                 {new Date(event.start.dateTime || event.start.date).toLocaleString()}
               </p>
               {event.description && (
