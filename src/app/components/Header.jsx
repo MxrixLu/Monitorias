@@ -6,7 +6,7 @@ import'../style/Header.css'
 import { UserRound } from 'lucide-react';
 import Link from 'next/link';
 import { useRouter } from "next/navigation"
-import routes from "app/routes"
+import routes from "../../routes"
 
 const Header = () => {
   const router = useRouter();
