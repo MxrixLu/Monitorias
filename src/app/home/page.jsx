@@ -12,6 +12,7 @@ import CalendarEvents from '../components/CalendarEvents';
 export default function HomePage() {
     const [materias, setMaterias] = useState([]);
     const [userEmail, setUserEmail] = useState('');
+    const [userName, setUserName] = useState('');
     const [message, setMessage] = useState({ type: '', text: '' });
     const router = useRouter();
     const searchParams = useSearchParams();
@@ -27,78 +28,93 @@ export default function HomePage() {
             return;
         }
 
+        // Obtener materias
         getMaterias().then((materias) => {
             setMaterias(materias);
         });
 
-        // Handle OAuth callback messages
-        const error = searchParams.get('error');
-        const success = searchParams.get('success');
-
-        if (error) {
-            switch (error) {
-                case 'oauth_error':
-                    setMessage({ type: 'error', text: 'Error en la autenticación de Google Calendar' });
-                    break;
-                case 'no_code':
-                    setMessage({ type: 'error', text: 'No se recibió el código de autorización' });
-                    break;
-                case 'token_exchange_failed':
-                    setMessage({ type: 'error', text: 'Error al obtener los tokens de acceso' });
-                    break;
-                default:
-                    setMessage({ type: 'error', text: 'Error al conectar con Google Calendar' });
+        // Obtener nombre del usuario desde Firestore
+        const fetchUserName = async () => {
+            try {
+                const response = await fetch(`/api/user/profile?email=${email}`);
+                const data = await response.json();
+                if (data.name) {
+                    setUserName(data.name);
+                }
+            } catch (error) {
+                console.error('Error fetching user name:', error);
             }
-        } else if (success === 'calendar_connected') {
-            setMessage({ type: 'success', text: '¡Calendario conectado exitosamente!' });
-        }
+        };
+        fetchUserName();
 
-        // Verificar si hay un token de acceso
+        // Verificar conexión con Google Calendar
         const checkConnection = async () => {
             try {
                 const response = await fetch('/api/calendar/check-connection');
                 const data = await response.json();
                 setIsConnected(data.isConnected);
-                if (!data.isConnected) {
-                    router.push('/');
-                }
             } catch (error) {
                 console.error('Error checking connection:', error);
                 setIsConnected(false);
-                router.push('/');
             }
         };
-
         checkConnection();
-    }, [router, searchParams]);
+    }, [router]);
 
     const handleDisconnect = async () => {
         try {
             await fetch('/api/calendar/disconnect', { method: 'POST' });
-            router.push('/');
+            setIsConnected(false);
         } catch (error) {
             console.error('Error disconnecting:', error);
         }
     };
 
-    if (!isConnected) {
-        return null; // No renderizar nada mientras se verifica la conexión
-    }
-
     return (
-        <main className="min-h-screen p-8 bg-gray-50">
-            <div className="max-w-4xl mx-auto">
-                <div className="flex justify-between items-center mb-8">
-                    <h1 className="text-3xl font-bold">Mi Calendario</h1>
-                    <button
-                        onClick={handleDisconnect}
-                        className="bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-4 rounded-lg transition-colors"
-                    >
-                        Desconectar
-                    </button>
+        <main className="min-h-screen bg-gray-50">
+            {/* Sección de Bienvenida */}
+            <div className="bg-gradient-to-b from-indigo-500 to-indigo-700 text-white py-8 px-4">
+                <div className="max-w-7xl mx-auto">
+                    <h1 className="text-3xl font-bold mb-2">Hola, {userName || 'Usuario'}</h1>
+                    <p className="text-lg opacity-90">Bienvenido a tu espacio personal</p>
                 </div>
-                
-                <CalendarEvents />
+            </div>
+
+            {/* Contenedor Principal */}
+            <div className="max-w-7xl mx-auto px-4 py-8">
+                {/* Sección del Calendario */}
+                <section className="mb-12">
+                    <div className="bg-white rounded-lg shadow-md p-6">
+                        <div className="flex justify-between items-center mb-6">
+                            <h2 className="text-2xl font-bold">Mi Calendario</h2>
+                            {isConnected && (
+                                <button
+                                    onClick={handleDisconnect}
+                                    className="bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-4 rounded-lg transition-colors"
+                                >
+                                    Desconectar
+                                </button>
+                            )}
+                        </div>
+                        <CalendarEvents />
+                    </div>
+                </section>
+
+                {/* Sección de Materias */}
+                <section>
+                    <div className="bg-white rounded-lg shadow-md p-6">
+                        <h2 className="text-2xl font-bold mb-6">Materias Disponibles</h2>
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                            {materias.map((materia) => (
+                                <BoxSubject
+                                    key={materia.codigo}
+                                    codigo={materia.codigo}
+                                    nombre={materia.nombre}
+                                />
+                            ))}
+                        </div>
+                    </div>
+                </section>
             </div>
         </main>
     );
