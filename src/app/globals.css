@@ -2,7 +2,10 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #000000;
+  --text-primary: #000000;
+  --text-secondary: #4B5563;
+  --button-text: #ffffff;
 }
 
 @theme inline {
@@ -15,12 +18,35 @@
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #ededed;
-    --foreground: #ededed;
+    --foreground: #000000;
+    --text-primary: #000000;
+    --text-secondary: #4B5563;
+    --button-text: #ffffff;
   }
 }
 
 body {
   background: var(--background);
-  color: var(--foreground);
+  color: var(--text-primary);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Estilos para texto que no está en botones */
+p, h1, h2, h3, h4, h5, h6, span, div:not(button *) {
+  color: var(--text-primary);
+}
+
+/* Mantener los colores de los botones */
+button, 
+button *,
+[role="button"],
+[role="button"] * {
+  color: var(--button-text);
+}
+
+/* Estilos para texto secundario */
+.text-gray-600,
+.text-gray-700,
+.text-gray-800 {
+  color: var(--text-secondary) !important;
 }
