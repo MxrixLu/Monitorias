@@ -2,13 +2,19 @@
 
 import { useEffect, useState } from 'react';
 
-export default function CalendarEvents() {
+export default function CalendarEvents({ isConnected }) {
   const [events, setEvents] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchEvents = async () => {
+      if (!isConnected) {
+        setEvents([]);
+        setLoading(false);
+        return;
+      }
+
       try {
         setLoading(true);
         const response = await fetch('/api/calendar/events');
@@ -17,10 +23,9 @@ export default function CalendarEvents() {
           throw new Error(errorData.error || 'Error al obtener eventos');
         }
         const data = await response.json();
-        console.log('Eventos recibidos:', data); // Para debugging
         setEvents(data);
       } catch (err) {
-        console.error('Error completo:', err); // Para debugging
+        console.error('Error completo:', err);
         setError(err.message);
       } finally {
         setLoading(false);
@@ -28,7 +33,15 @@ export default function CalendarEvents() {
     };
 
     fetchEvents();
-  }, []);
+  }, [isConnected]); // Dependencia en isConnected para reaccionar a cambios
+
+  if (!isConnected) {
+    return (
+      <div className="p-4 bg-gray-50 rounded">
+        <p className="text-gray-600">Conecta tu calendario para ver tus eventos</p>
+      </div>
+    );
+  }
 
   if (loading) return <div className="p-4">Cargando eventos...</div>;
   if (error) return <div className="p-4 text-red-500">Error: {error}</div>;
