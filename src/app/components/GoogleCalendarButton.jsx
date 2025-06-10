@@ -5,20 +5,8 @@ import { useState } from 'react';
 export default function GoogleCalendarButton() {
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleConnectCalendar = async () => {
-    try {
-      setIsLoading(true);
-      const response = await fetch('/api/calendar/auth');
-      const data = await response.json();
-      
-      if (data.url) {
-        window.location.href = data.url;
-      }
-    } catch (error) {
-      console.error('Error connecting to Google Calendar:', error);
-    } finally {
-      setIsLoading(false);
-    }
+  const handleConnectCalendar = () => {
+    window.location.href = '/api/calendar/auth';
   };
 
   return (
