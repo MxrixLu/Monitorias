@@ -5,7 +5,7 @@ import Logo2 from "../../../public/Logo2.png"
 import { Users, BookOpen, Award, Clock } from "lucide-react"
 import Image from "next/image"
 import { useRouter } from "next/navigation"
-import routes from "app/routes"
+import routes from "../../routes"
 
 const Auth = () => {
   const [scrolled, setScrolled] = useState(false)

@@ -1,11 +1,19 @@
-import Auth from '../app/components/Auth';
-import React from 'react';
+'use client';
 
-const Landing = () => {
-    return (
-        <div>
-            <Auth></Auth>
-        </div>
-    );
+import { useEffect } from 'react';
+import { useRouter } from 'next/navigation';
+import routes from '../routes';
+import Auth from './components/Auth';
+
+export default function Home() {
+  const router = useRouter();
+
+  useEffect(() => {
+    const isLoggedIn = localStorage.getItem('isLoggedIn');
+    if (isLoggedIn) {
+      router.push(routes.HOME);
+    }
+  }, [router]);
+
+  return <Auth />;
 }
-export default Landing;

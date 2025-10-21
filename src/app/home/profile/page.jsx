@@ -7,7 +7,7 @@ import { auth, db } from '../../../firebaseConfig'
 import { doc, getDoc } from 'firebase/firestore'
 import Header from '../../components/Header'
 import { useRouter } from 'next/navigation'
-import routes from 'app/routes'
+import routes from '../../../routes'
 
 const Profile = () => {
   const [userData, setUserData] = useState(null)
