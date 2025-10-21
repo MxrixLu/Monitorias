@@ -2,7 +2,7 @@
 import React from "react";
 import WelcomeBanner from "../components/Welcome";
 import BoxSubject from "../components/BoxSubject";
-import { getMaterias } from "../services/HomeService.service";
+import { getCourse } from "../services/HomeService.service";
 import { useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import routes from "../../routes";
@@ -10,7 +10,7 @@ import GoogleCalendarButton from "../components/GoogleCalendarButton";
 import CalendarEvents from '../components/CalendarEvents';
 
 export default function HomePage() {
-    const [materias, setMaterias] = useState([]);
+    const [course, setCourse] = useState([]);
     const [userEmail, setUserEmail] = useState('');
     const [userName, setUserName] = useState('');
     const [message, setMessage] = useState({ type: '', text: '' });
@@ -28,9 +28,9 @@ export default function HomePage() {
             return;
         }
 
-        // Obtener materias
-        getMaterias().then((materias) => {
-            setMaterias(materias);
+        // Obtener course
+        getCourse().then((course) => {
+            setCourse(course);
         });
 
         // Obtener nombre del usuario desde Firestore
@@ -136,16 +136,16 @@ export default function HomePage() {
                     </div>
                 </section>
 
-                {/* Sección de Materias */}
+                {/* Sección de Course */}
                 <section>
                     <div className="bg-white rounded-lg shadow-md p-6">
-                        <h2 className="text-2xl font-bold mb-6">Materias Disponibles</h2>
+                        <h2 className="text-2xl font-bold mb-6">Course Disponibles</h2>
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                            {materias.map((materia) => (
+                            {course.map((course) => (
                                 <BoxSubject
-                                    key={materia.codigo}
-                                    codigo={materia.codigo}
-                                    nombre={materia.nombre}
+                                    key={course.codigo}
+                                    codigo={course.codigo}
+                                    nombre={course.nombre}
                                 />
                             ))}
                         </div>

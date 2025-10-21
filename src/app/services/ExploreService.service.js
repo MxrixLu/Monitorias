@@ -1,10 +1,10 @@
-const facultades = [
-    {number: "105", name: "Artes y Humanidades"},
-    {number: "50", name: "Ingeniería"}, 
-    {number: "80", name: "Ciencias"}
-];
+import { db } from '../../firebaseConfig'
+import { collection, getDocs } from 'firebase/firestore'
 
-export async function getFacultades() {
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-    return facultades;
+export async function getMajor() {
+    const snapshot = await getDocs(collection(db, 'major'))
+    return snapshot.docs.map(docSnap => ({
+        id: docSnap.id,
+        name: docSnap.data().name,
+    }))
 }

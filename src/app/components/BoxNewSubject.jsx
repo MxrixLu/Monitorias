@@ -6,10 +6,10 @@ const BoxNewSubject = ({name, number}) => {
     <div className="card-ingenieria">
       <div className="card-ingenieria-left">
         {/* Ícono de bombilla (SVG) */}
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Coursel+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 
         <span 
-            className="material-symbols-outlined"
+            className="coursel-symbols-outlined"
             style={{ fontSize: "60px", color: "#1A237E" }}
             >
             emoji_objects

@@ -1,7 +1,7 @@
 import { db } from '../../firebaseConfig'
 import { collection, getDocs } from 'firebase/firestore'
 
-export async function getMaterias() {
+export async function getCourse() {
   // Leer la coleccion "course" de Firestore
   const snapshot = await getDocs(collection(db, 'course'))
   // Retornar un arreglo con { codigo, nombre }

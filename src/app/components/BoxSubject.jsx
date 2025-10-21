@@ -12,7 +12,7 @@ const BoxSubject = ({codigo, nombre}) => {
           <h1 className='h1-card'>{nombre}</h1>
         </div>
         <div className='inferior'>
-          <p className='p-card'>Encuentra tutores para esta materia </p>
+          <p className='p-card'>Encuentra tutores para esta course </p>
           <MoveRight className='ml-3' />
         </div>
       </div>
