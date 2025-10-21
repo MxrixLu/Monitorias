@@ -20,7 +20,7 @@ const Explore = () => {
             />
             <div className="container flex flex-col text-center mx-auto pt-4">
                 <h2 className="text-4xl font-bold mb-2 text-[#FF7A7A] pb-4">
-                    Tus course este semestre
+                    Tus materias este semestre
                 </h2>
                 <div className="mx-auto pt-4 grid grid-cols-1 text-center md:grid-cols-2 lg:grid-cols-3 gap-20">
 
