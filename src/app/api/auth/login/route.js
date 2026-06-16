@@ -1,0 +1,89 @@
+/**
+ * POST /api/auth/login
+ * Verifies email + password, issues JWT as an HttpOnly cookie and in the
+ * response body (for backward-compatible API clients).
+ */
+
+import { NextResponse } from 'next/server';
+import { z } from 'zod';
+import bcrypt from 'bcrypt';
+import { signToken } from '@/lib/auth/jwt';
+import { buildAuthCookieHeader } from '@/lib/auth/middleware';
+import * as userRepository from '@/lib/repositories/user.repository';
+import { rateLimit, getClientIp } from '@/lib/auth/rateLimit';
+
+const loginSchema = z.object({
+  email: z.string().trim().toLowerCase().email(),
+  password: z.string().min(1),
+});
+
+export async function POST(request) {
+  const limited = rateLimit(`login:${getClientIp(request)}`, { max: 10, windowMs: 15 * 60_000 });
+  if (limited) return limited;
+
+  try {
+    const body = await request.json();
+    const parsed = loginSchema.safeParse(body);
+
+    if (!parsed.success) {
+      return NextResponse.json(
+        { success: false, error: parsed.error.issues[0].message },
+        { status: 400 },
+      );
+    }
+
+    const { email, password } = parsed.data;
+
+    const user = await userRepository.findByEmailWithPassword(email);
+    if (!user) {
+      return NextResponse.json(
+        { success: false, error: 'INVALID_CREDENTIALS' },
+        { status: 401 },
+      );
+    }
+
+    const isValid = await bcrypt.compare(password, user.passwordHash);
+    if (!isValid) {
+      return NextResponse.json(
+        { success: false, error: 'INVALID_CREDENTIALS' },
+        { status: 401 },
+      );
+    }
+
+    if (!user.isActive) {
+      return NextResponse.json(
+        { success: false, error: 'ACCOUNT_DISABLED' },
+        { status: 403 },
+      );
+    }
+
+    if (!user.isEmailVerified) {
+      return NextResponse.json(
+        { success: false, error: 'EMAIL_NOT_VERIFIED', email: user.email },
+        { status: 403 },
+      );
+    }
+
+    userRepository.touchLastSeen(user.id).catch((err) => {
+      console.warn('[login] touchLastSeen failed:', err?.message);
+    });
+
+    // 4. Sign JWT and return (strip sensitive + private fields from response)
+    const token = signToken(user);
+
+    const safeUser = userRepository.sanitizeUser(user);
+
+    // JWT expiry in seconds — keep in sync with JWT_EXPIRATION in jwt.js
+    const TOKEN_MAX_AGE = 60 * 60; // 1 hour
+
+    const response = NextResponse.json({ success: true, token, user: safeUser });
+    response.headers.set('Set-Cookie', buildAuthCookieHeader(token, TOKEN_MAX_AGE));
+    return response;
+  } catch (error) {
+    console.error('Error in POST /api/auth/login:', error);
+    return NextResponse.json(
+      { success: false, error: 'Login failed' },
+      { status: 500 },
+    );
+  }
+}

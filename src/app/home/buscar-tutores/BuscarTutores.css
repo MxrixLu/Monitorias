@@ -1,0 +1,954 @@
+/* ============================================ */
+/*           PAGE HEADER                        */
+/* ============================================ */
+
+.search-page-header {
+  padding: 1.75rem 0 1.25rem;
+}
+
+.search-page-title {
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: var(--calico-ink);
+  margin: 0 0 0.375rem 0;
+  line-height: 1.15;
+  letter-spacing: -0.025em;
+}
+
+@media (min-width: 640px) {
+  .search-page-title {
+    font-size: 2.125rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .search-page-title {
+    font-size: 2.5rem;
+  }
+}
+
+.search-page-subtitle {
+  color: var(--calico-body-muted);
+  font-size: var(--type-body-sm);
+  margin: 0;
+  line-height: 1.5;
+}
+
+@media (min-width: 768px) {
+  .search-page-subtitle {
+    font-size: var(--type-body);
+  }
+}
+
+/* ============================================ */
+/*           SEARCH BAR STYLES                  */
+/* ============================================ */
+
+.search-wrapper {
+  margin-bottom: 1.25rem;
+}
+
+@media (min-width: 640px) {
+  .search-wrapper {
+    margin-bottom: 1.5rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .search-wrapper {
+    margin-bottom: 2rem;
+  }
+}
+
+.search-container {
+  position: relative;
+  width: 100%;
+}
+
+.search-icon {
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--calico-slate-400);
+  height: 1.25rem;
+  width: 1.25rem;
+  pointer-events: none;
+  z-index: 1;
+}
+
+@media (min-width: 768px) {
+  .search-icon {
+    height: 1.5rem;
+    width: 1.5rem;
+  }
+}
+
+.search-input {
+  padding-left: 3rem !important;
+  padding-top: 1rem !important;
+  padding-bottom: 1rem !important;
+  padding-right: 1rem !important;
+  font-size: var(--type-body-sm) !important;
+  background: #ffffff !important;
+  border: 1.5px solid rgba(253, 174, 30, 0.2) !important;
+  border-radius: var(--radius-lg) !important;
+  width: 100% !important;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease !important;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04) !important;
+}
+
+@media (min-width: 768px) {
+  .search-input {
+    padding-left: 3.5rem !important;
+    padding-top: 1.125rem !important;
+    padding-bottom: 1.125rem !important;
+    font-size: var(--type-body) !important;
+  }
+}
+
+.search-input:focus {
+  outline: none !important;
+  border-color: var(--calico-orange-strong) !important;
+  box-shadow: 0 0 0 3px rgba(253, 174, 30, 0.12) !important;
+}
+
+/* ============================================ */
+/*           TABS MENU STYLES                   */
+/* ============================================ */
+
+.tabs-wrapper {
+  margin-bottom: 1.25rem;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+}
+
+@media (min-width: 640px) {
+  .tabs-wrapper {
+    margin-bottom: 1.5rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .tabs-wrapper {
+    margin-bottom: 2rem;
+  }
+}
+
+.tabs-container {
+  width: 100%;
+  max-width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.tabs-list {
+  display: grid !important;
+  grid-template-columns: repeat(2, 1fr) !important;
+  width: 100% !important;
+  background: var(--calico-slate-50) !important;
+  border: 1px solid var(--calico-slate-200) !important;
+  padding: 0.3rem !important;
+  border-radius: var(--radius-lg) !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05) !important;
+  gap: 0.3rem !important;
+  overflow: visible !important;
+  height: auto !important;
+}
+
+@media (min-width: 640px) {
+  .tabs-list {
+    padding: 0.375rem !important;
+    gap: 0.375rem !important;
+  }
+}
+
+.tab-trigger {
+  background: transparent !important;
+  color: var(--calico-slate-500) !important;
+  border: none !important;
+  font-weight: 500 !important;
+  transition: all 0.3s ease !important;
+  border-radius: var(--radius-md) !important;
+  padding: 0.625rem 1rem !important;
+  font-size: var(--type-label) !important;
+  line-height: 1.5 !important;
+  white-space: nowrap !important;
+  cursor: pointer !important;
+  text-align: center !important;
+  overflow: visible !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  min-height: 2.5rem !important;
+}
+
+@media (min-width: 640px) {
+  .tab-trigger {
+    padding: 0.625rem 1.25rem !important;
+    font-size: var(--type-body-sm) !important;
+    min-height: 2.75rem !important;
+  }
+}
+
+@media (min-width: 768px) {
+  .tab-trigger {
+    font-size: var(--type-body) !important;
+    padding: 0.75rem 1.5rem !important;
+    min-height: 3rem !important;
+  }
+}
+
+.tab-trigger:hover {
+  background: var(--calico-slate-200) !important;
+  color: var(--calico-slate-500) !important;
+}
+
+/* Active tab state */
+.tab-trigger[data-state="active"] {
+  background: var(--calico-orange-gradient) !important;
+  color: #FFFFFF !important;
+  box-shadow: 0 2px 8px rgba(253, 174, 30, 0.35) !important;
+  border: none !important;
+  font-weight: 600 !important;
+}
+
+.tab-trigger[data-state="active"]:hover {
+  background: var(--calico-orange-gradient) !important;
+  color: #FFFFFF !important;
+  box-shadow: 0 4px 12px rgba(253, 174, 30, 0.45) !important;
+}
+
+/* ============================================ */
+/*           LOADING & EMPTY STATES             */
+/* ============================================ */
+
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 1rem;
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .loading-container {
+    padding: 4rem 2rem;
+  }
+}
+
+.loading-container .spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid var(--student-app-bg);
+  border-top: 3px solid var(--calico-orange-strong);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 1rem;
+}
+
+@media (min-width: 768px) {
+  .loading-container .spinner {
+    width: 48px;
+    height: 48px;
+    border-width: 4px;
+  }
+}
+
+.loading-container p {
+  color: var(--calico-ink);
+  font-size: var(--type-body);
+  margin: 0;
+}
+
+@media (min-width: 768px) {
+  .loading-container p {
+    font-size: var(--type-body-lg);
+  }
+}
+
+/* Estado vacío */
+.empty-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2.5rem 1.5rem;
+  background: #ffffff;
+  border-radius: var(--radius-lg);
+  border: 2px solid rgba(253, 174, 30, 0.1);
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .empty-container {
+    padding: 4rem 2rem;
+  }
+}
+
+.empty-container .empty-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+@media (min-width: 768px) {
+  .empty-container .empty-icon {
+    font-size: 4rem;
+    margin-bottom: 1.5rem;
+  }
+}
+
+.empty-container h3 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--calico-ink);
+  margin: 0 0 0.75rem 0;
+  line-height: 1.3;
+}
+
+@media (min-width: 768px) {
+  .empty-container h3 {
+    font-size: 1.5rem;
+    margin: 0 0 1rem 0;
+  }
+}
+
+.empty-container p {
+  color: var(--calico-body-muted);
+  font-size: var(--type-body-sm);
+  margin: 0;
+  max-width: 400px;
+  line-height: 1.6;
+  padding: 0 0.5rem;
+}
+
+@media (min-width: 768px) {
+  .empty-container p {
+    font-size: var(--type-body-lg);
+    padding: 0;
+  }
+}
+
+/* ============================================ */
+/*           TUTORS LIST                        */
+/* ============================================ */
+
+.tutors-container {
+  padding: 0 0.75rem;
+}
+
+@media (min-width: 768px) {
+  .tutors-container {
+    padding: 0 1.5rem;
+  }
+}
+
+.tutors-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+@media (min-width: 768px) {
+  .tutors-grid {
+    gap: 1.5rem;
+  }
+}
+
+/* ============================================ */
+/*           COURSE CARDS GRID                  */
+/* ============================================ */
+
+.course-cards-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.875rem;
+  width: 100%;
+}
+
+@media (min-width: 480px) {
+  .course-cards-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .course-cards-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+  }
+}
+
+/* ============================================ */
+/*           RESULTS SECTION                    */
+/* ============================================ */
+
+.results-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.875rem;
+  width: 100%;
+}
+
+@media (min-width: 640px) {
+  .results-container {
+    gap: 1rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .results-container {
+    gap: 1.25rem;
+  }
+}
+
+/* Keep single column layout for better card alignment */
+/* Cards are designed to be full-width for better readability */
+
+.results-loading {
+  text-align: center;
+  padding: 3rem 1rem;
+}
+
+@media (min-width: 768px) {
+  .results-loading {
+    padding: 4rem 2rem;
+  }
+}
+
+.loading-spinner {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  border: 3px solid var(--calico-orange-soft);
+  border-top-color: var(--calico-orange);
+  animation: spin 1s linear infinite;
+  margin: 0 auto;
+}
+
+@media (min-width: 768px) {
+  .loading-spinner {
+    width: 3.5rem;
+    height: 3.5rem;
+  }
+}
+
+.loading-text {
+  margin-top: 1rem;
+  color: var(--calico-body-muted);
+  font-size: var(--type-body-sm);
+}
+
+@media (min-width: 768px) {
+  .loading-text {
+    font-size: var(--type-body);
+  }
+}
+
+.results-empty {
+  text-align: center;
+  padding: 3rem 1rem;
+}
+
+@media (min-width: 768px) {
+  .results-empty {
+    padding: 4rem 2rem;
+  }
+}
+
+.empty-text {
+  color: var(--calico-body-muted);
+  font-size: var(--type-body-sm);
+  line-height: 1.6;
+}
+
+@media (min-width: 768px) {
+  .empty-text {
+    font-size: var(--type-body);
+  }
+}
+
+/* ============================================ */
+/*           ADDITIONAL RESPONSIVE RULES        */
+/* ============================================ */
+
+/* Small mobile adjustments */
+@media (max-width: 480px) {
+  .search-wrapper {
+    margin-bottom: 1.25rem;
+  }
+
+  .tabs-wrapper {
+    margin-bottom: 1.25rem;
+    padding: 0;
+  }
+
+  .tab-trigger {
+    padding: 0.5rem 0.5rem !important;
+    font-size: var(--type-caption) !important;
+  }
+
+  .results-container {
+    gap: 0.5rem;
+  }
+}
+
+/* Extra small devices */
+@media (max-width: 480px) {
+  .tab-trigger {
+    padding: 0.5rem 0.5rem !important;
+    font-size: var(--type-caption) !important;
+    min-height: 2.25rem !important;
+  }
+
+  .search-input {
+    padding-left: 2.5rem !important;
+    font-size: var(--type-label) !important;
+  }
+
+  .search-icon {
+    left: 0.75rem;
+    width: 1rem;
+    height: 1rem;
+  }
+}
+
+/* ============================================ */
+/*           CARD ALIGNMENT FIXES               */
+/* ============================================ */
+
+/* Ensure cards have consistent height and alignment */
+.results-container > * {
+  width: 100%;
+  min-height: 0;
+}
+
+/* Line clamp utility for text truncation */
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ============================================ */
+/*           BUTTON ALIGNMENT FIXES             */
+/* ============================================ */
+
+/* Ensure buttons align properly in cards */
+.results-container button {
+  flex-shrink: 0;
+}
+
+/* Consistent button sizing */
+.results-container .bg-\[\#FF8C00\] {
+  min-height: 2.5rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (min-width: 640px) {
+  .results-container .bg-\[\#FF8C00\] {
+    min-height: 2.75rem;
+  }
+}
+
+/* ============================================ */
+/*           SPACING IMPROVEMENTS               */
+/* ============================================ */
+
+/* Ensure consistent card heights */
+/* .results-container > div {
+  display: flex;
+  flex-direction: column;
+} */
+
+/* Prevent cards from stretching too much.
+   Targets the Tailwind arbitrary-value class `bg-[var(--student-app-bg)]`;
+   the brackets AND parentheses must be escaped or the strict CSS parser
+   (Turbopack/lightningcss) reads `var(...)` as a function and fails. */
+.results-container .bg-\[var\(--student-app-bg\)\] {
+  min-height: auto;
+  max-height: none;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* ============================================ */
+/*           RESPONSIVE TEXT & SPACING           */
+/* ============================================ */
+
+/* Responsive text sizes for headers */
+.responsive-title {
+  font-size: 1.25rem;
+  line-height: 1.3;
+}
+
+@media (min-width: 640px) {
+  .responsive-title {
+    font-size: 1.5rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .responsive-title {
+    font-size: 1.875rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .responsive-title {
+    font-size: 2.25rem;
+  }
+}
+
+/* Responsive button groups */
+.button-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+@media (min-width: 640px) {
+  .button-group {
+    flex-direction: row;
+    gap: 1rem;
+  }
+}
+
+/* Responsive modal */
+.responsive-modal {
+  max-width: 90%;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+@media (min-width: 640px) {
+  .responsive-modal {
+    max-width: var(--form-narrow);
+  }
+}
+
+/* ============================================ */
+/*     LEGACY TABS STYLES (BACKUP/FALLBACK)    */
+/* ============================================ */
+
+/* Fallback styles for data-slot attributes */
+[data-slot="tabs-list"] {
+  background: var(--calico-slate-50) !important;
+  border: 1px solid var(--calico-slate-200) !important;
+  padding: 0.3rem !important;
+  border-radius: var(--radius-lg) !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05) !important;
+  overflow: visible !important;
+  height: auto !important;
+}
+
+@media (min-width: 640px) {
+  [data-slot="tabs-list"] {
+    padding: 0.375rem !important;
+  }
+}
+
+[data-slot="tabs-trigger"] {
+  background: transparent !important;
+  color: var(--calico-slate-500) !important;
+  border: none !important;
+  font-weight: 500 !important;
+  transition: all 0.3s ease !important;
+  border-radius: var(--radius-md) !important;
+  padding: 0.625rem 1rem !important;
+  font-size: var(--type-label) !important;
+  line-height: 1.5 !important;
+  white-space: nowrap !important;
+  min-height: 2.5rem !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+@media (min-width: 640px) {
+  [data-slot="tabs-trigger"] {
+    padding: 0.625rem 1.25rem !important;
+    font-size: var(--type-body-sm) !important;
+    min-height: 2.75rem !important;
+  }
+}
+
+@media (min-width: 768px) {
+  [data-slot="tabs-trigger"] {
+    font-size: var(--type-body) !important;
+    padding: 0.75rem 1.5rem !important;
+    min-height: 3rem !important;
+  }
+}
+
+[data-slot="tabs-trigger"]:hover {
+  background: var(--calico-slate-200) !important;
+  color: var(--calico-slate-500) !important;
+}
+
+[data-slot="tabs-trigger"][data-state="active"] {
+  background: var(--calico-orange-gradient) !important;
+  color: #FFFFFF !important;
+  box-shadow: 0 2px 8px rgba(253, 174, 30, 0.35) !important;
+  border: none !important;
+  font-weight: 600 !important;
+}
+
+[data-slot="tabs-trigger"][data-state="active"]:hover {
+  background: var(--calico-orange-gradient) !important;
+  color: #FFFFFF !important;
+  box-shadow: 0 4px 12px rgba(253, 174, 30, 0.45) !important;
+}
+
+/* ============================================ */
+/*  Buscar tutor por materia: materia | disponibilidad */
+/* ============================================ */
+
+.course-availability-shell {
+  --course-availability-shell-pad-y: var(--space-3);
+  --course-availability-scroll-height: calc(
+    100vh - var(--student-app-header-height) - var(--course-availability-shell-pad-y) * 2 -
+      env(safe-area-inset-bottom, 0px)
+  );
+  width: 100%;
+  max-width: none;
+  margin-inline: 0;
+  padding: var(--course-availability-shell-pad-y) clamp(var(--space-2), 3vw, var(--space-6));
+  box-sizing: border-box;
+}
+
+@supports (height: 100dvh) {
+  .course-availability-shell {
+    --course-availability-scroll-height: calc(
+      100dvh - var(--student-app-header-height) - var(--course-availability-shell-pad-y) * 2 -
+        env(safe-area-inset-bottom, 0px)
+    );
+  }
+}
+
+.course-availability-shell--wide {
+  max-width: min(100%, 1680px);
+  margin-inline: auto;
+}
+
+.course-availability-shell__layout {
+  display: grid;
+  gap: var(--space-4);
+  align-items: stretch;
+}
+
+.course-availability-shell__sidebar {
+  min-width: 0;
+}
+
+.course-availability-shell__sidebar .course-availability-summary {
+  margin-bottom: 0;
+}
+
+.course-availability-shell__panel {
+  min-width: 0;
+  min-height: 0;
+  overflow-x: hidden;
+  isolation: isolate;
+}
+
+.course-availability-shell__main-body {
+  padding-bottom: var(--space-4);
+}
+
+/* Sticky page header stays inside this column and below the site Header (z-index 20) */
+.course-availability-shell .page-section-header--sticky,
+.course-availability-shell .page-section-header--sticky-high {
+  top: 0;
+  z-index: 12;
+}
+
+.course-availability-shell .page-section-header--surface {
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+@media (min-width: 768px) {
+  .course-availability-shell__layout {
+    grid-template-columns: minmax(260px, 1fr) minmax(0, 2.35fr);
+    gap: clamp(var(--space-4), 2vw, var(--space-6));
+    align-items: stretch;
+  }
+
+  .course-availability-shell__sidebar {
+    position: sticky;
+    top: var(--space-3);
+    align-self: start;
+    max-height: var(--course-availability-scroll-height);
+    overflow-x: hidden;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    padding-right: var(--space-4);
+    border-right: 1px solid var(--page-section-border);
+  }
+
+  .course-availability-shell__panel--scroll {
+    max-height: var(--course-availability-scroll-height);
+    overflow-x: hidden;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    padding-right: var(--space-1);
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+@media (max-width: 767px) {
+  .course-availability-shell {
+    --course-availability-shell-pad-y: var(--space-2);
+    padding-inline: clamp(var(--space-2), 4vw, var(--space-4));
+  }
+
+  .course-availability-shell__sidebar {
+    padding-bottom: var(--space-3);
+    margin-bottom: var(--space-2);
+    border-bottom: 1px solid var(--page-section-border);
+  }
+
+  /* Una sola columna: el panel derecho hace scroll y el header sticky no tapa el Header global */
+  .course-availability-shell__panel--scroll {
+    max-height: var(--course-availability-scroll-height);
+    overflow-x: hidden;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+/* --- Calendario dentro de disponibilidad por materia (tokens estudiante) --- */
+
+.course-availability-shell .availability-calendar-container {
+  min-height: min(520px, 55dvh);
+  gap: var(--space-4);
+  padding: var(--space-3);
+  background: transparent;
+}
+
+@media (min-width: 768px) {
+  .course-availability-shell .availability-calendar-container {
+    flex-direction: row;
+    align-items: stretch;
+    gap: var(--space-5);
+    padding: var(--space-4);
+    min-height: min(560px, 58dvh);
+  }
+}
+
+.course-availability-shell .calendar-panel,
+.course-availability-shell .slots-panel {
+  flex: 1 1 100%;
+  width: 100%;
+  background: var(--page-section-surface-bg);
+  border: 1px solid var(--page-section-border);
+  border-radius: var(--page-section-radius);
+  box-shadow: var(--page-section-shadow-a), var(--page-section-shadow-b);
+}
+
+@media (min-width: 768px) {
+  .course-availability-shell .calendar-panel {
+    flex: 1.15 1 58%;
+    min-width: 0;
+  }
+
+  .course-availability-shell .slots-panel {
+    flex: 1 1 42%;
+    min-width: 0;
+  }
+}
+
+.course-availability-shell .calendar-header,
+.course-availability-shell .slots-header {
+  border-bottom-color: var(--page-section-border);
+}
+
+.course-availability-shell .calendar-title {
+  color: var(--page-section-title-color);
+}
+
+.course-availability-shell .calendar-title svg {
+  color: var(--page-section-accent);
+}
+
+.course-availability-shell .react-calendar__navigation button {
+  border-color: var(--page-section-border);
+  color: var(--page-section-accent);
+  background: rgba(255, 255, 255, 0.85);
+}
+
+.course-availability-shell .react-calendar__navigation button:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--student-app-bg) 85%, white);
+  border-color: color-mix(in srgb, var(--page-section-accent) 35%, var(--page-section-border));
+}
+
+.course-availability-shell .react-calendar__navigation__label {
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--calico-orange-strong) 92%, white),
+    color-mix(in srgb, var(--calico-orange) 95%, white)
+  );
+}
+
+.course-availability-shell .react-calendar__tile {
+  border-color: color-mix(in srgb, var(--page-section-border) 80%, transparent);
+}
+
+.course-availability-shell .react-calendar__tile:hover:not(.past-date) {
+  transform: translateY(-1px);
+  border-color: color-mix(in srgb, var(--page-section-accent) 45%, var(--page-section-border));
+}
+
+.course-availability-shell .loading-spinner {
+  border-color: color-mix(in srgb, var(--student-app-bg) 70%, white);
+  border-top-color: var(--page-section-accent);
+}
+
+/* Reserva directa: tutor + materia desde modal (pestaña tutores) */
+.course-availability-shell--direct-tutor {
+  --direct-tutor-accent: color-mix(in srgb, var(--calico-green) 18%, var(--student-app-bg));
+}
+
+.course-availability-shell__direct-badge {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  max-width: 100%;
+  font-size: var(--type-caption);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--calico-ink);
+  background: var(--direct-tutor-accent, var(--calico-green-muted));
+  border: 1px solid color-mix(in srgb, var(--calico-green) 28%, transparent);
+  border-radius: 999px;
+  padding: 0.35rem 0.75rem;
+  margin-bottom: var(--space-3);
+}
+
+.course-availability-shell__direct-hint {
+  margin: 0;
+  font-size: var(--type-body-sm);
+  line-height: var(--leading-normal);
+  color: var(--page-section-subtitle-color);
+  max-width: 48ch;
+}
+
+.course-availability-shell--direct-tutor .course-availability-shell__sidebar {
+  border-right-color: color-mix(in srgb, var(--calico-green) 22%, var(--page-section-border));
+}

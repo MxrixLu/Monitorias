@@ -1,0 +1,157 @@
+.reviews-section {
+  border-top: 1px solid rgba(253, 174, 30, 0.2);
+  margin-top: 1rem;
+  padding-top: 1rem;
+}
+
+.reviews-loading {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--calico-body-muted);
+  font-size: var(--type-label);
+  padding: 0.5rem 0;
+}
+
+.reviews-spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid var(--student-app-bg);
+  border-top-color: var(--calico-orange-strong);
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.reviews-stats {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.reviews-stats-score {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  color: var(--calico-orange-strong);
+}
+
+.reviews-star-icon {
+  width: 18px;
+  height: 18px;
+}
+
+.reviews-avg {
+  font-size: var(--type-body-lg);
+  font-weight: 700;
+  color: #101F24;
+}
+
+.reviews-count {
+  font-size: var(--type-label);
+  color: var(--calico-body-muted);
+}
+
+.reviews-empty {
+  color: var(--calico-body-muted);
+  font-size: var(--type-label);
+  margin: 0;
+}
+
+.reviews-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.review-item {
+  background: #FAFAFA;
+  border-radius: var(--radius-md);
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--calico-slate-100);
+}
+
+.review-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.375rem;
+}
+
+.review-author {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.review-avatar {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.review-avatar-placeholder {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--calico-orange-gradient);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--type-xs);
+  font-weight: 600;
+}
+
+.review-author-name {
+  font-size: var(--type-caption);
+  font-weight: 600;
+  color: #101F24;
+}
+
+.review-rating {
+  display: flex;
+  gap: 2px;
+}
+
+.review-star-filled {
+  color: var(--calico-orange-strong);
+}
+
+.review-star-empty {
+  color: var(--calico-slate-300);
+}
+
+.review-comment {
+  font-size: var(--type-caption);
+  color: var(--calico-slate-700);
+  line-height: 1.5;
+  margin: 0;
+}
+
+.review-course {
+  display: inline-block;
+  margin-top: 0.375rem;
+  font-size: var(--type-xs);
+  color: var(--calico-slate-400);
+  background: var(--calico-slate-100);
+  padding: 0.125rem 0.5rem;
+  border-radius: 4px;
+}
+
+@media (max-width: 640px) {
+  .reviews-list {
+    max-height: 250px;
+  }
+
+  .review-item {
+    padding: 0.625rem 0.75rem;
+  }
+}

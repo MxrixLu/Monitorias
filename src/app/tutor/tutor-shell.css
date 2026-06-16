@@ -1,0 +1,113 @@
+/* Tutor shell: tokens heredan de :root; lienzo azul vía .tutor-app-canvas-fill (design-tokens.css). */
+
+.tutor-app-root {
+  --tutor-primary: var(--calico-blue-tutor);      /* #006bb3 */
+  --tutor-primary-dark: var(--calico-blue-tutor-dark); /* #005694 */
+  --tutor-primary-border: rgba(0, 107, 179, 0.14);
+  --page-section-border: rgba(0, 107, 179, 0.14);
+  --page-section-shadow-a: 0 1px 2px rgba(0, 50, 90, 0.04);
+  --page-section-shadow-b: 0 12px 40px -12px rgba(0, 107, 179, 0.1);
+  --page-section-accent: #006bb3;
+  --page-section-back-border: rgba(0, 107, 179, 0.35);
+  --page-section-back-fg: #006bb3;
+  --page-section-back-hover-bg: rgba(0, 107, 179, 0.08);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  /* overflow-x: clip is centralized in globals.css for both role wrappers. */
+}
+
+.tutor-app-root .tutor-content {
+  flex: 1;
+  width: 100%;
+  min-height: 0;
+}
+
+/* Barra superior: borde y sombra en tono azul */
+.tutor-app-root .header {
+  border-bottom-color: rgba(0, 107, 179, 0.12);
+  box-shadow: 0 4px 24px rgba(0, 107, 179, 0.06);
+}
+
+/* Navbar desktop: enlaces e ítem activo en azul */
+.tutor-app-root .navbar-tutor .nav-item {
+  color: var(--calico-slate-500);
+}
+
+.tutor-app-root .navbar-tutor .nav-item:hover {
+  background-color: rgba(0, 107, 179, 0.10);
+  color: var(--tutor-primary-dark);
+}
+
+.tutor-app-root .navbar-tutor .nav-item.active {
+  color: var(--tutor-primary);
+  background: linear-gradient(
+    180deg,
+    rgba(0, 107, 179, 0.14),
+    rgba(0, 107, 179, 0.06)
+  );
+  box-shadow: 0 1px 0 rgba(0, 107, 179, 0.22);
+}
+
+.tutor-app-root .navbar-tutor .nav-item.active .nav-icon {
+  color: var(--tutor-primary);
+}
+
+/* Insignia de rol «Tutor» en naranja (contraste con nav azul) */
+.tutor-app-root .role-badge.tutor {
+  background: #dcf7fc;
+  color: #1a3a3c;
+}
+
+.tutor-app-root .role-badge.tutor:hover {
+  background: linear-gradient(180deg, #ffedd5, #fed7aa);
+  color: #9a3412;
+}
+
+/* Perfil y notificaciones en barra superior (modo tutor) */
+.tutor-app-root .notification-btn {
+  color: var(--tutor-primary);
+}
+
+.tutor-app-root .notification-btn:hover {
+  background-color: rgba(0, 107, 179, 0.10);
+  color: var(--tutor-primary-dark);
+}
+
+.tutor-app-root .profile-btn {
+  background-color: var(--tutor-primary);
+  color: #fff;
+}
+
+.tutor-app-root .profile-btn:hover {
+  background-color: var(--tutor-primary-dark);
+  color: #fff;
+}
+
+/* Hamburguesa (móvil): acento azul */
+.tutor-app-root .hamburger {
+  border-color: var(--tutor-primary);
+  color: var(--tutor-primary);
+}
+
+.tutor-app-root .hamburger:hover {
+  background: rgba(0, 107, 179, 0.08);
+}
+
+.tutor-app-root .bottom-nav {
+  border-top-color: rgba(0, 107, 179, 0.12);
+  box-shadow: 0 -4px 24px rgba(0, 107, 179, 0.06);
+}
+
+.tutor-app-root .bottom-nav-item.active {
+  color: var(--tutor-primary);
+  background-color: rgba(0, 107, 179, 0.12);
+}
+
+.tutor-app-root .bottom-nav-item.active .bottom-nav-icon {
+  color: var(--tutor-primary);
+}
+
+.tutor-app-root .page-section-header__below--ruled {
+  border-top-color: rgba(0, 107, 179, 0.12);
+}

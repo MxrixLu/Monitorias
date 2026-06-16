@@ -1,0 +1,2556 @@
+{
+  "support": {
+    "open": "Abrir centro de ayuda",
+    "close": "Cerrar",
+    "back": "Atrás",
+    "title": "¿Necesitas ayuda?",
+    "subtitle": "Estamos aquí para ti",
+    "menu": {
+      "contact": "Contacto",
+      "contactDesc": "Habla con nuestro equipo",
+      "bug": "Reportar un problema",
+      "bugDesc": "Cuéntanos qué falló",
+      "faq": "Centro de ayuda",
+      "faqDesc": "Preguntas frecuentes"
+    },
+    "contact": {
+      "title": "Contáctanos",
+      "subtitle": "Elige el canal que prefieras",
+      "email": "Correo",
+      "whatsapp": "WhatsApp",
+      "discord": "Discord",
+      "discordValue": "Únete a la comunidad",
+      "empty": "Pronto habilitaremos canales de contacto."
+    }
+  },
+  "common": {
+    "back": "Regresar",
+    "goBack": "Volver",
+    "loading": "Cargando...",
+    "error": "Error",
+    "retry": "Intentar de nuevo",
+    "noResults": "No se encontraron resultados.",
+    "startSearching": "Comienza buscando tutores o cursos.",
+    "searchPlaceholder": "Buscar tutores o cursos",
+    "allTutors": "Todos los tutores",
+    "allTutorsAvailable": "Todos los tutores disponibles",
+    "noTransactions": "No hay transacciones",
+    "transactionsAppearAfter": "Las transacciones aparecerán aquí una vez que completes sesiones de tutoría.",
+    "applyFilters": "Aplicar filtros",
+    "clearFilters": "Limpiar filtros",
+    "filters": "Filtros de búsqueda",
+    "course": "Curso",
+    "tutor": "Tutor",
+    "date": "Fecha",
+    "concept": "Concepto",
+    "student": "Estudiante",
+    "amount": "Monto",
+    "status": "Estado",
+    "method": "Método",
+    "verifyingPermissions": "Verificando permisos...",
+    "from": "Desde",
+    "to": "Hasta",
+    "period": "Período",
+    "custom": "Personalizado",
+    "allTime": "Todo el tiempo",
+    "previous": "Atrás",
+    "next": "Adelante",
+    "week": "Esta semana",
+    "month": "Este mes",
+    "quarter": "Este trimestre",
+    "year": "Este año",
+    "allCourses": "Todos los cursos",
+    "continue": "Continuar",
+    "cancel": "Cancelar"
+  },
+  "courseCard": {
+    "findTutor": "Buscar Tutor",
+    "viewDetails": "Ver detalles",
+    "topicsCount": "{count} temas",
+    "tutorsCount": "{count} tutores",
+    "complexity": {
+      "Introductory": "Introductorio",
+      "Foundational": "Básico",
+      "Challenging": "Avanzado"
+    },
+    "modal": {
+      "tutorsAvailable": "Tutores disponibles",
+      "topicsAvailable": "Temas",
+      "basePrice": "Precio base",
+      "topicsTitle": "Temas del curso"
+    }
+  },
+  "courseSuggestion": {
+    "open": "Sugerir materia",
+    "title": "Sugerir materia",
+    "subtitle": "Cuéntanos qué materia falta para que el equipo la revise y la agregue al catálogo.",
+    "submit": "Enviar sugerencia",
+    "success": "Recibimos tu sugerencia. El equipo de Calico la revisará pronto.",
+    "fields": {
+      "code": "Código de la materia",
+      "name": "Nombre de la materia",
+      "notes": "Notas adicionales (opcional)"
+    },
+    "errors": {
+      "exists": "Esta materia ya existe en el catálogo.",
+      "generic": "No pudimos enviar la sugerencia."
+    }
+  },
+  "tutorStats": {
+    "title": "Ingresos y actividad",
+    "subtitle": "Aquí ves un resumen de pagos y tutorías registradas. Elige materia y rango de fechas; abajo aparece el detalle de cada transacción.",
+    "filters": {
+      "course": "Materia",
+      "period": "Período",
+      "from": "Desde",
+      "to": "Hasta"
+    },
+    "cards": {
+      "totalSessions": "Total Sesiones",
+      "nextPayment": "Próximo Pago",
+      "totalEarnings": "Ganancias Totales",
+      "averageRating": "Calificación Promedio",
+      "numReview": "Reseñas"
+    },
+    "charts": {
+      "sessionsByMonth": "Tutorías por mes",
+      "viewDetails": "Ver detalles"
+    },
+    "transactions": {
+      "title": "Historial de Pagos",
+      "subtitle": "Registro de transferencias recibidas",
+      "emptyTitle": "No hay transacciones",
+      "emptyText": "Las transacciones aparecerán aquí una vez que completes sesiones de tutoría.",
+      "columns": {
+        "date": "Fecha",
+        "concept": "Concepto",
+        "student": "Estudiante",
+        "amount": "Monto",
+        "status": "Estado",
+        "method": "Método"
+      },
+      "status": {
+        "completed": "completado",
+        "pending": "pendiente",
+        "failed": "fallido"
+      },
+      "conceptPrefix": "Tutoría {course}",
+      "studentFallback": "Estudiante",
+      "methodDefault": "transferencia"
+    },
+    "loading": "Cargando estadísticas..."
+  },
+  "studentHistory": {
+    "title": "Mis tutorías",
+    "subtitle": "Consulta lo que tienes programado y revisa sesiones pasadas en un solo lugar.",
+    "tabs": {
+      "upcoming": "Próximas",
+      "past": "Pasadas",
+      "all": "Todas",
+      "canceled": "Canceladas"
+    },
+    "status": {
+      "Pending": "Pendiente",
+      "Accepted": "Confirmada",
+      "Rejected": "Rechazada",
+      "Completed": "Completada",
+      "Canceled": "Cancelada"
+    },
+    "openDetails": "Ver detalles",
+    "stats": {
+      "title": "Tu actividad",
+      "total": "Sesiones totales",
+      "upcoming": "Próximas",
+      "past": "Pasadas",
+      "courses": "Materias"
+    },
+    "filters": {
+      "title": "Filtros de búsqueda",
+      "searchCourse": "Buscar Curso",
+      "selectDate": "Seleccionar fecha",
+      "startDate": "Fecha inicio",
+      "endDate": "Fecha fin"
+    },
+    "table": {
+      "title": "Historial de tutorías (Elige una tutoría completada para dejar tu reseña)",
+      "date": "Fecha",
+      "course": "Materia",
+      "tutor": "Tutor",
+      "performance": "Rendimiento",
+      "performanceValues": {
+        "excellent": "Excelente",
+        "pending": "Pendiente",
+        "regular": "Regular"
+      },
+      "empty": "No se encontraron tutorías"
+    },
+    "errors": {
+      "loading": "Error al cargar el historial de tutorías",
+      "title": "Error al cargar historial"
+    },
+    "loading": "Cargando historial de tutorías...",
+    "tutor": "Tutor",
+    "amount": "Monto pagado",
+    "rateTeacher": "Calificar tutor",
+    "viewRating": "Ver calificación",
+    "sessionRated": "Sesión calificada",
+    "selectRefundMethod": "Seleccionar método de reembolso"
+  },
+  "search": {
+    "header": {
+      "title": "Encuentra a tu tutor ideal",
+      "subtitle": "Busca por materia o nombre y agenda tu sesión"
+    },
+    "tabs": {
+      "tutors": "Tutores",
+      "courses": "Materias",
+      "both": "Ambos"
+    },
+    "cta": {
+      "viewJointAvailability": "Ver Disponibilidad Conjunta",
+      "seeCombinedSchedules": "Ver horarios combinados",
+      "availabilityOfAllTutors": "Disponibilidad de todos los tutores de {course}"
+    },
+    "courses": {
+      "tutorsFor": "Tutores para {course}",
+      "noTutors": "No hay tutores disponibles para este curso.",
+      "loadingTutors": "Cargando tutores...",
+      "noTutorsShort": "No hay tutores disponibles"
+    },
+    "placeholders": {
+      "search": "Buscar tutores o materias"
+    },
+    "states": {
+      "searching": "Buscando...",
+      "noResults": "No se encontraron resultados.",
+      "start": "Comienza buscando tutores o materias.",
+      "loading": "Cargando..."
+    },
+    "calendar": {
+      "individualTitle": "Disponibilidad de {tutor}",
+      "jointTitle": "Disponibilidad"
+    },
+    "directBooking": {
+      "hint": "Disponibilidad de este tutor para la materia elegida.",
+      "sidebarBadge": "Tu reserva"
+    },
+    "back": {
+      "toCourses": "Volver a cursos"
+    },
+    "modal": {
+      "selectCourse": "Selecciona una materia con {tutor}",
+      "selectCourseDesc": "Este tutor enseña varias materias. Por favor selecciona para cuál deseas agendar la tutoría.",
+      "selectCourseSingle": "Selecciona la materia con {tutor}",
+      "selectCourseSingleDesc": "Verás la información de la materia y la disponibilidad de este tutor.",
+      "noCoursesTitle": "Sin materias disponibles",
+      "noCoursesDesc": "Este tutor no tiene materias cargadas para agendar. Intenta más tarde o elige otro tutor.",
+      "unnamedCourse": "Materia"
+    }
+  },
+  "tutorProfile": {
+    "breadcrumb": "Buscar tutores",
+    "tutorFallback": "Tutor",
+    "error": {
+      "title": "Tutor no disponible",
+      "body": "Este tutor no se pudo cargar.",
+      "back": "Volver a buscar"
+    },
+    "header": {
+      "ratingLabel": "Calificación general",
+      "sessionsLabel": "Tutorías dadas",
+      "reviewLabel_one": "Reseña",
+      "reviewLabel_other": "Reseñas",
+      "experience": "Experiencia"
+    },
+    "subjects": {
+      "titleFallback": "Materias",
+      "emptyTutor": "Este tutor todavía no tiene materias aprobadas para dictar.",
+      "title": "Materias que dicta",
+      "subtitle": "Cada materia tiene su propia calificación. Selecciona una para ver los horarios disponibles.",
+      "noReviews": "Sin reseñas",
+      "selected": "Seleccionada",
+      "viewAvailability": "Ver disponibilidad"
+    },
+    "availability": {
+      "title": "Disponibilidad para {course}",
+      "subtitle": "Selecciona un horario disponible para continuar con la reserva.",
+      "selectSubjectHint": "Selecciona una materia arriba para ver los horarios disponibles."
+    },
+    "reviews": {
+      "title": "Reseñas",
+      "countNone": "Aún no hay reseñas para este tutor.",
+      "count_one": "{count} estudiante ha calificado a este tutor",
+      "count_other": "{count} estudiantes han calificado a este tutor",
+      "all": "Todas",
+      "loadError": "No se pudieron cargar las reseñas.",
+      "emptyForCourse": "No hay reseñas en esta materia todavía.",
+      "emptyAll": "Este tutor aún no tiene reseñas.",
+      "prev": "← Anterior",
+      "next": "Siguiente →",
+      "pageOf": "Página {page} de {total}"
+    },
+    "reviewCard": {
+      "studentFallback": "Estudiante"
+    }
+  },
+  "availability": {
+    "calendar": {
+      "header": {
+        "jointTitle": "Disponibilidad",
+        "individualTitle": "Disponibilidad de {tutor}",
+        "individualFallback": "Disponibilidad Individual"
+      },
+      "loading": "Cargando disponibilidad...",
+      "slots": {
+        "title": "Horarios Disponibles",
+        "noneTitle": "No hay horarios disponibles",
+        "noneHint": "Selecciona otro día en el calendario",
+        "tutorAvailable": "Tutor disponible",
+        "viewOptions": "Ver opciones",
+        "book": "Agendar"
+      },
+      "errors": {
+        "load": "Error cargando disponibilidad. Por favor intenta de nuevo.",
+        "generate": "Error generando horarios disponibles. Por favor intenta de nuevo.",
+        "slotNotAvailable": "El horario seleccionado ya no está disponible. Por favor selecciona otro.",
+        "selecting": "Error seleccionando el horario. Por favor intenta de nuevo.",
+        "createSession": "Error al crear la sesión: {message}",
+        "reserveError": " Error al reservar: {message}\n\nPor favor intenta nuevamente.",
+        "incompleteSessionInfo": "Información de sesión incompleta"
+      },
+      "alerts": {
+        "proofUploadProblem": " La reserva se creó pero hubo un problema al subir el comprobante: {error}\n\nPuedes enviar el comprobante después."
+      },
+      "defaultCourse": "Tutoría",
+      "defaultTutorName": "Tutor"
+    },
+    "joint": {
+      "errorTitle": "Error de Datos",
+      "errorText": "No se especificó la materia para buscar disponibilidad conjunta.",
+      "back": "Volver a Buscar",
+      "title": "Disponibilidad Conjunta",
+      "subtitleBelowTitle": "Horarios de todos los tutores habilitados para esta materia",
+      "allTutors": "Todos los tutores disponibles",
+      "loading": "Cargando disponibilidad conjunta..."
+    },
+    "courseSummary": {
+      "sectionTitle": "Sobre la materia",
+      "complexity": "Nivel",
+      "referencePrice": "Precio de referencia",
+      "department": "Departamento",
+      "tutorsTeaching": "En Calico",
+      "tutorsTeachingCount": "{count} tutor(es) ofrecen esta materia",
+      "topicsHeading": "Temas del programa",
+      "moreTopics": "y {count} tema(s) más en el programa",
+      "partialInfo": "Mostramos el nombre indicado en la búsqueda. Conecta un identificador de materia en la URL para ver datos completos.",
+      "ratingShort": "Valoración",
+      "complexityLevel": {
+        "Introductory": "Introductorio",
+        "Foundational": "Fundamental",
+        "Challenging": "Avanzado"
+      }
+    },
+    "scheduleSection": {
+      "title": "Disponibilidad y reserva",
+      "hintIndividual": "Elige un día y un horario disponible para agendar con este tutor.",
+      "hintJoint": "Elige día y horario; cada franja indica qué tutor está disponible."
+    },
+    "individual": {
+      "errorTitle": "Error de Datos",
+      "errorText": "No se pudieron cargar los datos del tutor. Por favor, regresa e intenta nuevamente.",
+      "back": "Volver a Buscar",
+      "backShort": "Regresar",
+      "loading": "Cargando disponibilidad..."
+    },
+    "tutorCard": {
+      "bookWith": "Reservar con {name}",
+      "ratingWithReviews": "{rating} ⭐ ({count} reseñas)",
+      "reviewsCountOnly": "({count} reseñas)",
+      "tutorFallback": "Tutor",
+      "courses": "Materias:",
+      "more": "más",
+      "sessions": "sesiones",
+      "perHour": "COP/hora",
+      "availability": "Disponibilidad",
+      "retry": "Reintentar",
+      "noAvailability": "No hay disponibilidad próxima para esta materia",
+      "availableSlots": "horarios disponibles",
+      "nextSlot": "Próximo horario",
+      "at": "a las",
+      "viewAll": "Ver todos los horarios",
+      "bookNow": "Reservar ahora",
+      "noAvailabilityShort": "Sin disponibilidad",
+      "contact": "Contactar",
+      "reserve": "Reservar",
+      "viewReviews": "Ver reseñas",
+      "hideReviews": "Ocultar reseñas",
+      "ratingLabel": "Calificación",
+      "errors": {
+        "load": "Error cargando disponibilidad del tutor"
+      }
+    },
+    "confirmationModal": {
+      "title": "Confirmación de Sesión",
+      "course": "Materia",
+      "tutor": "Tutor",
+      "sessionDetails": "Detalles de la Sesión",
+      "emailForMeet": "Email para Google Meet",
+      "emailHint": "El link de la sesión llegará a este correo",
+      "emailPlaceholder": "tu-correo@ejemplo.com",
+      "paymentInformation": "Información de Pago",
+      "paymentInstructions": "Realiza tu transferencia a este número y sube el comprobante de pago a continuación.",
+      "paymentProof": "Comprobante de Pago",
+      "paymentProofHint": "Sube una foto o PDF de tu comprobante de transferencia",
+      "selectFile": "Seleccionar archivo...",
+      "fileSelected": "Archivo seleccionado: {name}",
+      "cost": "Costo",
+      "total": "Total",
+      "confirming": "Confirmando...",
+      "confirmAndSend": "Confirmar Reserva y Enviar Invitación",
+      "cancel": "Cancelar",
+      "errors": {
+        "invalidType": "Por favor sube una imagen (JPG, PNG) o PDF",
+        "tooLarge": "El archivo no debe superar 5MB",
+        "missingProof": "Debes subir el comprobante de pago",
+        "invalidEmail": "Ingresa un correo válido"
+      }
+    },
+    "bookedModal": {
+      "approvedTitle": "¡Sesión Aprobada!",
+      "reservedTitle": "¡Tutoría reservada con éxito!",
+      "thanksTutor": "Gracias por aprobar la sesión de tutoría.",
+      "thanksStudent": "Gracias por reservar con Calico.",
+      "statusTutor": "Has aprobado esta sesión de tutoría. El estudiante recibirá una notificación y el link de Google Meet para la sesión.",
+      "statusStudent": "¡Tutoría reservada con éxito! Ya puedes acceder al link de Google Meet. También recibirás un correo de confirmación con todos los detalles.",
+      "scheduled": "Sesión programada para el {date} a las {time}",
+      "seeYou": "Te vemos el {date} a las {time}",
+      "detailsApproved": "Detalles de la sesión aprobada:",
+      "detailsYour": "Detalles de tu sesión:",
+      "meetingLink": "Link de la Reunión",
+      "labels": {
+        "student": "Estudiante:",
+        "tutor": "Tutor:",
+        "course": "Materia:",
+        "date": "Fecha:",
+        "time": "Hora:",
+        "location": "Ubicación:"
+      },
+      "ok": "¡Perfecto!"
+    }
+  },
+  "payments": {
+    "loading": "Cargando pagos...",
+    "error": "Error cargando pagos",
+    "emptyFor": "No hay pagos registrados para {email}.",
+    "card": {
+      "method": "Método",
+      "date": "Fecha",
+      "transaction": "Transacción",
+      "tutor": "Tutor",
+      "courseFallback": "Materia"
+    }
+  },
+  "findTutor": {
+    "title": "Buscar un tutor",
+    "autoAssign": "Auto-Asignar",
+    "searchPlaceholder": "Buscar tutores o materias",
+    "loading": "Cargando tutores...",
+    "emptyStates": {
+      "noTutorsFound": "No se encontraron tutores",
+      "noMatch": "Ningún tutor coincide con \"{term}\"",
+      "noCourse": "No hay tutores disponibles para {course}",
+      "noAvailable": "No hay tutores disponibles en este momento"
+    }
+  },
+  "sessionDetails": {
+    "title": "Detalles de la Sesión",
+    "course": "Materia",
+    "tutor": "Tutor",
+    "student": "Estudiante",
+    "sessionDetailsLabel": "Detalles de la Sesión",
+    "location": "Ubicación",
+    "meetingLink": "Link de la Reunión",
+    "cost": "Costo",
+    "total": "Total",
+    "notes": "Notas",
+    "close": "Cerrar",
+    "reschedule": "Reprogramar",
+    "cancelSession": "Cancelar Tutoría",
+    "cancelConfirmTitle": "¿Estás seguro que deseas cancelar esta tutoría?",
+    "cancelReasonPlaceholder": "Por favor proporciona un motivo para la cancelación...",
+    "cancelKeep": "No, mantener",
+    "cancelConfirm": "Sí, cancelar",
+    "cancelling": "Cancelando...",
+    "statusCancelled": " Sesión Cancelada",
+    "cancelledBy": "Cancelada por: {by}",
+    "cancelledByYou": "ti",
+    "cancelReason": "Motivo: {reason}",
+    "timeUntil": " {time}",
+    "cannotCancelWarning": "No se puede cancelar con menos de 6 horas de anticipación",
+    "cancellationPolicyTitle": "Política de Cancelación",
+    "cancellationPolicy": "Las cancelaciones deben realizarse con al menos 6 horas de anticipación a la sesión programada.",
+    "sessionPassed": "La sesión ya pasó",
+    "hoursRemaining": "Faltan {hours} horas",
+    "minutesRemaining": "Faltan {minutes} minutos",
+    "paymentStatus": {
+      "en_verificación": "En verificación",
+      "verificado": "Verificado",
+      "rechazado": "Rechazado"
+    },
+    "cancellationModal": {
+      "title": "Cancelar Sesión",
+      "confirmTitle": "¿Estás seguro de que deseas cancelar esta sesión?",
+      "course": "Materia",
+      "tutor": "Tutor",
+      "date": "Fecha",
+      "back": "Regresar",
+      "continue": "Continuar",
+      "reasonLabel": "Motivo de la cancelación",
+      "reasonPlaceholder": "Describe por qué cancelas esta sesión...",
+      "refundMethodLabel": "¿Cómo deseas recibir tu reembolso?",
+      "llave": {
+        "title": "Llave (Bre-B)",
+        "subtitle": "Transferencia instantánea a tu cuenta",
+        "detailLabel": "Tu Llave",
+        "detailPlaceholder": "Tu Llave"
+      },
+      "nequi": {
+        "title": "Nequi",
+        "subtitle": "Transferencia a tu billetera Nequi",
+        "detailLabel": "Número de Nequi (opcional)",
+        "detailPlaceholder": "Tu número de teléfono Nequi..."
+      },
+      "useFutureSession": {
+        "title": "Usar para otra sesión",
+        "subtitle": "Aplicar crédito a futuras reservas"
+      },
+      "detailHint": "Esto ayudará a procesar tu reembolso más rápidamente",
+      "cancelBtn": "Cancelar",
+      "confirmBtn": "Confirmar Cancelación",
+      "processing": "Procesando cancelación...",
+      "success": "¡Sesión cancelada!",
+      "successMessage": "Tu cancelación ha sido procesada. Te contactaremos pronto sobre tu reembolso.",
+      "tutorReasonLabel": "¿Por qué estás cancelando?",
+      "tutorReasonPlaceholder": "Explica por qué necesitas cancelar...",
+      "tutorCancelHint": "El estudiante será notificado y podrá seleccionar un método de reembolso.",
+      "tutorSuccessMessage": "El estudiante ha sido notificado para seleccionar un método de reembolso.",
+      "refundMethodOnlyTitle": "Selecciona método de reembolso",
+      "confirmRefundBtn": "Confirmar",
+      "errors": {
+        "reasonRequired": "Por favor proporciona un motivo de cancelación",
+        "methodRequired": "Por favor selecciona un método de reembolso"
+      }
+    }
+  },
+  "home": {
+    "loading": "Cargando...",
+    "accessRestricted": "Acceso Restringido",
+    "loginRequired": "Debes iniciar sesión para acceder a esta página."
+  },
+  "explore": {
+    "bannerTitle": "¿Necesitas ayuda en tus clases?",
+    "coursesTitle": "Tus materias este semestre"
+  },
+  "favorites": {
+    "loading": "Cargando…",
+    "searchPlaceholder": "Busca materias o tutores",
+    "coursesTitle": "Cursos favoritos",
+    "tutorsTitle": "Tutores favoritos",
+    "emptyCourses": "Aún no tienes cursos favoritos.",
+    "emptyTutors": "Aún no tienes tutores favoritos.",
+    "program": "Programa:",
+    "findTutor": "Buscar un tutor",
+    "reserve": "Reservar",
+    "user": "Usuario",
+    "tutor": "Tutor"
+  },
+  "profile": {
+    "title": "Perfil del Usuario",
+    "name": "Nombre:",
+    "phone": "Teléfono:",
+    "email": "Correo:",
+    "llave": "Llave:",
+    "major": "Carrera:",
+    "notDefined": "No definido",
+    "editProfile": "Editar Perfil",
+    "logout": "Cerrar Sesión",
+    "becomeTutorTitle": "¿Quieres ser tutor?",
+    "becomeTutorText": "Aún no tienes habilitado el perfil de tutor. Completa el formulario para solicitar acceso.",
+    "goToForm": "Ir al formulario",
+    "applyTutor": {
+      "selectCourses": "Materias que puedes enseñar",
+      "experience": "Experiencia con esta materia (opcional)",
+      "experiencePlaceholder": "Cuéntales brevemente a los estudiantes tu experiencia con esta materia y cómo puedes ayudarles. Recuerda que este mensaje será visible para los estudiantes cuando busquen tutores para esta materia."
+    },
+    "close": "Cerrar",
+    "loadingProfile": "Cargando perfil...",
+    "about": "Acerca de",
+    "courses": "Materias",
+    "changeToTutorMode": "Cambiar a Modo Tutor",
+    "changeToStudentMode": "Cambiar a Modo Estudiante",
+    "tutorModeActive": "Modo tutor activo",
+    "studentModeActive": "Modo estudiante activo",
+    "changeRole": "Cambiar",
+    "tutorApplicationPending": "Solicitud en revisión",
+    "tutorApplicationPendingText": "Pronto te contactaremos vía WA o email.",
+    "reapplyAsTutor": "Volver a aplicar como tutor",
+    "rejectedApplicationText": "Tu solicitud anterior fue revisada.",
+    "apply": "Aplicar",
+    "manageAvailability": "Gestionar Disponibilidad",
+    "editPersonalInfo": "Editar Información Personal",
+    "saveChanges": "Guardar Cambios",
+    "cancel": "Cancelar",
+    "description": "Descripción",
+    "descriptionPlaceholder": "Cuéntales a los estudiantes sobre ti y tu estilo de enseñanza...",
+    "aboutTutorDescription": "Esta información será visible cuando los estudiantes consulten tu perfil antes de reservar. Puedes editarla en cualquier momento.",
+    "studentNoDescription": "Los estudiantes no tienen descripción. Solo los tutores pueden agregar una descripción en su perfil.",
+    "specialization": "Especialización",
+    "rating": "Calificación",
+    "sessionsCompleted": "Sesiones Completadas",
+    "studentsHelped": "Estudiantes Ayudados",
+    "noCourses": "Aún no tienes materias asignadas",
+    "addCourse": "Agregar Materia",
+    "removeCourse": "Eliminar",
+    "stats": {
+      "sessionsTaken": "Tutorías tomadas",
+      "hoursStudied": "Horas estudiadas",
+      "subjects": "Materias",
+      "myRating": "Mi calificación"
+    },
+    "nextSession": {
+      "title": "Próxima tutoría",
+      "empty": "No tienes tutorías próximas.",
+      "findTutor": "Buscar tutor",
+      "viewAll": "Ver todas"
+    },
+    "subjectsTaken": "Materias en tu historial",
+    "picture": {
+      "change": "Cambiar foto",
+      "remove": "Eliminar foto",
+      "uploading": "Subiendo...",
+      "errorUpload": "No se pudo subir la foto",
+      "errorRemove": "No se pudo eliminar la foto"
+    },
+    "editModal": {
+      "title": "Editar Perfil",
+      "name": "Nombre Completo",
+      "phone": "Número de Teléfono",
+      "description": "Descripción",
+      "llaveBreveLabel": "llave Breve",
+      "llaveBreveHelp": "Escribe tu llave de breve donde quieres que te consignemos tu dinero.",
+      "specialization": "Especialización",
+      "save": "Guardar Cambios",
+      "cancel": "Cancelar"
+    },
+    "availability": {
+      "title": "Gestión de Disponibilidad",
+      "description": "Gestiona tus horarios disponibles para sesiones de tutoría",
+      "goToAvailability": "Ir a Disponibilidad"
+    },
+    "security": {
+      "title": "Seguridad",
+      "description": "Gestiona la seguridad de tu cuenta",
+      "changePassword": "Cambiar Contraseña",
+      "currentPassword": "Contraseña actual",
+      "currentPasswordPlaceholder": "Ingresa tu contraseña actual",
+      "newPassword": "Nueva contraseña",
+      "newPasswordPlaceholder": "Ingresa tu nueva contraseña",
+      "confirmPassword": "Confirmar nueva contraseña",
+      "confirmPasswordPlaceholder": "Repite tu nueva contraseña",
+      "save": "Cambiar Contraseña",
+      "saving": "Cambiando...",
+      "success": "Tu contraseña ha sido cambiada exitosamente.",
+      "errorEmpty": "Todos los campos son obligatorios.",
+      "errorMinLength": "La nueva contraseña debe tener al menos 6 caracteres.",
+      "errorMismatch": "Las contraseñas no coinciden.",
+      "errorWrongPassword": "La contraseña actual es incorrecta.",
+      "errorTooMany": "Demasiados intentos. Intenta de nuevo más tarde.",
+      "errorWeakPassword": "La contraseña es muy débil. Usa al menos 6 caracteres.",
+      "errorNoUser": "No se pudo verificar tu sesión. Cierra sesión e inicia de nuevo.",
+      "errorGeneric": "Ocurrió un error al cambiar la contraseña. Intenta de nuevo."
+    }
+  },
+  "welcome": {
+    "greeting": "Bienvenido",
+    "greetingWithName": "Bienvenidx, {name}",
+    "findTutor": "Encuentra el tutor para ti",
+    "badge": " Nueva Plataforma",
+    "tutorSubtitle": "Tu espacio para gestionar tutorías, estudiantes y disponibilidad.",
+    "subtitle": "Tu plataforma de aprendizaje personalizado",
+    "bannerAsideStudent": "Reserva sesiones, revisa tu historial y sigue tu progreso desde un solo lugar.",
+    "quickNavAria": "Accesos rápidos",
+    "features": {
+      "verifiedTutors": "Tutores verificados",
+      "flexibleSchedule": "Horarios flexibles",
+      "personalizedLearning": "Aprendizaje personalizado"
+    }
+  },
+  "studentHome": {
+    "scheduledSessions": "Mis Tutorías Programadas ",
+    "viewHistory": "Ver historial",
+    "needHelpTitle": "¿Necesitas ayuda académica? ",
+    "needHelpText": "Encuentra tutores expertos para mejorar en cualquier materia.",
+    "searchTutors": " Buscar Tutores",
+    "exploreCourses": " Explorar Materias",
+    "yourCourses": "Tus materias este semestre",
+    "coursesDescription": "Materias en las que puedes recibir ayuda",
+    "stats": {
+      "sessionsThisWeek": "Sesiones esta semana",
+      "activeCourses": "Materias activas",
+      "totalSessions": "Total de sesiones",
+      "averageRating": "Calificación promedio"
+    },
+    "quickAccess": {
+      "title": "Acceso Rápido",
+      "history": "Historial de tutorías",
+      "favorites": "Tutores favoritos",
+      "profile": "Mi perfil"
+    },
+    "noCourses": {
+      "title": "¡Explora nuevas materias!",
+      "description": "Descubre todas las materias disponibles y encuentra el tutor perfecto para ti.",
+      "exploreCourses": "Explorar materias"
+    },
+    "achievement": {
+      "title": "¡Sigues mejorando! ",
+      "description": "Has completado 24 sesiones este semestre. ¡Mantén el excelente trabajo!"
+    }
+  },
+  "tutoringSummary": {
+    "loading": "Cargando...",
+    "error": "Error cargando las tutorías",
+    "noSessions": "No tienes tutorías programadas",
+    "noSessionsStudent": "Cuando reserves una tutoría, la verás aquí",
+    "noSessionsTutor": "Las tutorías que tengas agendadas aparecerán aquí",
+    "viewDetails": "Ver detalles",
+    "today": "Hoy",
+    "tomorrow": "Mañana",
+    "student": "Estudiante:",
+    "tutor": "Tutor:",
+    "pendingApproval": "Pendiente de aprobación",
+    "statusScheduled": "Programada",
+    "statusPending": "Pendiente"
+  },
+  "boxCourse": {
+    "tutors": "tutores",
+    "tutor": "tutor"
+  },
+  "header": {
+    "navigation": {
+      "home": "Inicio",
+      "search": "Buscar",
+      "favorites": "Favoritos",
+      "history": "Historial",
+      "availability": "Disponibilidad",
+      "statistics": "Estadísticas",
+        "courses": "Materias"
+    },
+    "roles": {
+      "student": "ESTUDIANTE",
+      "tutor": "TUTOR"
+    },
+    "auth": {
+      "login": "Iniciar Sesión",
+      "register": "Regístrate"
+    },
+    "menu": {
+      "open": "Abrir menú",
+      "close": "Cerrar menú"
+    }
+  },
+  "rescheduleModal": {
+    "title": "Reprogramar Sesión",
+    "currentSchedule": "Horario Actual",
+    "tutorLabel": "Tutor:",
+    "reasonLabel": "Motivo de la reprogramación *",
+    "reasonPlaceholder": "Ej: Tengo otro compromiso a esa hora, necesito más tiempo para preparar...",
+    "selectNewTime": "Selecciona un nuevo horario",
+    "loading": "Cargando disponibilidad...",
+    "noSlotsTitle": "No hay horarios disponibles",
+    "noSlotsText": "El tutor no tiene disponibilidad en las próximas 2 semanas",
+    "slotsAvailable": "{count} horario disponible",
+    "slotsAvailablePlural": "{count} horarios disponibles",
+    "confirmButton": "Confirmar Reprogramación",
+    "confirmingButton": "Reprogramando...",
+    "cancelButton": "Cancelar",
+    "alerts": {
+      "selectSlot": "Por favor selecciona un nuevo horario",
+      "provideReason": "Por favor proporciona un motivo para la reprogramación",
+      "success": " Sesión reprogramada exitosamente",
+      "error": "Error al reprogramar"
+    }
+  },
+  "tutorAvailability": {
+    "title": "Agenda, disponibilidad y sesiones",
+    "pageHint": "Aquí ves tu semana, tus horarios del día seleccionado y tus sesiones. Panel derecho: pendientes y próximas tutorías.",
+    "calendarColumnTitle": "Tu semana y horarios del día",
+    "calendarColumnHint": "Verde: horario recurrente por día de la semana. Azul: cambios solo para esa semana. Toca un día para ver abajo los intervalos concretos. En pantallas estrechas, desplázate horizontalmente en la cuadrícula.",
+    "weekGridScrollHint": "← Desliza la cuadrícula para ver todos los días →",
+    "weeklySectionTitle": "Horarios semanales (edición)",
+    "weeklySectionHint": "Navega por mes (semanas en filas) y por semana en la cuadrícula de horas. Los bloques verdes son tu patrón semanal; el azul son franjas adicionales para esa semana.",
+    "calendarSectionTitle": "Calendario por día",
+    "calendarSectionHint": "Elige una fecha para ver o añadir franjas en ese día.",
+    "sessionsColumnTitle": "Sesiones de tutoría",
+    "sessionsColumnHint": "Solicitudes pendientes, próximas sesiones confirmadas e historial reciente.",
+    "defaultSlotTitle": "Disponible",
+    "noBlocksThisDay": "Sin bloques",
+    "removeBlock": "Quitar horario",
+    "addBlockForDay": "Añadir",
+    "weekPrev": "Semana anterior",
+    "weekNext": "Semana siguiente",
+    "weekToday": "Hoy",
+    "editBlockTitle": "Editar horario",
+    "editBlockAria": "Editar este horario",
+    "editDayOfWeekLabel": "Día de la semana",
+    "editBlockNameLabel": "Nombre (opcional)",
+    "editBlockNamePlaceholder": "Ej.: Mañanas, solo online",
+    "editInvalidTimes": "La hora de fin debe ser posterior a la de inicio.",
+    "editOverlapError": "Ese horario se cruza con otro bloque.",
+    "editSaveError": "No se pudieron guardar los cambios.",
+    "savingEdit": "Guardando...",
+    "monthPrev": "Mes anterior",
+    "monthNext": "Mes siguiente",
+    "monthGridAria": "Calendario mensual por semanas",
+    "loading": "Cargando disponibilidad y sesiones...",
+    "availableSlots": "Horarios disponibles",
+    "addSlot": "Agregar horario",
+    "editSlots": "Editar horarios",
+    "syncCalendar": "Sincronizar calendario",
+    "syncing": "Sincronizando...",
+    "connectCalendarFirst": "Conecta tu Google Calendar primero",
+    "syncCalendarTitle": "Sincronizar eventos de Google Calendar",
+    "availabilityFor": "Disponibilidad para {date}",
+    "selectDay": "Selecciona un día",
+    "booked": "Reservado",
+    "available": "Disponible",
+    "noSlotsForDay": "No hay horarios disponibles para este día",
+    "useAddSlotHint": "Usa 'Agregar horario' para agregar disponibilidad",
+    "pending": "Pendientes",
+    "upcoming": "Próximas",
+    "past": "Pasadas",
+    "pendingApproval": "Pendiente de aprobación",
+    "noPendingRequests": "No hay solicitudes pendientes",
+    "defaultSessionTitle": "Introducción a la programación con estudiante",
+    "addAvailabilitySlot": "Agregar horario de disponibilidad",
+    "titleLabel": "Título",
+    "titlePlaceholder": "Horario de disponibilidad",
+    "dateLabel": "Fecha",
+    "startTimeLabel": "Hora inicio",
+    "endTimeLabel": "Hora fin",
+    "descriptionLabel": "Descripción",
+    "descriptionPlaceholder": "Descripción opcional",
+    "cancel": "Cancelar",
+    "creating": "Creando...",
+    "save": "Guardar",
+    "connectCalendarRequired": "Debes conectar tu Google Calendar para crear eventos",
+    "syncSuccessful": "Sincronización exitosa",
+    "errorCreatingEvent": "Error al crear evento",
+    "mustBeConnectedToSync": "Debes estar conectado a Google Calendar para sincronizar",
+    "syncSuccess": "¡Sincronización exitosa!",
+    "eventsProcessed": "Eventos procesados",
+    "newEvents": "Nuevos eventos",
+    "updatedEvents": "Actualizados",
+    "syncError": "Error en la sincronización",
+    "syncFailed": "Error al sincronizar",
+    "recurringTypeLabel": "Tipo de disponibilidad",
+    "recurringOption": "Recurrente",
+    "onceOption": "Una sola vez",
+    "specificDateLabel": "Fecha específica",
+    "blockLabelLabel": "Nombre del bloque",
+    "blockLabelOptional": "(opcional)",
+    "blockLabelPlaceholder": "Ej: Tardes de cálculo",
+    "onceBlockBadge": "Única vez",
+    "validationStartRequired": "La hora de inicio es requerida",
+    "validationEndRequired": "La hora de fin es requerida",
+    "validationSpecificDateRequired": "La fecha específica es requerida",
+    "validationEndAfterStart": "La hora de fin debe ser posterior a la hora de inicio",
+    "validationNoPast": "No se puede crear un horario en el pasado",
+    "editRecurringTypeLabel": "Tipo de disponibilidad",
+    "editSpecificDateLabel": "Fecha específica",
+    "calendarWorkflowTitle": "¿Cómo funciona la disponibilidad?",
+    "calendarWorkflowDesc": "Conecta Google Calendar y crea un calendario llamado disponibilidad. Los eventos que agregues ahí son los horarios que los estudiantes verán como disponibles.",
+    "calendarWorkflowStep1": "Conecta tu cuenta de Google con el botón de arriba",
+    "calendarWorkflowStep2": "En Google Calendar, crea un calendario llamado «disponibilidad»",
+    "calendarWorkflowStep3": "Agrega eventos a ese calendario — serán tus horarios disponibles",
+    "calendarWorkflowStep4":"Haz click en el boton de sincronizar para agregar tus eventos al calendario de abajo",
+    "calendarWorkflowAlt": "También puedes agregar franjas manualmente con \"Agregar horario\" sin conectar el calendario.",
+    "calendarHintDismiss": "Ocultar",
+    "calendarHintRestore": "¿Cómo funciona el calendario de disponibilidad?",
+    "calendarConnectedNoBlocks": "Calendario conectado. Haz clic en \"Sincronizar\" para importar tus eventos de Google Calendar, o usa \"Agregar horario\" para crear franjas manualmente.",
+    "calendarConnectedActive": "Tu Google Calendar está activo. Los estudiantes pueden ver tu disponibilidad."
+  },
+  "googleCalendar": {
+    "loading": "Cargando...",
+    "checking": "Verificando...",
+    "connected": "Conectado",
+    "calendarConnected": "Calendario conectado",
+    "disconnectCalendar": "Desconectar calendario",
+    "continueWithGoogle": "Continuar con Google",
+    "sessionExpired": "Sesión expirada",
+    "connect": "Conectar Google Calendar",
+    "connectedTooltip": "Haz clic para desconectar Google Calendar de Calico. Última verificación: {time}.",
+    "expiredTooltip": "Sesión expirada - Haz clic para renovar",
+    "connectTooltip": "Conectar con Google Calendar",
+    "sessionExpiredNotice": "Tu sesión ha expirado. Haz clic para renovar la conexión.",
+    "connectionRenewed": "Conexión renovada correctamente",
+    "sessionExpiredMessage": "Tu sesión de Google Calendar ha expirado.",
+    "reconnectNow": "¿Quieres reconectar ahora?"
+  },
+  "notifications": {
+    "title": "Notificaciones",
+    "loading": "Cargando notificaciones...",
+    "empty": "No tienes notificaciones",
+    "emptyDescription": "Todas tus notificaciones aparecerán aquí",
+    "markAllAsReadButton": "Marcar todas como leídas",
+    "close": "Cerrar",
+    "viewAll": "Ver todas las notificaciones",
+    "defaultTutorName": "Tutor",
+    "common": {
+      "notification": "Notificación"
+    },
+      "pendingSessionRequest": {
+      "title": "Nueva Solicitud de Tutoría",
+      "message": "{studentName} ha solicitado una sesión de tutoría para {course}"
+    },
+    "sessionAccepted": {
+      "title": "Sesión Aprobada",
+      "message": "Tu sesión de tutoría para {course} ha sido aprobada"
+    },
+    "sessionDeclined": {
+      "title": "Sesión Rechazada",
+      "message": "Tu sesión de tutoría para {course} ha sido rechazada"
+    },
+    "sessionCancelled": {
+      "title": "Sesión Cancelada",
+      "message": "Tu tutoría de {course} ha sido cancelada por {cancellerRole}. Motivo: {reason}",
+      "tutor": "el tutor",
+      "student": "el estudiante",
+      "noReason": "Sin razón especificada"
+    },
+    "sessionRescheduled": {
+      "title": "Sesión Reprogramada",
+      "message": "{studentName} ha reprogramado la tutoría de {course}. Anterior: {oldDate}. Nueva: {newDate}. Motivo: {reason}",
+      "noReason": "Sin razón especificada"
+    },
+    "sessionRejected": {
+      "title": "Sesión Rechazada",
+      "message": "Tu solicitud de tutoría ha sido rechazada{reason}"
+    },
+    "sessionReminder": {
+      "title": "Recordatorio de Sesión",
+      "message": "Tu sesión de {course} con {tutorName} es en 1 hora"
+    },
+    "paymentReminder": {
+      "title": "Recordatorio de Pago",
+      "message": "Recuerda realizar el pago para tu sesión de {course}"
+    },
+    "markAllAsRead": {
+      "success": "Marcadas {count} notificaciones como leídas",
+      "noUnread": "No se encontraron notificaciones sin leer"
+    },
+    "errors": {
+      "creationFailed": "Error creando notificación: {error}",
+      "retrievalFailed": "Error obteniendo notificaciones: {error}",
+      "markAsReadFailed": "Error marcando notificación como leída: {error}",
+      "deletionFailed": "Error eliminando notificación: {error}",
+      "markAllAsReadFailed": "Error marcando notificaciones como leídas: {error}"
+    },
+    "tutor": {
+      "pendingSessionRequest": "Solicitud de Tutoría",
+      "sessionConfirmed": "Tutoría Confirmada",
+      "sessionReminder": "Recordatorio de Sesión",
+      "studentReviewReminder": "Califica a tu estudiante",
+      "message": "Mensaje"
+    },
+    "student": {
+      "sessionAccepted": "Sesión Aceptada",
+      "sessionRejected": "Sesión Rechazada",
+      "sessionCancelled": "Sesión Cancelada",
+      "paymentReminder": "Recordatorio de Pago",
+      "tutorMessage": "Mensaje del Tutor"
+    },
+    "timeAgo": {
+      "justNow": "Hace un momento",
+      "minutesAgo": "Hace {count} minuto",
+      "minutesAgo_other": "Hace {count} minutos",
+      "hoursAgo": "Hace {count} hora",
+      "hoursAgo_other": "Hace {count} horas",
+      "daysAgo": "Hace {count} día",
+      "daysAgo_other": "Hace {count} días",
+      "minutesAgoShort": "Hace {count} min",
+      "hoursAgoShort": "Hace {count} h",
+      "daysAgoShort": "Hace {count} d"
+    }},
+
+  "review": {
+    "newTitle": "Deja una reseña",
+    "updateTitle": "Actualiza tu reseña",
+    "fields": {
+      "course": "Materia",
+      "tutor": "Tutor",
+      "date": "Fecha",
+      "price": "Precio",
+      "rating": "Calificación",
+      "comment": "Comentario"
+    },
+    "placeholders": {
+      "comment": "Escribe tu opinión sobre la tutoría"
+    },
+    "buttons": {
+      "submit": "Enviar reseña",
+      "update": "Actualizar reseña",
+      "saving": "Guardando...",
+      "close": "Cerrar"
+    },
+    "errors": {
+      "validation": "Debes seleccionar al menos 1 estrella.",
+      "authRequired": "Debes iniciar sesión para enviar una reseña.",
+      "sessionNotFound": "La sesión no existe.",
+      "saveError": "Error al guardar la reseña."
+  }
+},
+
+  "studentReview": {
+    "titleSingle": "¿Cómo te fue con {name}?",
+    "titleGroup": "Califica a tus estudiantes",
+    "defaultCourse": "Tutoría",
+    "fallbackStudent": "Estudiante",
+    "privacyNote": "Tu calificación es privada: el estudiante no verá ni las estrellas ni tu comentario. Solo alimenta su promedio general, visible para otros tutores.",
+    "commentPlaceholder": "Comentario privado para Calico (opcional)",
+    "buttons": {
+      "submit": "Enviar calificación",
+      "update": "Actualizar calificación",
+      "saving": "Guardando...",
+      "close": "Cerrar"
+    },
+    "errors": {
+      "validation": "Selecciona al menos 1 estrella.",
+      "saveError": "Error al guardar la calificación."
+    },
+    "success": {
+      "title": "¡Calificación enviada!",
+      "message": "Gracias por ayudar a la comunidad de tutores de Calico."
+    },
+    "ownRating": {
+      "title": "Tu calificación como estudiante",
+      "description": "Promedio de las calificaciones que los tutores te han dado. Solo tú y tus tutores pueden verlo.",
+      "new": "Aún no tienes calificaciones",
+      "count_one": "{count} calificación",
+      "count_other": "{count} calificaciones"
+    }
+  },
+
+  "successModal": {
+    "title": "¡Reseña enviada con éxito!",
+    "message": "Gracias por tus comentarios. ¡Nos ayuda mucho!",
+    "close": "Cerrar"
+  },
+  "landing": {
+    "header": {
+      "viewProfile": "Ver Perfil",
+      "signUp": "Regístrate",
+      "login": "Iniciar Sesión",
+      "termsAndConditions": "Términos y Condiciones",
+      "privacyPolicy": "Política de Privacidad"
+    },
+    "hero": {
+      "title": "Conecta con los mejores {accent}",
+      "titleBefore": "Conecta con los mejores",
+      "titleAccent": "tutores",
+      "subtitle": "Encuentra ayuda académica personalizada, programa sesiones flexibles y mejora tu rendimiento con estudiantes destacados de tu universidad.",
+      "valueProp": "Tutores verificados, reservas enlazadas a Google Calendar y pagos protegidos en la app — sin grupos de WhatsApp ni pagos por fuera.",
+      "cta": {
+        "startLearning": "Comienza a aprender",
+        "becomeTutor": "Únete como tutor"
+      },
+      "social": {
+        "live": "150+ sesiones activas",
+        "verified": "Verificado ",
+        "sessions": "150+ sesiones confirmadas hoy",
+        "confirmed": "Sesión confirmada · Álgebra Lineal"
+      },
+      "card": {
+        "subject": "Cálculo Diferencial",
+        "available": "12 disponibles",
+        "book": "Reservar"
+      }
+    },
+    "howItWorks": {
+      "label": "Cómo funciona",
+      "title": "Calico en tres pasos — de cada lado",
+      "subtitle": "Misma plataforma: tú eliges si buscas apoyo o si quieres ofrecerlo. Sin coordinar por fuera ni perder el hilo de pagos y horarios.",
+      "studentBlock": "Si buscas tutorías",
+      "tutorBlock": "Si quieres ser tutor",
+      "step1": {
+        "title": "Explora cursos y tutores en Calico",
+        "description": "Filtra por materia y ve perfiles reales con reseñas de otros estudiantes de  — todo centralizado aquí."
+      },
+      "step2": {
+        "title": "Paga en la app y agenda con calendario",
+        "description": "Confirmas el pago seguro, se crea la sesión y puedes sincronizar con Google Calendar y Meet sin fricción."
+      },
+      "step3": {
+        "title": "Asiste, aprende y califica tu experiencia",
+        "description": "La sesión queda registrada en Calico; al terminar, las reseñas ayudan a la comunidad a elegir mejor la próxima vez."
+      },
+      "tutorStep1": {
+        "title": "Regístrate y completa tu perfil de tutor",
+        "description": "Indica las materias que dominas; el equipo de Calico revisa tu solicitud para mantener la calidad del marketplace."
+      },
+      "tutorStep2": {
+        "title": "Conecta tu Google Calendar y tu disponibilidad",
+        "description": "Define bloques semanales: los estudiantes ven cuándo estás libre y las solicitudes respetan tu tiempo."
+      },
+      "tutorStep3": {
+        "title": "Acepta sesiones, enseña y recibe el pago",
+        "description": "Gestiona solicitudes desde el panel, imparte la tutoría y deja constancia en la app — ingresos alineados con sesiones completadas."
+      }
+    },
+    "forStudents": {
+      "label": "Para estudiantes",
+      "title": "Sube tus notas con apoyo de pares",
+      "subtitle": "Regístrate gratis, busca el tutor para tu materia y agenda tu primera sesión en menos de 5 minutos.",
+      "benefit1": "tutores verificados y calificados de ",
+      "benefit2": "Agenda sesiones en el horario que más te convenga",
+      "benefit3": "Elige sesión individual o únete a grupos pequeños",
+      "benefit4": "Paga solo por lo que usas, sin compromisos",
+      "cta": "Buscar tutor ahora"
+    },
+    "forTutors": {
+      "label": "Para tutores",
+      "title": "Comparte tu conocimiento y crece",
+      "subtitle": "Completa tu perfil, define tu disponibilidad semanal y empieza a recibir solicitudes de sesión de tus compañeros.",
+      "benefit1": "Genera ingresos adicionales con tu conocimiento",
+      "benefit2": "Tú defines cuándo y cuánto quieres dar clases",
+      "benefit3": "Construye reputación con reseñas verificadas",
+      "benefit4": "Gestión automática de calendario y pagos",
+      "cta": "Aplicar como tutor"
+    },
+    "toggle": {
+      "studentTab": "Soy estudiante",
+      "tutorTab": "Soy tutor",
+      "student": {
+        "card": "\"Pasé de 3.0 a 4.5 en Cálculo en un semestre. Calico me conectó con el tutor perfecto.\""
+      },
+      "tutor": {
+        "card": "\"Comparto lo que sé, ayudo a mis compañeros y genero ingresos en mi tiempo libre.\""
+      }
+    },
+    "subjects": {
+      "label": "Cobertura",
+      "title": "Muchas áreas, un mismo lugar",
+      "subtitle": "Exactas, ingeniería, administración, humanidades, idiomas y más: sumamos cursos y tutores para acercarnos a tener apoyo en todo tipo de materias.",
+      "breadthNote": "¿No aparece la tuya? Al registrarte puedes dejar sugerencias — priorizamos nuevas áreas según la demanda de la comunidad.",
+      "categories": {
+        "stem": {
+          "title": "Exactas, ingeniería y computación",
+          "tags": "Cálculo I–III | Álgebra lineal | Ecuaciones diferenciales | Probabilidad | Física I–III | Programación | Estructuras de datos | Circuitos | Termodinámica | Geometría analítica | Métodos numéricos | Señales y sistemas"
+        },
+        "business": {
+          "title": "Economía, administración y datos",
+          "tags": "Microeconomía | Macroeconomía | Contabilidad | Finanzas | Estadística | Optimización | Modelación | Hojas de cálculo avanzado | Proyectos de administración"
+        },
+        "humanities": {
+          "title": "Humanidades, idiomas y comunicación",
+          "tags": "Inglés académico | Redacción universitaria | Historia | Filosofía | Lectura crítica | Comunicación | Principios de diseño | Herramientas digitales"
+        },
+        "healthOther": {
+          "title": "Ciencias del cuerpo, salud y proyectos",
+          "tags": "Química general | Bioquímica | Biología celular | Anatomía básica | Farmacología introductoria | Metodología de investigación | Excel para ciencias | Acompañamiento de proyecto de grado"
+        }
+      }
+    },
+    "finalCta": {
+      "eyebrow": "Calico Tutorías · ",
+      "title": "Regístrate y explora Calico",
+      "subtitle": "Una cuenta gratuita para recibir o dar tutorías: descubre la plataforma en minutos, sea cual sea tu rol.",
+      "unifiedCardTitle": "Tu próximo paso empieza aquí",
+      "unifiedCardDesc": "Crea tu cuenta y explora todo lo que ofrecemos: busca tutores y materias, o prepara tu perfil para enseñar. Tú eliges si quieres aprender, enseñar o ambas cosas.",
+      "registerExplore": "Crear cuenta y explorar",
+      "exploreTutors": "Solo quiero ver tutores primero",
+      "alreadyHaveAccount": "Ya tengo cuenta",
+      "trustLine": "Reseñas bidireccionales, calendario Google y pagos rastreados en la app — pensado para la vida universitaria real."
+    },
+    "keyPoints": {
+      "title": "¿Por qué elegir Calico?",
+      "cards": {
+        "expertTutors": {
+          "title": "tutores Expertos",
+          "description": "Conecta con estudiantes destacados de  que han demostrado excelencia académica en sus materias."
+        },
+        "flexibleSessions": {
+          "title": "Sesiones Flexibles",
+          "description": "Programa sesiones que se adapten a tu horario. Disponibilidad 24/7 para que estudies cuando mejor te convenga."
+        },
+        "personalizedMethods": {
+          "title": "Métodos Personalizados",
+          "description": "Cada sesión se adapta a tu estilo de aprendizaje y nivel actual para maximizar tu comprensión y rendimiento."
+        },
+        "provenResults": {
+          "title": "Resultados Comprobados",
+          "description": "Estudiantes que usan Calico mejoran significativamente sus calificaciones y comprensión de las materias."
+        }
+      }
+    },
+    "statistics": {
+      "activeStudents": "Estudiantes Activos",
+      "expertTutors": "tutores Expertos",
+      "completedSessions": "Sesiones Completadas",
+      "averageRating": "Calificación Promedio"
+    },
+    "about": {
+      "title": "Sobre Nosotros",
+      "description": "Somos un equipo comprometido con conectar a estudiantes con tutores dispuestos a ayudar. Facilitamos el aprendizaje a través de una plataforma que promueve la confianza y una conexión efectiva, asegurando una experiencia de apoyo accesible y de calidad.",
+      "features": {
+        "community": {
+          "title": "Comunidad",
+          "description": "Creamos una comunidad de aprendizaje colaborativo entre estudiantes y tutores."
+        },
+        "learning": {
+          "title": "Aprendizaje",
+          "description": "Facilitamos el proceso de aprendizaje con metodologías efectivas y personalizadas."
+        },
+        "quality": {
+          "title": "Calidad",
+          "description": "Garantizamos tutores de alta calidad, seleccionados por su excelencia académica."
+        },
+        "flexibility": {
+          "title": "Flexibilidad",
+          "description": "Ofrecemos horarios flexibles que se adaptan a las necesidades de cada estudiante."
+        }
+      },
+      "mission": {
+        "title": "Nuestra Misión",
+        "description": "Transformar la experiencia educativa en , creando un ecosistema donde el conocimiento fluya libremente entre estudiantes. Buscamos eliminar barreras en el aprendizaje y fomentar una cultura de colaboración y excelencia académica."
+      }
+    },
+    "footer": {
+      "tagline": "Conectamos estudiantes con los mejores tutores. Aprende más rápido, a tu ritmo.",
+      "links": {
+        "title": "Información",
+        "termsAndConditions": "Términos y Condiciones",
+        "privacyPolicy": "Política de Privacidad",
+        "findTutors": "Buscar Tutores",
+        "register": "Registrarse"
+      },
+      "getStarted": {
+        "title": "Empieza hoy",
+        "register": "Crear cuenta gratis →",
+        "findTutors": "Explorar tutores",
+        "becomeTutor": "Convertirme en tutor"
+      },
+      "rights": "Todos los derechos reservados."
+    }
+  },
+
+  "tutorHome": {
+    "title": "Panel de Tutor ",
+    "welcome": "Bienvenido a tu espacio de trabajo. Aquí puedes gestionar todo tu trabajo como tutor.",
+    "quickActions": {
+      "title": "Acciones Rápidas"
+    },
+    "myTutorings": " Mis Tutorías",
+    "manageCourses": " Gestionar Materias",
+    "availability": " Disponibilidad",
+    "payments": " Pagos",
+    "addCourse": "Agregar materia",
+    "stats": {
+      "thisMonth": "Este mes",
+      "sessions": "Sesiones",
+      "earnings": "Ganancias",
+      "rating": "Calificación",
+      "tutorialsToday": "Tutorías Hoy",
+      "scheduled": "Programadas",
+      "students": "Estudiantes",
+      "income": "Ingresos"
+    },
+    "coursesTitle": "Materias disponibles para tutoría",
+    "coursesDescription": "Estas son las materias donde puedes ofrecer tutorías",
+    "viewAll": "Ver todas →",
+    "noCourses": "No hay materias disponibles",
+    "upcomingSession": "Próxima sesión",
+    "noUpcomingSession": "Sin sesión próxima",
+    "upcomingTutorials": "Próximas Tutorías",
+    "viewAllTutorials": "Ver todas",
+    "calendar": {
+      "title": "Integración de Calendario",
+      "description": "Conecta tu calendario de Google para sincronizar automáticamente tu disponibilidad.",
+      "autoSync": "Sincronización Automática",
+      "autoSyncDesc": "Tu disponibilidad se actualiza automáticamente con tu calendario de Google."
+    },
+    "performance": {
+      "title": "Rendimiento Semanal",
+      "weeklySessions": "Sesiones esta semana",
+      "weeklyEarnings": "Ingresos esta semana",
+      "studentRetention": "Retención de estudiantes"
+    },
+    "achievement": {
+      "title": "¡Excelente trabajo! ",
+      "description": "Has ayudado a 12 estudiantes este mes y mantienes una calificación de 4.9 estrellas.",
+      "progress": "+15% este mes"
+    },
+    "newFeatures": {
+      "title": " Nuevas Funcionalidades Disponibles",
+      "description": "Ahora tienes acceso completo al panel de tutor con navegación dedicada:",
+      "startPanel": "Panel de inicio con estadísticas",
+      "completeManagement": "Gestión completa de tutorías",
+      "coursesAdmin": "Administración de materias",
+      "availabilityManagement": "Gestión de disponibilidad",
+      "paymentControl": "Control de pagos e ingresos"
+    },
+    "setupCard": {
+      "title": "Empieza a recibir estudiantes",
+      "subtitle": "Completa estos pasos para que los estudiantes puedan reservar contigo",
+      "step1Label": "Agrega tus materias",
+      "step1Desc": "Solicita las materias en las que quieres dar tutoría. El equipo de Calico las revisará.",
+      "step2Label": "Configura tu disponibilidad",
+      "step2Desc": "Define los días y horarios en que puedes dar sesiones.",
+      "step3Label": "Conecta Google Calendar",
+      "step3Desc": "Sincroniza tu disponibilidad automáticamente para mantenerla siempre actualizada.",
+      "step1Action": "Ir a Materias",
+      "step2Action": "Ir a Disponibilidad",
+      "step3Action": "Ir a Disponibilidad"
+    }
+  },
+
+  "tutorPayments": {
+    "title": "Pagos y ganancias",
+    "subtitle": "Gestiona tus ingresos y historial de pagos.",
+    "requestWithdrawal": "Solicitar retiro",
+    "filters": {
+      "view": "Ver:",
+      "sectionTitle": "Período del reporte",
+      "sectionHint": "Elige el rango para ver los movimientos listados abajo.",
+      "week": "Semana",
+      "month": "Mes",
+      "quarter": "Trimestre",
+      "year": "Año"
+    },
+    "cards": {
+      "totalEarnings": "Ganancias Totales",
+      "pending": "Pendiente de cobro",
+      "thisMonth": "Ingresos del mes",
+      "growthRate": "Tasa de Crecimiento",
+      "availableBalance": "Balance disponible",
+      "platformFee": "Comisión plataforma"
+    },
+    "table": {
+      "date": "Fecha",
+      "concept": "Concepto",
+      "student": "Estudiante",
+      "amount": "Monto",
+      "status": "Estado",
+      "method": "Método",
+      "actions": "Acciones"
+    },
+    "status": {
+      "completed": "Completado",
+      "pending": "Pendiente",
+      "failed": "Fallido"
+    },
+    "methods": {
+      "transferencia": "Transferencia",
+      "efectivo": "Efectivo",
+      "tarjeta": "Tarjeta"
+    },
+    "transactions": {
+      "title": "Historial de Transacciones",
+      "viewDetails": "Ver detalles"
+    },
+    "paymentSettings": {
+      "title": "Configuración de pagos",
+      "autoTitle": "Retiros automáticos",
+      "autoLine1": "Retiros automáticos: habilitados",
+      "autoLine2": "Frecuencia: semanal",
+      "mainAccount": "Cuenta bancaria principal",
+      "bank": "Banco:",
+      "accountType": "Tipo de cuenta:",
+      "accountNumber": "Número de cuenta:",
+      "accountMasked": "****-****-****-1234",
+      "idNumber": "Número de identificación:",
+      "addAccount": "Agregar cuenta",
+      "edit": "Editar",
+      "editBankInfo": "Editar información",
+      "modifyConfiguration": "Modificar configuración",
+      "paymentMethod": "Método de pago preferido",
+      "bankTransfer": "Transferencia bancaria",
+      "configure": "Configurar"
+    }
+  },
+
+  "tutorCourses": {
+    "title": "Materias que ofreces",
+    "subtitle": "Solicita las materias en las que quieres dar tutoría. El equipo de Calico revisará tu evidencia y aprobará cada una individualmente.",
+    "addCourse": "+ Agregar Materia",
+    "categories": {
+      "all": "Todas las materias",
+      "mathematics": "Matemáticas",
+      "sciences": "Ciencias",
+      "engineering": "Ingeniería"
+    },
+    "demand": {
+      "high": "alta",
+      "medium": "media",
+      "low": "baja"
+    },
+    "card": {
+      "active": "Activo",
+      "students": " Estudiantes",
+      "ratePerHour": " Tarifa/hora",
+      "edit": "Editar",
+      "remove": "Retirar",
+      "calicoPriceLabel": "Precio Calico",
+      "commissionLabel": "Comisión Calico",
+      "experience": "Experiencia",
+      "noExperience": "Sin experiencia aún",
+      "experiencePlaceholder": "Cuéntales brevemente a los estudiantes tu experiencia con esta materia y cómo puedes ayudarles. Recuerda que este mensaje será visible para los estudiantes cuando busquen tutores para esta materia.",
+      "save": "Guardar",
+      "saving": "Guardando...",
+      "cancel": "Cancelar",
+      "saveError": "Error al guardar la experiencia. Intenta de nuevo."
+    },
+    "stats": {
+      "activeCourses": "Materias Inscritas",
+      "approvedCourses": "Aprobadas",
+      "pendingCourses": "En revisión",
+      "totalStudents": "Total Estudiantes",
+      "averageRate": "Tarifa Promedio",
+      "successRate": "Tasa de Éxito",
+      "availableCourses": "Para solicitar"
+    },
+    "tabs": {
+      "all": "Todas",
+      "approved": "Aprobadas",
+      "pending": "En revisión",
+      "rejected": "Rechazadas"
+    },
+    "status": {
+      "enrolled": "Inscrito",
+      "approved": "Aprobada",
+      "pending": "En revisión",
+      "rejected": "Rechazada"
+    },
+    "loading": "Cargando materias...",
+    "noCourses": "Aún no tienes materias. Solicita las que quieres dictar.",
+    "noApproved": "Aún no tienes materias aprobadas.",
+    "noPending": "No tienes solicitudes en revisión.",
+    "noRejected": "No hay materias rechazadas.",
+    "pendingInfo": "En revisión por Calico. Te notificaremos cuando sea aprobada.",
+    "rejectedInfo": "No fue aprobada. Para más información contáctanos.",
+    "request": {
+      "button": "+ Solicitar Materias",
+      "modalTitle": "Solicitar materias",
+      "modalSubtitle": "Calico revisará tu evidencia y aprobará cada materia individualmente.",
+      "addRow": "Agregar otra materia",
+      "removeRow": "Eliminar",
+      "selectCourse": "Materia",
+      "selectCoursePlaceholder": "Elige una materia...",
+      "experience": "Experiencia con esta materia",
+      "experiencePlaceholder": "Describe brevemente tu experiencia, cursos tomados o proyectos relacionados...",
+      "workSample": "Evidencia (URL, opcional)",
+      "workSamplePlaceholder": "https://drive.google.com/... o enlace a certificado/portafolio",
+      "submit": "Enviar solicitud",
+      "submitting": "Enviando...",
+      "cancel": "Cancelar",
+      "noCourses": "Ya tienes todas las materias disponibles en tu catálogo.",
+      "errorSelectCourse": "Selecciona una materia en cada fila.",
+      "errorDuplicate": "Tienes materias repetidas en la solicitud.",
+      "alreadyAdded": "Una o más materias ya están en tu catálogo.",
+      "errorGeneric": "Ocurrió un error. Intenta de nuevo.",
+      "successMessage": "¡Solicitud enviada! El equipo de Calico la revisará pronto."
+    },
+    "enroll": {
+      "button": "+ Inscribirse en Materia",
+      "modalTitle": "Inscribirse en una Materia",
+      "selectCourse": "Materia",
+      "selectCoursePlaceholder": "Elige una materia...",
+      "price": "Tarifa por hora (COP)",
+      "pricePlaceholder": "Ej: 50000",
+      "experience": "Experiencia con esta materia *",
+      "experiencePlaceholder": "Describe brevemente tu experiencia, cursos tomados o proyectos relacionados...",
+      "workSample": "Muestra de trabajo (URL, opcional)",
+      "workSamplePlaceholder": "https://github.com/... o enlace a portafolio",
+      "submit": "Inscribirme",
+      "cancel": "Cancelar",
+      "noCourses": "Ya estás inscrito en todas las materias disponibles.",
+      "alreadyEnrolled": "Ya estás inscrito en esta materia.",
+      "errorSelectCourse": "Por favor selecciona una materia.",
+      "errorPrice": "Ingresa una tarifa válida mayor a 0.",
+      "errorExperience": "Por favor describe tu experiencia con la materia.",
+      "errorGeneric": "Ocurrió un error. Intenta de nuevo."
+    }
+  },
+
+  "studentAvailability": {
+    "title": "Disponibilidad de Tutores",
+    "loading": "Cargando...",
+    "updating": " Actualizando...",
+    "refresh": " Actualizar",
+    "error": " Error: {message}",
+    "retry": "Reintentar",
+    "loadingAvailability": "Cargando disponibilidades...",
+    "foundSlots": "Se encontraron {count} horarios disponibles en {days} días",
+    "noResults": "No hay resultados",
+    "noSlotsAvailable": "No hay horarios disponibles",
+    "contactTutor": "Contactar tutor",
+      "slotDetails": {
+        "recurring": "Recurrente",
+        "available": "Disponible"
+      }
+    },
+
+    "auth": {
+      "brand": {
+        "tagline": "Tutorías entre estudiantes, sin complicaciones",
+        "pitch": "Calico te conecta con tutores verificados de tu universidad. Agenda, paga y aprende — todo en un solo lugar.",
+        "benefit1": "Tutores reales de tu universidad",
+        "benefit2": "Agenda y pagos integrados",
+        "benefit3": "Reseñas honestas de otros estudiantes"
+      },
+      "login": {
+        "title": "Iniciar Sesión",
+        "subtitle": "Bienvenido de vuelta a Calico",
+        "email": "Correo electrónico",
+        "emailPlaceholder": "Tu correo electrónico",
+        "password": "Contraseña",
+        "passwordPlaceholder": "Tu contraseña",
+        "loginButton": "Iniciar Sesión",
+        "loading": "Cargando...",
+        "noAccount": "¿No tienes una cuenta?",
+        "signUp": "Regístrate",
+        "forgotPassword": "¿Olvidaste tu contraseña?",
+        "errors": {
+          "invalidCredentials": "Credenciales inválidas. Verifica tu correo y contraseña.",
+          "userNotFound": "Usuario no encontrado.",
+          "wrongPassword": "Contraseña incorrecta.",
+          "tooManyAttempts": "Demasiados intentos fallidos. Intenta de nuevo más tarde.",
+          "generic": "Error al iniciar sesión. Intenta de nuevo."
+        }
+      },
+      "register": {
+        "title": "Crea una cuenta",
+        "subtitle": "Registrate para acceder a Calico",
+        "continueWithGoogle": "Continua con Google",
+        "or": "––––––––   &nbsp; o &nbsp;   ––––––––",
+        "name": "Nombre",
+        "namePlaceholder": "Tu nombre",
+        "phone": "Teléfono",
+        "phonePlaceholder": "Número de teléfono",
+        "phoneHelp": "Te contactaremos por WhatsApp a este número. Asegúrate de tenerlo instalado en este teléfono.",
+        "major": "Carrera",
+        "majorPlaceholder": "Seleccione...",
+        "email": "Correo ",
+        "emailPlaceholder": "Tu correo",
+        "password": "Contraseña",
+        "passwordPlaceholder": "Tu contraseña",
+        "confirmPassword": "Confirmar contraseña",
+        "confirmPasswordPlaceholder": "Repite tu contraseña",
+        "termsCheckbox": "Acepto los ",
+        "termsAndConditions": "términos y condiciones",
+        "termsAnd": " y el ",
+        "dataProcessing": "tratamiento de datos",
+        "registerButton": "Registrarme",
+        "alreadyHaveAccount": "¿Ya tienes una cuenta?",
+        "signIn": "Inicia sesión",
+        "errors": {
+          "allFieldsRequired": "Todos los campos son obligatorios.",
+          "passwordsDontMatch": "Las contraseñas no coinciden.",
+          "registrationFailed": "No se pudo registrar el usuario.",
+          "emailAlreadyExists": "Este correo ya está registrado.",
+          "weakPassword": "La contraseña debe tener mínimo 12 caracteres, una mayúscula, un carácter especial y sin espacios.",
+          "invalidEmail": "Correo electrónico inválido.",
+          "invalidPhone": "Ingresa un número de teléfono válido (7 a 15 dígitos).",
+          "termsNotAccepted": "Debes aceptar los términos y condiciones para poder registrarte."
+        },
+        "success": {
+          "registrationSuccessful": "Registro exitoso"
+        }
+      },
+      "verifyEmail": {
+        "title": "Verifica tu correo",
+        "description": "Hemos enviado un correo de verificación a:",
+        "instructions": "Revisa tu bandeja de entrada y haz clic en el enlace de verificación para continuar.",
+        "spamWarning": "¿No lo ves? Revisa tu carpeta de spam o correo no deseado — a veces los filtros lo desvían ahí. Confirma también que el correo esté escrito correctamente.",
+        "resendButton": "Reenviar correo",
+        "resendSuccess": "Correo de verificación reenviado exitosamente.",
+        "resendError": "Error al reenviar el correo. Intenta de nuevo.",
+        "backToLogin": "Volver al inicio de sesión"
+      },
+      "confirmEmail": {
+        "title": "Confirma tu correo",
+        "description": "Haz clic en el botón para confirmar tu dirección de correo y activar tu cuenta.",
+        "confirmButton": "Confirmar mi correo",
+        "confirming": "Confirmando...",
+        "missingToken": "El enlace está incompleto o le falta el token de verificación. Solicita uno nuevo desde el inicio de sesión."
+      },
+      "emailVerified": {
+        "successTitle": "¡Correo verificado!",
+        "successMessage": "Tu correo electrónico ha sido verificado exitosamente. Ya puedes acceder a todas las funciones de Calico.",
+        "alreadyTitle": "Correo ya verificado",
+        "alreadyMessage": "Este correo electrónico ya había sido verificado anteriormente.",
+        "expiredTitle": "Enlace expirado",
+        "expiredMessage": "El enlace de verificación expiró (válido 24 horas). Inicia sesión y te pediremos que solicites uno nuevo.",
+        "errorTitle": "Error de verificación",
+        "errorMessage": "El enlace de verificación es inválido. Inicia sesión para solicitar uno nuevo.",
+        "goHome": "Ir al inicio",
+        "goLogin": "Ir al inicio de sesión"
+      },
+      "forgotPassword": {
+        "title": "¿Olvidaste tu contraseña?",
+        "description": "Ingresa tu correo electrónico y te enviaremos un código para restablecer tu contraseña.",
+        "submitButton": "Enviar código",
+        "backToLogin": "Volver al inicio de sesión",
+        "emailRequired": "Ingresa tu correo electrónico.",
+        "genericError": "Error al enviar el código. Intenta de nuevo."
+      },
+      "verifyOtp": {
+        "title": "Código de seguridad",
+        "description": "Ingresa el código de 6 dígitos que enviamos a:",
+        "submitButton": "Verificar código",
+        "resendButton": "Reenviar código",
+        "invalidCode": "Código incorrecto o expirado. Intenta de nuevo.",
+        "resendError": "Error al reenviar el código.",
+        "genericError": "Error al verificar el código. Intenta de nuevo."
+      },
+      "resetPassword": {
+        "title": "Nueva contraseña",
+        "description": "Crea una nueva contraseña para tu cuenta.",
+        "newPassword": "Nueva contraseña",
+        "newPasswordPlaceholder": "Ingresa tu nueva contraseña",
+        "confirmPassword": "Confirmar contraseña",
+        "confirmPasswordPlaceholder": "Repite tu nueva contraseña",
+        "submitButton": "Restablecer contraseña",
+        "success": "¡Contraseña restablecida exitosamente!",
+        "redirecting": "Redirigiendo al inicio de sesión...",
+        "tokenExpired": "El enlace de restablecimiento ha expirado. Solicita uno nuevo.",
+        "genericError": "Error al restablecer la contraseña. Intenta de nuevo.",
+        "passwordsDontMatch": "Las contraseñas no coinciden.",
+        "ruleMinLength": "Mínimo 12 caracteres",
+        "ruleUppercase": "Al menos una letra mayúscula",
+        "ruleSpecial": "Al menos un carácter especial",
+        "ruleNoSpaces": "Sin espacios en blanco"
+      }
+    },
+
+  "privacyPolicy": {
+    "title": "Política de Privacidad",
+    "lastUpdated": "Última actualización: Abril 11, 2026",
+    "footerCopyright": "© 2026 Calico Tutorías. Todos los derechos reservados.",
+    "nav": { "back": "← Volver al inicio" },
+    "s1": {
+      "title": "1. Introducción",
+      "body": "En Calico (\"nosotros\", \"nuestro\" o \"la plataforma\"), respetamos su privacidad y nos comprometemos a proteger sus datos personales. Esta política de privacidad explica cómo recopilamos, usamos, compartimos y protegemos su información cuando utiliza nuestros servicios de tutoría en línea."
+    },
+    "s2": {
+      "title": "2. Información que Recopilamos",
+      "intro": "Recopilamos diferentes tipos de información para proporcionar y mejorar nuestros servicios:",
+      "sub1Title": "2.1 Información que usted nos proporciona",
+      "sub1Items": [
+        "Datos de registro: nombre, correo electrónico, contraseña, rol (estudiante o tutor)",
+        "Información de perfil: foto de perfil, biografía, materias de interés, nivel académico",
+        "Información de pago: datos necesarios para procesar transacciones (procesados de forma segura por terceros)",
+        "Comunicaciones: mensajes enviados a través de la plataforma, calificaciones y reseñas"
+      ],
+      "sub2Title": "2.2 Información recopilada automáticamente",
+      "sub2Items": [
+        "Datos de uso: páginas visitadas, funciones utilizadas, tiempo en la plataforma",
+        "Información del dispositivo: tipo de dispositivo, sistema operativo, navegador, dirección IP",
+        "Cookies y tecnologías similares: para mejorar la experiencia del usuario"
+      ]
+    },
+    "s3": {
+      "title": "3. Cómo Usamos su Información",
+      "intro": "Utilizamos la información recopilada para:",
+      "items": [
+        "Proporcionar, mantener y mejorar nuestros servicios de tutoría",
+        "Facilitar la conexión entre estudiantes y tutores",
+        "Procesar pagos y mantener registros de transacciones",
+        "Comunicarnos con usted sobre actualizaciones, recordatorios de sesiones y notificaciones importantes",
+        "Personalizar su experiencia en la plataforma",
+        "Proteger la seguridad e integridad de la plataforma",
+        "Cumplir con obligaciones legales y resolver disputas",
+        "Analizar el uso de la plataforma para mejorar nuestros servicios"
+      ]
+    },
+    "s4": {
+      "title": "4. Compartir Información",
+      "intro": "Podemos compartir su información en las siguientes circunstancias:",
+      "items": [
+        "Entre usuarios: Su perfil y disponibilidad son visibles para otros usuarios según la configuración de la plataforma",
+        "Proveedores de servicios: Compartimos datos con terceros que nos ayudan a operar la plataforma (procesamiento de pagos, servicios de calendario, almacenamiento en la nube)",
+        "Cumplimiento legal: Cuando sea requerido por ley o para proteger nuestros derechos",
+        "Con su consentimiento: En cualquier otra circunstancia con su autorización expresa"
+      ],
+      "noSell": "No vendemos su información personal a terceros."
+    },
+    "s5": {
+      "title": "5. Seguridad de Datos",
+      "intro": "Implementamos medidas de seguridad técnicas y organizativas para proteger su información personal contra acceso no autorizado, alteración, divulgación o destrucción. Esto incluye:",
+      "items": [
+        "Cifrado de datos en tránsito y en reposo",
+        "Autenticación segura con tokens JWT",
+        "Controles de acceso estrictos",
+        "Monitoreo regular de seguridad"
+      ],
+      "after": "Sin embargo, ningún método de transmisión por Internet o almacenamiento electrónico es 100% seguro. Aunque nos esforzamos por proteger su información, no podemos garantizar su seguridad absoluta."
+    },
+    "s6": {
+      "title": "6. Sus Derechos",
+      "intro": "Usted tiene derecho a:",
+      "items": [
+        "Acceder: Solicitar una copia de sus datos personales",
+        "Rectificar: Corregir información inexacta o incompleta",
+        "Eliminar: Solicitar la eliminación de sus datos personales",
+        "Restringir: Limitar el procesamiento de sus datos",
+        "Portabilidad: Recibir sus datos en un formato estructurado",
+        "Oponerse: Oponerse al procesamiento de sus datos en ciertas circunstancias",
+        "Retirar consentimiento: En cualquier momento, cuando el procesamiento se base en su consentimiento"
+      ],
+      "after": "Para ejercer estos derechos, contáctenos a través de los medios indicados en la sección de contacto."
+    },
+    "s7": {
+      "title": "7. Retención de Datos",
+      "body": "Conservamos su información personal solo durante el tiempo necesario para cumplir con los fines descritos en esta política, a menos que la ley requiera o permita un período de retención más largo. Los datos de sesiones y transacciones se conservan conforme a requisitos legales y contables."
+    },
+    "s8": {
+      "title": "8. Cookies y Tecnologías Similares",
+      "body": "Utilizamos cookies y tecnologías similares para mejorar su experiencia, analizar el uso de la plataforma y proporcionar funciones personalizadas. Puede controlar las cookies a través de la configuración de su navegador, aunque esto puede afectar algunas funcionalidades de la plataforma."
+    },
+    "s9": {
+      "title": "9. Uso de Datos de Google Calendar",
+      "intro": "Calico se integra opcionalmente con Google Calendar para que los tutores puedan sincronizar su disponibilidad. Esta sección describe de manera específica cómo accedemos, usamos, almacenamos y protegemos los datos obtenidos a través de la API de Google Calendar.",
+      "sub1Title": "9.1 Datos a los que accedemos",
+      "sub1Intro": "Cuando un tutor conecta voluntariamente su cuenta de Google, Calico solicita acceso de solo lectura a los eventos de Google Calendar del tutor. Específicamente, la aplicación:",
+      "sub1Items": [
+        "Lista los calendarios del tutor para identificar el calendario de disponibilidad designado.",
+        "Lee los títulos, fechas y horarios de los eventos de ese calendario para los próximos 60 días.",
+        "No accede a correos electrónicos, contactos, archivos de Drive, ni ningún otro dato de Google fuera de los eventos del calendario de disponibilidad."
+      ],
+      "sub2Title": "9.2 Cómo usamos los datos",
+      "sub2Intro": "Los datos de Google Calendar se utilizan exclusivamente para:",
+      "sub2Items": [
+        "Importar los bloques horarios del tutor como franjas de disponibilidad en la plataforma Calico, para que los estudiantes puedan ver y reservar sesiones.",
+        "Mantener la disponibilidad del tutor actualizada cuando este ejecuta la sincronización manualmente."
+      ],
+      "sub2After": "Los datos de Google Calendar no se usan para publicidad, perfilamiento, análisis de comportamiento, ni para ningún propósito distinto al descrito anteriormente.",
+      "sub3Title": "9.3 Almacenamiento y retención",
+      "sub3Body": "Los datos crudos de Google Calendar (títulos, descripciones, ID de eventos) no se almacenan en nuestra base de datos. Solo se persisten los bloques de disponibilidad derivados (día de la semana, hora de inicio, hora de fin). Los tokens de acceso y actualización de Google se almacenan en cookies httpOnly seguras en el navegador del tutor y no en nuestra base de datos.",
+      "sub4Title": "9.4 Compartir datos de Google",
+      "sub4Body": "Los datos obtenidos a través de la API de Google Calendar no se comparten, venden ni transfieren a ningún tercero, plataforma publicitaria, intermediario de datos ni ninguna otra parte, excepto cuando sea requerido por ley.",
+      "sub5Title": "9.5 Declaración de uso limitado (Google API Limited Use)",
+      "sub5Intro": "El uso que Calico hace de la información recibida de las APIs de Google se adhiere a la",
+      "sub5PolicyLabel": "Política de Datos de Usuario de los Servicios de API de Google",
+      "sub5PolicyUrl": "https://developers.google.com/terms/api-services-user-data-policy",
+      "sub5After": ", incluyendo los requisitos de uso limitado. En particular:",
+      "sub5Items": [
+        "El uso de los datos está limitado a proveer y mejorar las funciones visibles para el usuario en la interfaz de Calico.",
+        "No se transfieren datos a terceros salvo para cumplir con la funcionalidad descrita, con el consentimiento del usuario, o por motivos legales.",
+        "Ningún empleado ni contratista de Calico lee los datos de Google Calendar del usuario, a menos que el usuario lo autorice explícitamente o sea necesario por razones de seguridad o cumplimiento legal.",
+        "No se usa el acceso a datos de Google para desarrollar, mejorar o entrenar modelos de inteligencia artificial o aprendizaje automático."
+      ],
+      "sub6Title": "9.6 Revocar el acceso",
+      "sub6Body": "El tutor puede desconectar su Google Calendar en cualquier momento desde la sección de disponibilidad en Calico. Adicionalmente, puede revocar el acceso directamente desde su",
+      "sub6LinkLabel": "cuenta de Google → Seguridad → Aplicaciones de terceros con acceso a la cuenta",
+      "sub6LinkUrl": "https://myaccount.google.com/permissions",
+      "sub6After": ". Al revocar el acceso, Calico dejará de poder sincronizar la disponibilidad pero los bloques ya importados permanecerán hasta que el tutor los elimine."
+    },
+    "s10": {
+      "title": "10. Servicios de Terceros",
+      "intro": "Nuestra plataforma integra los siguientes servicios de terceros:",
+      "items": [
+        "PostgreSQL / Neon: Base de datos relacional para almacenar perfiles, sesiones y disponibilidad.",
+        "Google Calendar API: Sincronización opcional de disponibilidad del tutor (ver sección 9).",
+        "AWS S3: Almacenamiento seguro de comprobantes de pago e imágenes de perfil.",
+        "Brevo (ex-Sendinblue): Envío de correos transaccionales (verificación de cuenta, recordatorios de sesión).",
+        "Google Meet: Generación de enlaces de videollamada para sesiones virtuales, a través del calendario central de Calico."
+      ],
+      "after": "Cada uno de estos servicios tiene sus propias políticas de privacidad. Le recomendamos revisarlas."
+    },
+    "s11": {
+      "title": "11. Privacidad de Menores",
+      "body": "Nuestros servicios están dirigidos a estudiantes universitarios. No recopilamos intencionalmente información de menores de 13 años. Si descubrimos que hemos recopilado información de un menor sin el consentimiento parental adecuado, eliminaremos esa información de inmediato."
+    },
+    "s12": {
+      "title": "12. Cambios a esta Política",
+      "body": "Podemos actualizar esta política de privacidad periódicamente para reflejar cambios en nuestras prácticas o por razones legales. Le notificaremos sobre cambios significativos mediante un aviso prominente en la plataforma o por correo electrónico. La fecha de \"Última actualización\" en la parte superior indica cuándo se revisó por última vez esta política."
+    },
+    "s13": {
+      "title": "13. Transferencias Internacionales",
+      "body": "Sus datos pueden ser transferidos y procesados en servidores ubicados fuera de su país de residencia. Cuando transfiramos datos internacionalmente, implementamos medidas de seguridad adecuadas para proteger su información conforme a esta política y las leyes aplicables."
+    },
+    "s14": {
+      "title": "14. Contacto",
+      "intro": "Si tiene preguntas, inquietudes o desea ejercer sus derechos respecto a su información personal, contáctenos:",
+      "emailLabel": "Correo electrónico:",
+      "email": "calico-tutorias@gmail.com",
+      "websiteLabel": "Sitio web:",
+      "websiteUrl": "https://calico-tutorias.com",
+      "after": "Responderemos a su solicitud dentro de un plazo razonable conforme a las leyes aplicables."
+    },
+    "s15": {
+      "title": "15. Consentimiento",
+      "body": "Al utilizar nuestra plataforma, usted acepta los términos de esta política de privacidad y consiente al procesamiento de su información personal como se describe aquí. Si no está de acuerdo con esta política, por favor no utilice nuestros servicios."
+    }
+  },
+
+  "termsOfUse": {
+    "title": "Términos y Condiciones de Uso",
+    "lastUpdated": "Última actualización: Enero 12, 2026",
+    "intro": "Por favor, lee detenidamente estos Términos y Condiciones antes de utilizar la plataforma Calico. Al acceder o usar nuestros servicios, aceptas quedar vinculado por estos términos. Si no estás de acuerdo con alguna parte de los mismos, no utilices la plataforma.",
+    "nav": {
+      "back": "← Volver al inicio"
+    },
+    "s1": {
+      "title": "1. Aceptación de los Términos",
+      "body": "Al registrarte o utilizar Calico Tutorías (en adelante, \"la Plataforma\"), aceptas estos Términos y Condiciones en su totalidad. Estos términos constituyen un acuerdo legal entre tú y Calico. Si actúas en nombre de una organización, confirmas que tienes autoridad para vincularla a estos términos."
+    },
+    "s2": {
+      "title": "2. Descripción del Servicio",
+      "body": "Calico es una plataforma de intermediación académica que conecta estudiantes con tutores (tutores) de la Universidad de los Andes. A través de la Plataforma puedes:",
+      "items": [
+        "Buscar y reservar sesiones de tutoría individuales o grupales.",
+        "Gestionar disponibilidad y calendario de sesiones.",
+        "Realizar y recibir pagos por sesiones completadas.",
+        "Dejar y consultar reseñas sobre tutores y sesiones."
+      ],
+      "after": "Calico actúa como intermediario y no es parte directa en la relación académica entre estudiante y tutor."
+    },
+    "s3": {
+      "title": "3. Registro y Cuenta de Usuario",
+      "body": "Para acceder a las funciones de la Plataforma debes crear una cuenta. Al hacerlo, te comprometes a:",
+      "items": [
+        "Proporcionar información verídica, precisa y actualizada.",
+        "Mantener la confidencialidad de tus credenciales de acceso.",
+        "Notificar de inmediato cualquier uso no autorizado de tu cuenta.",
+        "No transferir ni ceder tu cuenta a terceros."
+      ]
+    },
+    "s4": {
+      "title": "4. Obligaciones de los Usuarios",
+      "body": "Al utilizar la Plataforma, te comprometes a no:",
+      "items": [
+        "Publicar contenido falso, engañoso, difamatorio o ilegal.",
+        "Realizar pagos fuera de la Plataforma para eludir comisiones.",
+        "Acosar, amenazar o discriminar a otros usuarios.",
+        "Intentar vulnerar la seguridad o integridad de la Plataforma.",
+        "Usar la Plataforma con fines distintos a la mediación académica."
+      ],
+      "after": "El incumplimiento de estas obligaciones puede derivar en la suspensión o cancelación permanente de tu cuenta."
+    },
+    "s5": {
+      "title": "5. Política de Pagos",
+      "body": "Los pagos por sesiones de tutoría se gestionan a través de la Plataforma. Al reservar una sesión:",
+      "items": [
+        "El estudiante debe cargar el comprobante de pago antes de confirmar la reserva.",
+        "El tutor recibirá el pago una vez que la sesión sea marcada como completada.",
+        "Calico aplica una comisión de servicio sobre cada transacción.",
+        "Los precios por sesión son establecidos por cada tutor y visibles antes de confirmar la reserva."
+      ]
+    },
+    "s6": {
+      "title": "6. Cancelaciones y Reembolsos",
+      "body": "La política de cancelaciones de Calico establece lo siguiente:",
+      "items": [
+        "Las cancelaciones deben realizarse con al menos 6 horas de anticipación a la sesión programada.",
+        "Las cancelaciones con menos de 6 horas de anticipación no son elegibles para reembolso automático.",
+        "El tutor puede rechazar una solicitud antes de aceptarla sin penalización.",
+        "Los casos especiales de reembolso serán evaluados por el equipo de Calico."
+      ]
+    },
+    "s7": {
+      "title": "7. Integración con Google Calendar",
+      "body": "Calico se integra con Google Calendar para facilitar la gestión de disponibilidad y la creación de eventos de sesión. Al conectar tu cuenta de Google, autorizas a Calico a crear, modificar y eliminar eventos en tu calendario asociados exclusivamente a tus sesiones de tutoría. Puedes revocar este acceso en cualquier momento desde tu cuenta de Google. Los datos de tu calendario son tratados conforme a nuestra Política de Privacidad y a los Términos de Servicio de Google."
+    },
+    "s8": {
+      "title": "8. Propiedad Intelectual",
+      "body": "Todos los contenidos, marcas, logotipos, software y materiales disponibles en la Plataforma son propiedad de Calico o de sus respectivos titulares. Queda prohibido:",
+      "items": [
+        "Reproducir, distribuir o modificar cualquier contenido sin autorización expresa.",
+        "Usar el nombre o logotipo de Calico con fines comerciales sin permiso.",
+        "Realizar ingeniería inversa o descompilar el software de la Plataforma."
+      ]
+    },
+    "s9": {
+      "title": "9. Limitación de Responsabilidad",
+      "body": "Calico no será responsable por:",
+      "items": [
+        "La calidad, exactitud o idoneidad del contenido académico impartido por los tutores.",
+        "Pérdidas o daños derivados del incumplimiento de obligaciones por parte de los usuarios.",
+        "Interrupciones del servicio causadas por factores fuera de nuestro control.",
+        "Daños indirectos, incidentales o consecuentes que surjan del uso de la Plataforma."
+      ]
+    },
+    "s10": {
+      "title": "10. Privacidad y Protección de Datos",
+      "body": "El uso de tus datos personales se rige por nuestra Política de Privacidad, la cual forma parte integral de estos Términos. Al aceptar estos Términos, también aceptas nuestra Política de Privacidad. Te recomendamos leerla detenidamente."
+    },
+    "s11": {
+      "title": "11. Modificaciones a los Términos",
+      "body": "Calico se reserva el derecho de modificar estos Términos en cualquier momento. Los cambios entrarán en vigor a partir de su publicación en la Plataforma. Te notificaremos sobre cambios significativos mediante correo electrónico o un aviso visible en la aplicación. El uso continuado de la Plataforma tras la publicación de los cambios constituye tu aceptación de los nuevos términos."
+    },
+    "s12": {
+      "title": "12. Ley Aplicable y Jurisdicción",
+      "body": "Estos Términos se rigen por las leyes de la República de Colombia. Cualquier disputa derivada del uso de la Plataforma será sometida a la jurisdicción de los tribunales competentes de Bogotá, D.C., Colombia, salvo que la normativa aplicable establezca otra jurisdicción de manera imperativa."
+    },
+    "s13": {
+      "title": "13. Contacto",
+      "body": "Si tienes preguntas, sugerencias o inquietudes sobre estos Términos y Condiciones, puedes comunicarte con nosotros a través de:",
+      "emailLabel": "Correo electrónico:",
+      "email": "calico-tutorias@gmail.com"
+    },
+    "footerCopyright": "© 2026 Calico Tutorías. Todos los derechos reservados."
+  },
+
+  "mfa": {
+    "card": {
+      "title": "Autenticación de dos factores",
+      "enabled": "Activada",
+      "disabled": "Agrega una capa extra de seguridad a tu cuenta.",
+      "methodTotp": "App autenticadora",
+      "methodEmail": "Correo electrónico",
+      "enableButton": "Activar 2FA",
+      "disableButton": "Desactivar"
+    },
+    "setup": {
+      "title": "Configurar 2FA",
+      "description": "Elige un método para proteger tu cuenta con autenticación de dos factores.",
+      "totpTitle": "App autenticadora",
+      "totpDesc": "Usa Google Authenticator, Authy u otra app compatible. Más seguro y funciona sin internet.",
+      "emailTitle": "Correo electrónico",
+      "emailDesc": "Recibe un código de verificación en tu correo cada vez que inicies sesión.",
+      "scanQr": "Escanea este código QR con tu app autenticadora:",
+      "manualKey": "O ingresa esta clave manualmente:",
+      "enterTotpCode": "Ingresa el código de 6 dígitos de tu app:",
+      "emailSent": "Te hemos enviado un código de verificación a tu correo electrónico.",
+      "enterEmailCode": "Ingresa el código de 5 dígitos:",
+      "verifyButton": "Verificar",
+      "invalidCode": "Código inválido. Intenta de nuevo.",
+      "success": "¡Autenticación de dos factores activada!",
+      "backupCodesTitle": "Códigos de respaldo",
+      "backupCodesDesc": "Guarda estos códigos en un lugar seguro. Cada uno se puede usar una sola vez si pierdes acceso a tu método de autenticación.",
+      "copyAll": "Copiar todos",
+      "copied": "¡Copiados!",
+      "done": "Listo"
+    },
+    "verify": {
+      "title": "Verificación de seguridad",
+      "totpDesc": "Ingresa el código de 6 dígitos de tu app autenticadora.",
+      "emailDesc": "Ingresa el código de 5 dígitos que enviamos a tu correo.",
+      "backupDesc": "Ingresa uno de tus códigos de respaldo.",
+      "submitButton": "Verificar",
+      "invalidCode": "Código incorrecto. Intenta de nuevo.",
+      "sessionExpired": "La sesión ha expirado. Inicia sesión de nuevo.",
+      "genericError": "Error de verificación. Intenta de nuevo.",
+      "resendButton": "Reenviar código",
+      "resendError": "Error al reenviar el código.",
+      "useBackupCode": "Usar código de respaldo",
+      "useAppCode": "Usar código de la app"
+    },
+    "disable": {
+      "title": "Desactivar 2FA",
+      "totpDesc": "Ingresa el código de 6 dígitos de tu app autenticadora para desactivar la autenticación de dos factores.",
+      "emailDesc": "Te enviamos un código a tu correo. Ingrésalo para desactivar la autenticación de dos factores.",
+      "submitButton": "Desactivar 2FA",
+      "invalidCode": "Código incorrecto. Intenta de nuevo."
+    }
+  },
+  "admin": {
+    "shell": {
+      "title": "Panel de administración",
+      "subtitle": "Solo visible para cuentas con rol ADMIN.",
+      "tooltip": "Panel de administración",
+      "nav": {
+        "dashboard": "Dashboard",
+        "growth": "Crecimiento",
+        "users": "Usuarios",
+        "tutors": "Tutores",
+        "courses": "Materias",
+        "manualSessions": "Tutorías manuales",
+        "payouts": "Pagos a tutores",
+        "audit": "Auditoría"
+      }
+    },
+    "tutors": {
+      "tabs": {
+        "pending": "Pendientes",
+        "active": "Activos",
+        "suspended": "Suspendidos"
+      },
+      "search": "Buscar por nombre o correo…",
+      "results_one": "{count} resultado",
+      "results_other": "{count} resultados",
+      "loadError": "Error cargando solicitudes",
+      "loadErrorTutors": "Error cargando tutores",
+      "empty": {
+        "pending": "No hay solicitudes pendientes.",
+        "active": "No hay tutores activos que coincidan.",
+        "suspended": "No hay tutores suspendidos."
+      },
+      "row": {
+        "review": "Revisar solicitud",
+        "suspendOrManage": "Suspender / Gestionar",
+        "reinstateOrManage": "Reactivar / Gestionar",
+        "since": "desde {date}",
+        "moreSubjects": "+{count} más",
+        "sessions_one": "{count} sesión",
+        "sessions_other": "{count} sesiones"
+      },
+      "status": {
+        "pending": "Pendiente",
+        "rejected": "Rechazado",
+        "active": "Activo",
+        "suspended": "Suspendido",
+        "tutorActive": "Tutor activo"
+      }
+    },
+    "tutorDetail": {
+      "back": "Volver",
+      "suspendedReason": "Motivo de suspensión",
+      "since": "desde {date}",
+      "applicationSection": {
+        "title": "Solicitud",
+        "reasons": "Razones para enseñar",
+        "subjectsLabel": "Materias solicitadas — selecciona las que apruebas",
+        "subjectsHelp": "Las materias no seleccionadas se registran como Rejected automáticamente.",
+        "approveSelected": "Aprobar materias seleccionadas",
+        "reject": "Rechazar solicitud"
+      },
+      "coursesSection": {
+        "title": "Materias del tutor",
+        "assign": "Asignar materias",
+        "empty": "Sin materias asignadas todavía. Usa Asignar materias para habilitar las que el tutor puede dictar.",
+        "approve": "Aprobar",
+        "reject": "Rechazar",
+        "approveTitle": "Aprobar materia",
+        "rejectTitle": "Rechazar materia"
+      },
+      "moderationSection": {
+        "title": "Moderación",
+        "suspend": "Suspender tutor",
+        "reinstate": "Levantar suspensión"
+      },
+      "modals": {
+        "approve": {
+          "title": "Aprobar tutor",
+          "body": "Vas a aprobar al tutor para {count} materia(s). Las demás de la solicitud quedarán como Rejected.",
+          "confirm": "Confirmar aprobación"
+        },
+        "reject": {
+          "title": "Rechazar solicitud",
+          "body": "El usuario quedará como estudiante. Su solicitud actual se cierra como Rejected.",
+          "confirm": "Confirmar rechazo",
+          "reasonLabel": "Razón del rechazo (queda en el log)"
+        },
+        "suspend": {
+          "title": "Suspender tutor",
+          "body": "El tutor dejará de aparecer en búsquedas y no podrá aceptar nuevas sesiones.",
+          "confirm": "Confirmar suspensión",
+          "reasonLabel": "Razón de la suspensión (queda en el log)"
+        },
+        "reinstate": {
+          "title": "Levantar suspensión",
+          "body": "El tutor volverá a estar activo y a aparecer en búsquedas.",
+          "confirm": "Reactivar tutor"
+        },
+        "common": {
+          "cancel": "Cancelar",
+          "processing": "Procesando…",
+          "reasonPlaceholder": "Esta razón queda registrada en el log de auditoría.",
+          "reasonMin": "Escribe una razón de al menos 5 caracteres."
+        },
+        "assign": {
+          "title": "Asignar materias",
+          "subtitle": "Las materias seleccionadas se crean como Approved y el tutor podrá ofrecerlas inmediatamente.",
+          "search": "Buscar por nombre o código…",
+          "loading": "Cargando materias…",
+          "loadError": "No se pudieron cargar las materias.",
+          "emptyAll": "No hay materias en el sistema.",
+          "emptyAvailable": "No hay materias adicionales para asignar.",
+          "selected_one": "{count} materia seleccionada",
+          "selected_other": "{count} materias seleccionadas",
+          "submit": "Asignar",
+          "submitWithCount": "Asignar ({count})",
+          "submitting": "Asignando…"
+        }
+      },
+      "flash": {
+        "approved": "Tutor aprobado. {count} materia(s) habilitada(s).",
+        "rejected": "Solicitud rechazada.",
+        "suspendedWithCancellations": "Tutor suspendido. {count} sesión(es) futura(s) canceladas.",
+        "suspended": "Tutor suspendido.",
+        "reinstated": "Suspensión levantada.",
+        "assigned": "{count} materia(s) asignada(s) como Approved.",
+        "courseStatus": "Materia marcada como {status}."
+      },
+      "errors": {
+        "loadFailed": "No se pudo cargar el tutor",
+        "approve": "Error al aprobar",
+        "reject": "Error al rechazar",
+        "suspend": "Error al suspender",
+        "reinstate": "Error al reactivar",
+        "assign": "Error al asignar materias",
+        "courseStatus": "Error al cambiar el estado",
+        "backToList": "Volver al listado"
+      }
+    },
+    "dashboard": {
+      "title": "Métricas del producto",
+      "cacheNote": "Caché de 5 min en backend; usa \"Refrescar\" para forzar.",
+      "refresh": "Refrescar",
+      "kpi": {
+        "sessionsThisWeek": "Sesiones esta semana",
+        "sessionsThisWeekSub": "Desde el lunes",
+        "revenueThisMonth": "Ganancia neta del mes",
+        "revenueThisMonthSub": "{rate} del bruto − comisión Wompi",
+        "activeTutors": "Tutores activos",
+        "activeTutorsSub": "≥1 sesión completada en 30d",
+        "pendingApplications": "Solicitudes pendientes",
+        "pendingApplicationsSub": "Esperando revisión"
+      },
+      "errors": {
+        "load": "No se pudieron cargar las métricas.",
+        "overview": "Falló el resumen general",
+        "sessions": "Falló la serie de sesiones",
+        "revenue": "Falló la serie de ingresos",
+        "topCourses": "Falló el top de materias",
+        "topTutors": "Falló el top de tutores"
+      }
+    },
+    "charts": {
+      "sessions": {
+        "title": "Sesiones por semana",
+        "subtitle": "Completadas vs canceladas, últimas 12 semanas.",
+        "empty": "Sin datos en este rango.",
+        "completed": "Completadas",
+        "canceled": "Canceladas",
+        "upcoming": "Programadas"
+      },
+      "revenue": {
+        "title": "Margen neto Calico por mes",
+        "subtitle": "Comisión Calico ({rate} del bruto) − comisión Wompi. Últimos 12 meses.",
+        "empty": "Sin pagos registrados en este rango.",
+        "gross": "Bruto procesado",
+        "tutorPayout": "Pago a tutores",
+        "wompiFee": "Comisión Wompi",
+        "calicoNet": "Calico neto",
+        "payments": "Pagos"
+      },
+      "topCourses": {
+        "title": "Materias más solicitadas",
+        "rangeLabel": "últimos {days} días",
+        "empty": "Sin sesiones completadas en este rango.",
+        "sessions_one": "{count} sesión",
+        "sessions_other": "{count} sesiones"
+      },
+      "topTutors": {
+        "title": "Tutores más activos",
+        "rangeLabel": "últimos {days} días",
+        "empty": "Ningún tutor con sesiones completadas en este rango.",
+        "sessions_one": "{count} sesión",
+        "sessions_other": "{count} sesiones",
+        "viewDetail": "Ver detalle"
+      }
+    },
+    "courses": {
+      "title": "Materias",
+      "subtitle": "Agrega materias al catálogo y revisa las sugerencias enviadas por estudiantes y tutores.",
+      "create": "Agregar materia",
+      "fields": {
+        "code": "Código",
+        "name": "Nombre",
+        "complexity": "Complejidad",
+        "basePrice": "Precio base por hora",
+        "department": "Departamento"
+      },
+      "placeholders": {
+        "department": "Selecciona un departamento"
+      },
+      "complexity": {
+        "Introductory": "Introductoria",
+        "Foundational": "Fundamental",
+        "Challenging": "Avanzada"
+      },
+      "suggestions": {
+        "title": "Sugerencias pendientes",
+        "subtitle": "Estas materias fueron sugeridas desde la búsqueda o desde el flujo de tutores.",
+        "empty": "No hay sugerencias pendientes.",
+        "approve": "Aprobar",
+        "reject": "Rechazar",
+        "unknownRequester": "Usuario no disponible"
+      },
+      "flash": {
+        "created": "Materia creada correctamente.",
+        "approved": "Sugerencia aprobada y materia creada.",
+        "rejected": "Sugerencia rechazada."
+      },
+      "errors": {
+        "load": "No se pudieron cargar materias o sugerencias",
+        "create": "No se pudo crear la materia",
+        "approve": "No se pudo aprobar la sugerencia",
+        "reject": "No se pudo rechazar la sugerencia"
+      }
+    },
+    "manualSessions": {
+      "title": "Tutorías manuales",
+      "subtitle": "Registra tutorías acordadas por fuera de la app, crea el evento en el calendario de Calico y gestiona el pago.",
+      "create": "Registrar tutoría",
+      "fields": {
+        "tutor": "Tutor",
+        "course": "Materia",
+        "studentName": "Nombre del estudiante",
+        "studentPhone": "Teléfono del estudiante",
+        "studentEmail": "Correo del estudiante (opcional)",
+        "date": "Fecha",
+        "startTime": "Hora de inicio",
+        "duration": "Duración en minutos",
+        "amount": "Monto",
+        "paymentStatus": "Estado del pago",
+        "notes": "Notas internas"
+      },
+      "placeholders": {
+        "tutor": "Selecciona un tutor",
+        "course": "Selecciona una materia"
+      },
+      "payment": {
+        "pending": "Pendiente",
+        "paid": "Pagado",
+        "confirm": "Confirmar pago",
+        "confirming": "Confirmando..."
+      },
+      "created": {
+        "title": "Tutoría registrada",
+        "body": "La tutoría de {student} quedó registrada por {amount}.",
+        "calendarWarning": "La tutoría quedó registrada, pero no se pudo crear el evento en Google Calendar. Revisa las credenciales del calendario central.",
+        "meetLink": "Abrir enlace de Google Meet"
+      },
+      "errors": {
+        "load": "No se pudieron cargar tutores o materias",
+        "create": "No se pudo registrar la tutoría",
+        "invalidTime": "Revisa la fecha, hora y duración",
+        "confirmPayment": "No se pudo confirmar el pago"
+      }
+    },
+    "payouts": {
+      "title": "Pagos a tutores",
+      "subtitle": "Lista lo que debemos transferir a cada tutor por sesiones completadas. Las ganancias de Calico = {rate} del bruto − comisión Wompi (2.65% + $700 + IVA por transacción).",
+      "tabs": {
+        "byTutor": "Por tutor (digest)",
+        "flat": "Detalle por pago"
+      },
+      "totals": {
+        "title": "Esta semana",
+        "tutorsCount_one": "{count} tutor",
+        "tutorsCount_other": "{count} tutores",
+        "paymentsCount_one": "{count} pago pendiente",
+        "paymentsCount_other": "{count} pagos pendientes",
+        "tutorOwed": "Total a transferir",
+        "calicoNet": "Ganancia neta Calico",
+        "gross": "Volumen procesado",
+        "wompiFee": "Comisión Wompi"
+      },
+      "table": {
+        "tutor": "Tutor",
+        "llave": "Llave",
+        "payments": "Pagos",
+        "amount": "Monto a pagar",
+        "calicoNet": "Net Calico",
+        "actions": "Acciones",
+        "session": "Sesión",
+        "course": "Materia",
+        "date": "Fecha"
+      },
+      "noLlave": "Sin llave registrada",
+      "markPaid": "Marcar como pagado",
+      "markPaidWithCount": "Marcar todo como pagado ({count})",
+      "markPaidNoteLabel": "Nota / referencia (opcional)",
+      "markPaidNotePlaceholder": "Ej. Ref. Nequi 12345 · Bancolombia 2026-05-12",
+      "confirmMarkPaid": "Confirmar pago",
+      "modalTitle": "Confirmar pago a {tutor}",
+      "modalBody": "Vas a marcar {count} pago(s) por un total de {amount} como ya transferidos. Esta acción queda registrada en auditoría.",
+      "empty": "No hay pagos pendientes. ¡Todos al día!",
+      "loadError": "Error cargando los pagos pendientes",
+      "flashMarked_one": "{count} pago marcado como pagado.",
+      "flashMarked_other": "{count} pagos marcados como pagados.",
+      "missingLlaveWarning": "Este tutor no tiene llave registrada. Pídele que la complete antes de transferir."
+    },
+    "audit": {
+      "title": "Log de auditoría",
+      "filters": {
+        "title": "Filtros",
+        "action": "Acción",
+        "from": "Desde",
+        "to": "Hasta",
+        "actionAll": "Todas las acciones",
+        "actionTutorApprove": "Aprobación de tutor",
+        "actionTutorReject": "Rechazo de tutor",
+        "actionTutorSuspend": "Suspensión",
+        "actionTutorReinstate": "Reactivación",
+        "actionCourseApprove": "Aprobación de materia",
+        "actionCourseReject": "Rechazo de materia"
+      },
+      "table": {
+        "date": "Fecha",
+        "admin": "Admin",
+        "action": "Acción",
+        "target": "Target",
+        "payload": "Payload",
+        "ip": "IP"
+      },
+      "empty": "No hay entradas que coincidan con los filtros.",
+      "loadError": "Error cargando el log",
+      "pagination": {
+        "page": "Página {page} de {total}",
+        "entries_one": "{count} entrada",
+        "entries_other": "{count} entradas"
+      }
+    },
+    "growth": {
+      "title": "Crecimiento",
+      "subtitle": "Recompra y rentabilidad por materia. Caché de 5 min en backend; usa \"Refrescar\" para forzar.",
+      "refresh": "Refrescar",
+      "range": {
+        "30d": "30d",
+        "90d": "90d",
+        "180d": "180d",
+        "365d": "365d"
+      },
+      "filter": {
+        "careerLabel": "Carrera (estudiante)",
+        "allCareers": "Todas las carreras",
+        "departmentLabel": "Departamento (materia)",
+        "allDepartments": "Todos los departamentos"
+      },
+      "active": {
+        "title": "Usuarios activos",
+        "subtitle": "Por última vez en la app (no solo el login: como la sesión persiste, se cuenta cada visita).",
+        "tutors": "Tutores activos",
+        "students": "Estudiantes activos",
+        "windowSub": "Activos en los últimos {days} días"
+      },
+      "info": {
+        "labels": { "what": "Qué mide", "calc": "Cómo se calcula", "read": "Cómo leerlo" },
+        "repeatRate": {
+          "title": "Tasa de recompra",
+          "what": "Porcentaje de estudiantes activos en el rango que tomaron 2 o más tutorías.",
+          "calc": "Estudiantes con ≥2 sesiones completadas ÷ estudiantes con ≥1, dentro del rango y carrera seleccionados.",
+          "read": "Es el mejor indicador de calidad: si vuelven, les sirvió. <20% débil (revisa calidad de tutores y materias); 20–40% sano; >40% excelente — ese segmento impulsa el voz a voz."
+        },
+        "sameTutorRate": {
+          "title": "Recompra con mismo tutor",
+          "what": "De los que repiten, qué porcentaje volvió con un mismo tutor al menos una vez.",
+          "calc": "Estudiantes con ≥2 sesiones con un mismo tutor ÷ estudiantes que repiten.",
+          "read": "Mide el vínculo tutor-estudiante. Alto (>60%): la lealtad está en el tutor — cuídalo y reténlo. Bajo: la lealtad es a la plataforma/materia, no a la persona."
+        },
+        "medianDays": {
+          "title": "Mediana entre sesiones",
+          "what": "Días que típicamente pasan entre una sesión y la siguiente del mismo estudiante.",
+          "calc": "Mediana de la diferencia en días entre sesiones consecutivas (mediana, no promedio, para no sesgar por casos extremos).",
+          "read": "Es el ritmo de consumo. Pocos días = uso intenso (parciales). Si crece, el estudiante se enfría: buen momento para recordatorios o paquetes."
+        },
+        "repeatTicket": {
+          "title": "Ticket recurrente",
+          "what": "Valor promedio por sesión que paga quien repite, frente a quien es nuevo.",
+          "calc": "Promedio del monto por sesión de estudiantes con ≥2 sesiones (vs <2).",
+          "read": "Si el recurrente paga más que el nuevo, la confianza sube el gasto: hay espacio para combos. Si paga menos, optimizan por precio — ojo al margen."
+        },
+        "cohorts": {
+          "title": "Cohortes de recompra",
+          "what": "Agrupa estudiantes por el mes de su primera tutoría y muestra qué % volvió en los 30/60/90 días siguientes.",
+          "calc": "Por mes: estudiantes con una 2ª sesión dentro de N días de la primera ÷ estudiantes nuevos de ese mes.",
+          "read": "Lee cada fila de izquierda a derecha (madura el mes) y cada columna de arriba a abajo (¿mejora con el tiempo?). Celdas más naranjas = mejor retención. Si las cohortes recientes vuelven más rápido, el servicio mejora."
+        },
+        "gross": {
+          "title": "Bruto procesado",
+          "what": "Total que pagaron los estudiantes por esa materia en el rango.",
+          "calc": "Suma de pagos aprobados (status=paid) de la materia.",
+          "read": "Es volumen, no ganancia. Una materia con mucho bruto pero margen bajo puede dejar menos que una pequeña y rentable."
+        },
+        "calicoNet": {
+          "title": "Neto Calico",
+          "what": "Lo que realmente le queda a Calico en esa materia, ya descontada la pasarela.",
+          "calc": "15% del bruto − comisión Wompi (2.65% + $700 + IVA por transacción).",
+          "read": "Negativo (fila roja) = Calico pierde plata: sube el precio o no la promuevas. El $700 fijo de Wompi pesa mucho en precios bajos."
+        },
+        "margin": {
+          "title": "Margen",
+          "what": "Qué fracción del bruto se convierte en neto para Calico.",
+          "calc": "Neto Calico ÷ bruto procesado.",
+          "read": "<10% margen apretado (revisa precio); negativo = pierdes en cada sesión. Sube con precios más altos."
+        },
+        "netPerSession": {
+          "title": "Neto por sesión",
+          "what": "Cuánto deja en promedio cada sesión completada de esa materia.",
+          "calc": "Neto Calico ÷ número de sesiones del rango.",
+          "read": "Sirve para comparar materias: prioriza promover las de mayor neto/sesión. Si es muy bajo o negativo, ajusta el precio."
+        },
+        "listPrice": {
+          "title": "Precio actual",
+          "what": "Precio vigente de la materia que ven los estudiantes.",
+          "calc": "Precio centralizado (CoursePrice) si existe; si no, el precio base de la materia.",
+          "read": "Compáralo con el precio mín. rentable: si está cerca o por debajo, súbelo."
+        },
+        "breakEven": {
+          "title": "Precio mín. rentable",
+          "what": "El precio más bajo al que Calico todavía no pierde en esa materia.",
+          "calc": "Precio donde 15% del bruto iguala la comisión Wompi (≈ $7.032 hoy).",
+          "read": "Nunca cobres por debajo de esto. Idealmente fija el precio bien por encima para dejar margen tras la comisión."
+        },
+        "activeTutors": {
+          "title": "Tutores activos",
+          "what": "Tutores aprobados que estuvieron en la app en la última semana.",
+          "calc": "Tutores con cuenta activa y última actividad (login o visita) dentro de los últimos 7 días. La marca de actividad se refresca en cada visita, no solo al iniciar sesión.",
+          "read": "Mide cuántos tutores siguen enganchados. Si cae, hay riesgo de churn de tutores (tu pilar): contáctalos y revisa pagos/experiencia."
+        },
+        "activeStudents": {
+          "title": "Estudiantes activos",
+          "what": "Estudiantes (no tutores) que estuvieron en la app en la última semana.",
+          "calc": "Usuarios sin rol de tutor, con cuenta activa y última actividad (login o visita) dentro de los últimos 7 días. Se refresca en cada visita, no solo al iniciar sesión.",
+          "read": "Pulso de demanda semanal. Si hay muchos activos pero pocas sesiones, hay fricción para reservar o el precio frena."
+        }
+      },
+      "retention": {
+        "title": "Recompra",
+        "subtitle": "Estudiantes con sesión completada en el rango que vuelven a tomar tutorías.",
+        "students_one": "{count} estudiante activo",
+        "students_other": "{count} estudiantes activos",
+        "kpi": {
+          "repeatRate": "Tasa de recompra",
+          "sameTutorRate": "Recompra con mismo tutor",
+          "sameTutorRateSub": "De los que repiten",
+          "medianDays": "Mediana entre sesiones",
+          "medianDaysSub": "Días entre sesiones consecutivas",
+          "daysValue": "{count} días",
+          "repeatTicket": "Ticket recurrente",
+          "repeatTicketSub": "vs nuevo {value}",
+          "repeatTicketSubEmpty": "Promedio por sesión"
+        }
+      },
+      "cohorts": {
+        "title": "Cohortes de recompra",
+        "subtitle": "Por mes de primera sesión, % que volvió dentro de N días (últimos 12 meses).",
+        "cohortMonth": "Cohorte",
+        "newStudents": "Nuevos",
+        "d30": "30 días",
+        "d60": "60 días",
+        "d90": "90 días",
+        "empty": "Sin cohortes en este rango."
+      },
+      "profitability": {
+        "title": "Rentabilidad por materia",
+        "subtitle": "Neto Calico real (comisión − Wompi+IVA) por materia. La bandera roja marca materias que pierden plata al volumen actual.",
+        "rangeLabel": "últimos {days} días",
+        "table": {
+          "course": "Materia",
+          "sessions": "Sesiones",
+          "gross": "Bruto",
+          "calicoNet": "Neto Calico",
+          "margin": "Margen",
+          "netPerSession": "Neto/sesión",
+          "listPrice": "Precio actual",
+          "breakEven": "Precio mín. rentable"
+        },
+        "unprofitableFlag": "Pierde",
+        "unprofitableTitle": "El neto de Calico es ≤ 0 a este precio/volumen.",
+        "noPrice": "Sin precio",
+        "empty": "Sin pagos registrados en este rango."
+      },
+      "errors": {
+        "load": "No se pudieron cargar los datos de crecimiento.",
+        "retention": "Falló la recompra",
+        "cohorts": "Fallaron las cohortes",
+        "profitability": "Falló la rentabilidad"
+      }
+    },
+    "users": {
+      "title": "Usuarios",
+      "subtitle": "Directorio de todos los usuarios. Información confidencial — solo visible para admins.",
+      "tabs": {
+        "all": "Todos",
+        "students": "Estudiantes",
+        "tutors": "Tutores",
+        "admins": "Admins",
+        "suspended": "Suspendidos"
+      },
+      "search": "Buscar por nombre o correo…",
+      "results_one": "{count} usuario",
+      "results_other": "{count} usuarios",
+      "loadError": "Error cargando usuarios",
+      "empty": "No hay usuarios que coincidan.",
+      "sort": {
+        "label": "Ordenar por",
+        "recent": "Más recientes",
+        "tutorBest": "Mejor calificados (tutor)",
+        "tutorWorst": "Peor calificados (tutor)",
+        "studentBest": "Mejor calificados (estudiante)",
+        "studentWorst": "Peor calificados (estudiante)",
+        "onlyRated": "solo usuarios con calificaciones"
+      },
+      "row": {
+        "asTutor": "como tutor",
+        "asStudent": "como estudiante"
+      },
+      "badge": {
+        "admin": "Admin",
+        "tutor": "Tutor",
+        "student": "Estudiante",
+        "suspended": "Suspendido"
+      },
+      "status": {
+        "Completed": "Completada",
+        "Canceled": "Cancelada",
+        "Pending": "Pendiente",
+        "Accepted": "Aceptada",
+        "Rejected": "Rechazada"
+      },
+      "detail": {
+        "back": "Volver a usuarios",
+        "backToList": "Volver al listado",
+        "loadError": "No se pudo cargar el usuario",
+        "emailVerified": "Correo verificado",
+        "llave": "Llave",
+        "memberSince": "Miembro desde {date}",
+        "since": "desde {date}",
+        "suspendedReason": "Motivo de suspensión",
+        "reviews_one": "{count} reseña recibida",
+        "reviews_other": "{count} reseñas recibidas",
+        "ratingAsTutor": "Como tutor",
+        "ratingAsStudent": "Como estudiante",
+        "activity": {
+          "title": "Actividad mensual",
+          "subtitle": "Sesiones completadas por mes, últimos 12 meses.",
+          "empty": "Sin sesiones completadas en el último año.",
+          "asTutor": "Como tutor",
+          "asStudent": "Como estudiante"
+        },
+        "asStudent": { "title": "Como estudiante" },
+        "asTutor": { "title": "Como tutor" },
+        "stat": {
+          "completed": "Completadas",
+          "taught": "Dictadas",
+          "upcoming": "Próximas",
+          "canceled": "Canceladas",
+          "distinctTutors": "Tutores distintos",
+          "distinctStudents": "Estudiantes distintos",
+          "distinctCourses": "Materias distintas",
+          "spent": "Total gastado",
+          "earned": "Total ganado (85%)",
+          "earnedPending": "Por transferir",
+          "nextPayment": "Próximo pago",
+          "studentRating": "Calificación de tutores"
+        },
+        "studentReviews": {
+          "title": "Calificaciones recibidas de tutores",
+          "privacy": "Privadas: el estudiante y otros usuarios nunca ven estos comentarios — solo el equipo de Calico."
+        },
+        "tutorReviews": {
+          "title": "Reseñas recibidas de estudiantes",
+          "publicNote": "Públicas: aparecen en el perfil del tutor."
+        },
+        "tutorOf": { "title": "Tutor de" },
+        "recentAsStudent": "Sesiones recientes (estudiante)",
+        "recentAsTutor": "Sesiones recientes (tutor)",
+        "noSessions": "Sin sesiones."
+      }
+    }
+  }
+}

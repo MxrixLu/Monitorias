@@ -1,0 +1,173 @@
+/* Estructura general */
+.login-page {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  /* gradiente de fondo principal */
+}
+
+/* Degradado extra con forma curva (pseudo-elemento) */
+.login-page::after {
+  content: "";
+  position: absolute;
+  bottom: -30%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transform: scaleX(1.5);
+  border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+  pointer-events: none;
+}
+
+/* Centrado del contenido */
+.login-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  padding: var(--space-3);
+  position: relative; /* para situarse por encima del ::after */
+  z-index: 1;
+}
+
+/* Tarjeta */
+.login-card {
+  width: 100%;
+  max-width: var(--form-narrow);
+  padding: var(--space-6) var(--space-5);
+  background: #ffffff;
+  border-radius: var(--radius-xl);
+  box-shadow: var(--elev-2);
+  text-align: center;
+}
+
+/* Tipografía & enlaces */
+.login-title {
+  margin-bottom: 0.25rem;
+  font-size: var(--type-h2);
+  font-weight: var(--font-weight-bold);
+  color: var(--calico-ink);
+}
+
+.login-text {
+  margin-top: var(--space-5);
+  font-size: var(--type-label);
+  color: var(--calico-ink);
+}
+
+.login-link {
+  color: var(--calico-orange);
+  text-decoration: underline;
+  cursor: pointer;
+}
+.login-link:hover {
+  opacity: 0.8;
+}
+
+/* Formulario */
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.login-label {
+  text-align: left;
+  font-size: var(--type-caption);
+  color: var(--calico-ink);
+  font-weight: var(--font-weight-medium);
+}
+
+.login-input {
+  background-color: var(--calico-slate-50);
+  color: var(--calico-slate-700);
+  padding: 0.6rem var(--space-2);
+  border: 1px solid var(--calico-slate-300);
+  border-radius: var(--radius-sm);
+  font-size: var(--type-caption);
+  transition:
+    border-color var(--duration-normal) var(--ease-standard),
+    box-shadow var(--duration-normal) var(--ease-standard);
+}
+.login-input::placeholder {
+  color: var(--calico-slate-500);
+}
+.login-input:focus-visible {
+  outline: none;
+  border-color: var(--calico-orange);
+  box-shadow: 0 0 0 3px rgba(255, 149, 5, 0.25);
+}
+
+.login-btn {
+  margin-top: var(--space-1);
+  padding: 0.65rem var(--space-2);
+  background: var(--calico-orange-strong);
+  color: var(--calico-ink);
+  font-weight: var(--font-weight-semibold);
+  border: none;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition:
+    background var(--duration-normal) var(--ease-standard),
+    box-shadow var(--duration-normal) var(--ease-standard);
+}
+.login-btn:hover {
+  background: var(--calico-orange);
+}
+.login-btn:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(255, 149, 5, 0.4);
+}
+
+.login-divider {
+  margin: var(--space-4) 0;
+  position: relative;
+  text-align: center;
+}
+
+.login-divider::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: var(--calico-slate-300);
+}
+
+.login-divider-text {
+  position: relative;
+  padding: 0 1rem;
+  /* Matches the new pure white page background. */
+  background: #ffffff;
+  color: var(--calico-slate-500);
+  font-size: var(--type-label);
+  font-weight: var(--font-weight-medium);
+}
+
+/* Fondo propio del login: blanco puro (igual que register) */
+.login-bg {
+  background: #ffffff;
+  color: var(--calico-slate-500);
+}
+
+.login-error {
+  color: var(--calico-danger);
+  font-size: var(--type-label);
+  margin-top: var(--space-1);
+  text-align: left;
+}
+
+.logoImg {
+  height: 6rem; /* h-8 */
+  width: auto;
+  transition: filter var(--duration-slow) var(--ease-standard);
+}
+
+@media (max-width: 768px) {
+  .logoImg {
+    height: 5rem; /* h-8 */
+    width: auto;
+  }
+}
