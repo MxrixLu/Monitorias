@@ -1,36 +1,158 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Calico Monitorias
 
-## Getting Started
+> Marketplace platform connecting tutors and students, built with Next.js 15
 
-First, run the development server:
+Calico helps university students in Colombia find peer tutors, book sessions, and manage their learning journey. Tutors manage availability via Google Calendar, accept bookings, and track earnings.
+
+[![Next.js](https://img.shields.io/badge/Next.js-15-black?logo=next.js)](https://nextjs.org/)
+[![React](https://img.shields.io/badge/React-19-blue?logo=react)](https://reactjs.org/)
+[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-Prisma-blue?logo=postgresql)](https://www.prisma.io/)
+[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+
+---
+
+## Features
+
+- **Tutor Discovery** — Search and filter tutors by course, major, and availability
+- **Google Calendar Integration** — Automatic sync with tutor schedules
+- **Session Management** — Book, reschedule, and track tutoring sessions
+- **Session Attachments** — Students attach study material (PDF/PNG/JPG/DOC) at booking or later from history; secure presigned S3 download links
+- **Payment Integration** — Wompi checkout with server-authoritative pricing (price/hour × session length)
+- **Custom JWT Auth** — bcrypt + jsonwebtoken, email verification gate
+- **Admin Panel** — Tutor moderation, dashboard KPIs, audit log, growth analytics, user directory
+- **Bilingual (i18n)** — Full Spanish/English UI via a custom locale provider
+
+---
+
+## Quick Start
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
+# Clone and install (project uses pnpm)
+git clone https://github.com/yourusername/calico-monitorias.git
+cd calico-monitorias
+pnpm install
+
+# Setup environment
+# For local development, use a personal local PostgreSQL DB.
+# Follow docs/LOCAL_DATABASE.md to create .env.local and start Postgres.
+
+# Run development server
 pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Visit `http://localhost:3000`.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Architecture
 
-## Learn More
+Monolithic **Next.js 15 (App Router)** — frontend and backend in one package.
 
-To learn more about Next.js, take a look at the following resources:
+```
+src/
+├── app/
+│   ├── api/          — API Route Handlers (server)
+│   ├── components/   — React components (client)
+│   ├── services/     — Frontend service singletons (client)
+│   └── (pages)/      — Next.js page routes
+│
+└── lib/
+    ├── services/     — Business logic (server)
+    └── repositories/ — Database access via Prisma (server)
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Data flow: `Component → Service → API Route → Business Service → Repository → Prisma → PostgreSQL`
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## Tech Stack
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+| Layer | Technology |
+|---|---|
+| Framework | Next.js 15 (App Router) |
+| Frontend | React 19, Tailwind CSS v4, shadcn/ui |
+| Backend | Next.js API Routes |
+| Database | PostgreSQL + Prisma ORM |
+| Auth | Custom JWT (bcrypt + jsonwebtoken) |
+| APIs | Google Calendar, Google Drive, Wompi, Brevo, AWS S3 |
+| Validation | Zod |
+| i18n | Custom React context — ES/EN JSON locales |
+| Testing | Jest + Testing Library |
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+## Commands
+
+```bash
+pnpm dev              # Dev server on :3000 (Turbopack)
+pnpm build            # Production build
+pnpm start            # Production server (after build)
+pnpm lint             # ESLint
+pnpm test             # Jest single run
+pnpm test:watch       # Jest watch mode
+
+# Database
+pnpm db:generate      # Regenerate Prisma client
+pnpm db:push          # Push schema changes (use instead of migrate — see docs/BACKLOG.md)
+pnpm db:studio        # Prisma Studio UI
+pnpm db:seed          # Seed departments and careers
+```
+
+---
+
+## Documentation
+
+| File | Content |
+|---|---|
+| [docs/PROJECT.md](docs/PROJECT.md) | Product overview, user flows, pricing model, cancellation policy |
+| [docs/LOCAL_DATABASE.md](docs/LOCAL_DATABASE.md) | Local PostgreSQL setup for each developer |
+| [docs/PATTERNS.md](docs/PATTERNS.md) | Architecture, conventions, auth, design system, i18n rules |
+| [docs/specs/functional.md](docs/specs/functional.md) | Detailed user flows and business rules |
+| [docs/specs/technical.md](docs/specs/technical.md) | DB schema, all API routes, env vars, external services |
+| [docs/BACKLOG.md](docs/BACKLOG.md) | Active tech debt |
+
+---
+
+## Deployment
+
+### Vercel
+
+```bash
+vercel deploy
+```
+
+### Docker
+
+```bash
+docker build -t calico-monitorias .
+docker run -p 3000:3000 calico-monitorias
+```
+
+After deployment, complete Google OAuth setup once:
+1. Visit `https://your-domain.com/api/calendar/auth`
+2. Login with `calico.tutorias@gmail.com`
+3. Grant permissions
+
+---
+
+## Contributing
+
+1. Read [docs/PATTERNS.md](docs/PATTERNS.md) first
+2. Follow the layered architecture — never skip a layer
+3. Filter on the server with Prisma `where` (never fetch all rows and filter in JS)
+4. Use CSS tokens only — read `src/app/styles/design-tokens.css` before writing any color
+5. All user-facing text goes through `t()` with keys in both `es.json` and `en.json`
+6. Identity comes from `auth.sub` after authenticating — never from the request body
+
+---
+
+## Contact
+
+- Email: calico.tutorias@gmail.com
+- Instagram: @calico.tutorias
+
+---
+
+## License
+
+MIT License — see [LICENSE](LICENSE) for details.

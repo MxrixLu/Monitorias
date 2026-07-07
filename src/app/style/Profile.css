@@ -1,0 +1,106 @@
+/* Profile page styles - using Tailwind CSS classes primarily */
+/* Custom styles for specific components that need additional styling */
+
+.profile-card {
+  background: white;
+  border-radius: var(--radius-xl);
+  box-shadow: var(--elev-modal);
+  transition: all var(--duration-slow) var(--ease-standard);
+}
+
+.profile-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--elev-3);
+}
+
+.profile-avatar {
+  position: relative;
+  transition: transform var(--duration-slow) var(--ease-standard);
+}
+
+.profile-avatar:hover {
+  transform: scale(1.05);
+}
+
+.rating-card {
+  background: linear-gradient(
+    135deg,
+    var(--calico-slate-50) 0%,
+    var(--calico-slate-200) 100%
+  );
+  transition: all var(--duration-slow) var(--ease-standard);
+}
+
+.rating-card:hover {
+  background: linear-gradient(
+    135deg,
+    var(--calico-slate-100) 0%,
+    var(--calico-slate-300) 100%
+  );
+  transform: translateY(-2px);
+}
+
+.course-tag {
+  background: var(--calico-orange-gradient);
+  transition: all var(--duration-slow) var(--ease-standard);
+}
+
+.course-tag:hover {
+  background: var(--calico-orange-gradient-strong);
+  transform: translateY(-1px);
+}
+
+.availability-card {
+  background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+  transition: all var(--duration-slow) var(--ease-standard);
+}
+
+.availability-card:hover {
+  background: linear-gradient(135deg, #bfdbfe 0%, #93c5fd 100%);
+  transform: translateY(-2px);
+}
+
+/* Modal animations */
+.modal-backdrop {
+  backdrop-filter: blur(4px);
+  animation: fadeIn var(--duration-slow) var(--ease-standard);
+}
+
+.modal-content {
+  animation: slideUp var(--duration-slow) var(--ease-standard);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Loading spinner */
+.loading-spinner {
+  border: 3px solid var(--calico-slate-100);
+  border-top: 3px solid var(--calico-orange);
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}

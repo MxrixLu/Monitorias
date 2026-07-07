@@ -1,0 +1,360 @@
+'use client';
+
+/**
+ * useFileUpload — Manages file uploads to S3 via presigned URLs.
+ *
+ * Flow:
+ *   1. Validate files client-side (type, size).
+ *   2. Request presigned PUT URLs from POST /api/attachments/presigned-urls.
+ *   3. Upload each file to S3 via XMLHttpRequest (for real upload progress).
+ *   4. Track per-file status: pending → uploading → success | error.
+ *   5. On error, allow retry for individual files without blocking others.
+ *
+ * Returns:
+ *   { uploadFiles, removeFile, retryFile, files, isUploading, uploadedFiles }
+ */
+
+import { useState, useCallback, useRef } from 'react';
+import { authFetch } from '@/app/services/authFetch';
+
+const ALLOWED_MIME_TYPES = new Set([
+  'application/pdf',
+  'image/png',
+  'image/jpeg',
+  'image/jpg',
+  'application/msword',
+  'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+]);
+
+const MAX_FILE_SIZE = 10 * 1024 * 1024; // 10 MB
+const MAX_FILES = 5;
+
+/** @typedef {'pending' | 'uploading' | 'success' | 'error'} FileStatus */
+
+/**
+ * Validate a single file client-side. Returns error message or null.
+ */
+function validateFile(file) {
+  if (!ALLOWED_MIME_TYPES.has(file.type)) {
+    return `"${file.name}" tiene un tipo no permitido. Usa PDF, PNG, JPG, DOC o DOCX.`;
+  }
+  if (file.size > MAX_FILE_SIZE) {
+    return `"${file.name}" excede el límite de 10 MB.`;
+  }
+  return null;
+}
+
+/**
+ * Upload a single file to S3 via XMLHttpRequest (supports progress tracking).
+ * Returns a Promise that resolves on success and rejects on error.
+ */
+function uploadToS3(url, file, onProgress) {
+  return new Promise((resolve, reject) => {
+    const xhr = new XMLHttpRequest();
+
+    xhr.upload.addEventListener('progress', (e) => {
+      if (e.lengthComputable) {
+        onProgress(Math.round((e.loaded / e.total) * 100));
+      }
+    });
+
+    xhr.addEventListener('load', () => {
+      if (xhr.status >= 200 && xhr.status < 300) {
+        resolve();
+      } else {
+        reject(new Error(`S3 respondió con status ${xhr.status}`));
+      }
+    });
+
+    xhr.addEventListener('error', () => {
+      reject(new Error('Error de red al subir el archivo'));
+    });
+
+    xhr.addEventListener('timeout', () => {
+      reject(new Error('Tiempo de espera agotado al subir el archivo'));
+    });
+
+    xhr.open('PUT', url);
+    xhr.setRequestHeader('Content-Type', file.type);
+    xhr.setRequestHeader('x-amz-tagging', 'status=unconfirmed');
+    xhr.timeout = 120_000; // 2 min per file
+    xhr.send(file);
+  });
+}
+
+export function useFileUpload({ subject, getUploadUrls } = {}) {
+  // Each entry: { id, file, fileName, fileSize, mimeType, status, progress, error, s3Key, uploadUrl }
+  const [files, setFiles] = useState([]);
+  const filesRef = useRef([]);
+  filesRef.current = files;
+  const nextId = useRef(0);
+  const subjectRef = useRef(subject);
+  subjectRef.current = subject;
+  // Optional override for fetching presigned PUT URLs. When provided, it's used
+  // instead of the default subject-scoped endpoint — e.g. to hit the
+  // session-scoped endpoint (which derives the subject and verifies the
+  // requester is a participant). Must resolve to { ok, data: { success, urls } }.
+  const getUploadUrlsRef = useRef(getUploadUrls);
+  getUploadUrlsRef.current = getUploadUrls;
+
+  /**
+   * Add files to the queue with client-side validation.
+   * Invalid files are rejected immediately with an error message.
+   * Returns { accepted: string[], rejected: { name, error }[] }.
+   */
+  const addFiles = useCallback((newFiles) => {
+    const fileArray = Array.from(newFiles);
+    const accepted = [];
+    const rejected = [];
+
+    setFiles((prev) => {
+      const remaining = MAX_FILES - prev.length;
+
+      if (remaining <= 0) {
+        fileArray.forEach((f) =>
+          rejected.push({ name: f.name, error: `Máximo ${MAX_FILES} archivos permitidos` }),
+        );
+        return prev;
+      }
+
+      const toAdd = fileArray.slice(0, remaining);
+      const overflow = fileArray.slice(remaining);
+
+      overflow.forEach((f) =>
+        rejected.push({ name: f.name, error: `Máximo ${MAX_FILES} archivos permitidos` }),
+      );
+
+      const entries = [];
+      for (const file of toAdd) {
+        const validationError = validateFile(file);
+        if (validationError) {
+          rejected.push({ name: file.name, error: validationError });
+        } else {
+          const id = nextId.current++;
+          entries.push({
+            id,
+            file,
+            fileName: file.name,
+            fileSize: file.size,
+            mimeType: file.type,
+            status: 'pending',
+            progress: 0,
+            error: null,
+            s3Key: null,
+            uploadUrl: null,
+          });
+          accepted.push(file.name);
+        }
+      }
+
+      return [...prev, ...entries];
+    });
+
+    return { accepted, rejected };
+  }, []);
+
+  /**
+   * Remove a file from the queue (before or after upload).
+   */
+  const removeFile = useCallback((fileId) => {
+    setFiles((prev) => prev.filter((f) => f.id !== fileId));
+  }, []);
+
+  /** Clear the whole queue (e.g. after a successful upload to a session). */
+  const reset = useCallback(() => {
+    setFiles([]);
+  }, []);
+
+  /**
+   * Upload all pending files to S3.
+   * 1. Request presigned URLs for all pending files.
+   * 2. Upload each file independently — one failure doesn't block others.
+   */
+  const uploadFiles = useCallback(async () => {
+    const current = filesRef.current;
+    const pending = current.filter((f) => f.status === 'pending' || f.status === 'error');
+
+    // Build the attachment metadata from the upload OUTCOMES (here + below),
+    // never from the derived `uploadedFiles`: reading that right after an
+    // upload is a stale-closure trap — it reflects the render BEFORE the
+    // upload finished, so the just-uploaded files would be missing.
+    const toMeta = (f) => ({
+      s3Key: f.s3Key,
+      fileName: f.fileName,
+      fileSize: f.fileSize,
+      mimeType: f.mimeType,
+    });
+    const alreadyUploaded = current
+      .filter((f) => f.status === 'success' && f.s3Key)
+      .map(toMeta);
+
+    if (pending.length === 0) return alreadyUploaded;
+
+    // Mark all pending as uploading
+    setFiles((prev) =>
+      prev.map((f) =>
+        pending.some((p) => p.id === f.id)
+          ? { ...f, status: 'uploading', progress: 0, error: null }
+          : f,
+      ),
+    );
+
+    // 1. Request presigned URLs from backend
+    const fileMeta = pending.map((f) => ({
+      fileName: f.fileName,
+      mimeType: f.mimeType,
+      fileSize: f.fileSize,
+    }));
+
+    const { ok, data } = getUploadUrlsRef.current
+      ? await getUploadUrlsRef.current(fileMeta)
+      : await authFetch('/api/attachments/presigned-urls', {
+          method: 'POST',
+          body: JSON.stringify({ subject: subjectRef.current, files: fileMeta }),
+        });
+
+    if (!ok || !data?.success) {
+      const errorMsg = data?.error || 'Error al obtener URLs de subida';
+      setFiles((prev) =>
+        prev.map((f) =>
+          pending.some((p) => p.id === f.id) ? { ...f, status: 'error', error: errorMsg } : f,
+        ),
+      );
+      return alreadyUploaded;
+    }
+
+    // Map presigned URLs to pending files
+    const urlMap = {};
+    data.urls.forEach((u, i) => {
+      if (pending[i]) {
+        urlMap[pending[i].id] = u;
+      }
+    });
+
+    // Assign s3Keys and uploadUrls
+    setFiles((prev) =>
+      prev.map((f) => {
+        const urlInfo = urlMap[f.id];
+        return urlInfo ? { ...f, s3Key: urlInfo.s3Key, uploadUrl: urlInfo.uploadUrl } : f;
+      }),
+    );
+
+    // 2. Upload each file independently — collect successes as we go so the
+    //    returned metadata is reliable regardless of React state-flush timing.
+    const newlyUploaded = [];
+    const uploadPromises = pending.map(async (fileEntry) => {
+      const urlInfo = urlMap[fileEntry.id];
+      if (!urlInfo) return;
+
+      try {
+        await uploadToS3(urlInfo.uploadUrl, fileEntry.file, (progress) => {
+          setFiles((prev) =>
+            prev.map((f) => (f.id === fileEntry.id ? { ...f, progress } : f)),
+          );
+        });
+
+        setFiles((prev) =>
+          prev.map((f) =>
+            f.id === fileEntry.id
+              ? { ...f, status: 'success', progress: 100, s3Key: urlInfo.s3Key }
+              : f,
+          ),
+        );
+        newlyUploaded.push({
+          s3Key: urlInfo.s3Key,
+          fileName: fileEntry.fileName,
+          fileSize: fileEntry.fileSize,
+          mimeType: fileEntry.mimeType,
+        });
+      } catch (err) {
+        setFiles((prev) =>
+          prev.map((f) =>
+            f.id === fileEntry.id
+              ? { ...f, status: 'error', error: err.message }
+              : f,
+          ),
+        );
+      }
+    });
+
+    await Promise.allSettled(uploadPromises);
+
+    // Fresh, deterministic metadata for the caller (e.g. the payment intent).
+    return [...alreadyUploaded, ...newlyUploaded];
+  }, []);
+
+  /**
+   * Retry uploading a single failed file.
+   */
+  const retryFile = useCallback(
+    async (fileId) => {
+      setFiles((prev) =>
+        prev.map((f) =>
+          f.id === fileId ? { ...f, status: 'pending', progress: 0, error: null } : f,
+        ),
+      );
+      // Re-trigger upload for all pending (will pick up the reset file)
+      await uploadFiles();
+    },
+    [uploadFiles],
+  );
+
+  const isUploading = files.some((f) => f.status === 'uploading');
+
+  // Files that uploaded successfully — these are the attachment metadata for the payment
+  const uploadedFiles = files
+    .filter((f) => f.status === 'success' && f.s3Key)
+    .map((f) => ({
+      s3Key: f.s3Key,
+      fileName: f.fileName,
+      fileSize: f.fileSize,
+      mimeType: f.mimeType,
+    }));
+
+  /**
+   * Register already-uploaded files against a created session.
+   * Used by flows where the session is created before payment (e.g. free booking).
+   * Returns { ok, registered, error? }.
+   */
+  const uploadToSession = useCallback(async (sessionId) => {
+    if (!sessionId) {
+      return { ok: false, error: 'Falta sessionId para registrar archivos' };
+    }
+
+    const ready = filesRef.current
+      .filter((f) => f.status === 'success' && f.s3Key)
+      .map((f) => ({
+        s3Key: f.s3Key,
+        fileName: f.fileName,
+        fileSize: f.fileSize,
+        mimeType: f.mimeType,
+      }));
+
+    if (ready.length === 0) {
+      return { ok: true, registered: [] };
+    }
+
+    const { ok, data } = await authFetch(
+      `/api/sessions/${encodeURIComponent(sessionId)}/attachments/register`,
+      { method: 'POST', body: JSON.stringify({ attachments: ready }) },
+    );
+
+    if (!ok || !data?.success) {
+      return { ok: false, error: data?.error || 'Error al registrar archivos en la sesión' };
+    }
+
+    return { ok: true, registered: data.attachments ?? [] };
+  }, []);
+
+  return {
+    files,
+    addFiles,
+    removeFile,
+    reset,
+    uploadFiles,
+    retryFile,
+    uploadToSession,
+    isUploading,
+    uploadedFiles,
+  };
+}
