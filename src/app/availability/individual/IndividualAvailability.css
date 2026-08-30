@@ -1,0 +1,10 @@
+@import "../../styles/availability-panels.css";
+
+.individual-availability-container {
+  min-height: 100vh;
+  background: transparent;
+}
+
+.availability-content {
+  padding-bottom: 2rem;
+}

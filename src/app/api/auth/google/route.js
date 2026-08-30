@@ -1,0 +1,138 @@
+/**
+ * POST /api/auth/google
+ * Verify Google ID token and create/login user
+ */
+
+import { NextResponse } from 'next/server';
+import { z } from 'zod';
+import { signToken } from '@/lib/auth/jwt';
+import { buildAuthCookieHeader } from '@/lib/auth/middleware';
+import { verifyGoogleToken } from '@/lib/services/google-oauth.service';
+import * as userRepository from '@/lib/repositories/user.repository';
+
+const TOKEN_MAX_AGE = 60 * 60; // 1 hour — keep in sync with jwt.js
+
+const googleAuthSchema = z.object({
+  idToken: z.string().min(1),
+});
+
+/** Emit token in JSON body AND as an HttpOnly cookie. */
+function successResponse(payload) {
+  const response = NextResponse.json({ success: true, ...payload });
+  response.headers.set('Set-Cookie', buildAuthCookieHeader(payload.token, TOKEN_MAX_AGE));
+  return response;
+}
+
+export async function POST(request) {
+  try {
+    const body = await request.json();
+    const parsed = googleAuthSchema.safeParse(body);
+
+    if (!parsed.success) {
+      return NextResponse.json(
+        { success: false, error: parsed.error.issues[0].message },
+        { status: 400 },
+      );
+    }
+
+    const { idToken } = parsed.data;
+
+    // 1. Verify Google token
+    let googleUser;
+    try {
+      googleUser = await verifyGoogleToken(idToken);
+    } catch {
+      return NextResponse.json(
+        { success: false, error: 'Invalid Google token' },
+        { status: 401 },
+      );
+    }
+
+    const { googleId, email, name, picture } = googleUser;
+
+    // 2. Check if user exists by Google ID
+    let user = await userRepository.findByGoogleIdWithPassword(googleId);
+
+    if (user) {
+      if (!user.isActive) {
+        return NextResponse.json(
+          { success: false, error: 'ACCOUNT_DISABLED' },
+          { status: 403 },
+        );
+      }
+
+      try {
+        await userRepository.touchLastSeen(user.id);
+      } catch (err) {
+        console.warn('[google-auth] touchLastSeen failed:', err?.message);
+      }
+
+      const token = signToken(user);
+      const safeUser = await userRepository.findById(user.id);
+      return successResponse({ token, user: safeUser });
+    }
+
+    // 3. Check if user exists by email (account linking)
+    const existingUser = await userRepository.findByEmailWithPassword(email);
+
+    if (existingUser) {
+      if (!existingUser.isActive) {
+        return NextResponse.json(
+          { success: false, error: 'ACCOUNT_DISABLED' },
+          { status: 403 },
+        );
+      }
+
+      // Auto-link Google account to existing email account.
+      //
+      // Profile picture policy on linking: PRESERVE whatever the user already
+      // has. If they've explicitly uploaded a custom photo (or even just kept
+      // their initials by leaving it null after a previous Google login),
+      // linking shouldn't silently overwrite that with the Google picture.
+      // Google's picture is only used as a fallback when the user has none.
+      await userRepository.update(existingUser.id, {
+        googleId,
+        authProvider: 'Google',
+        profilePictureUrl: existingUser.profilePictureUrl || picture || null,
+        isEmailVerified: true, // Google emails are pre-verified
+      });
+
+      const updatedUser = await userRepository.findByIdWithPassword(existingUser.id);
+      try {
+        await userRepository.touchLastSeen(updatedUser.id);
+      } catch (err) {
+        console.warn('[google-auth] touchLastSeen failed:', err?.message);
+      }
+      const token = signToken(updatedUser);
+      const safeUser = await userRepository.findById(updatedUser.id);
+      return successResponse({ token, user: safeUser, linked: true });
+    }
+
+    // 4. Create new user from Google account
+    const createdUser = await userRepository.create({
+      email,
+      name,
+      googleId,
+      authProvider: 'Google',
+      profilePictureUrl: picture,
+      isEmailVerified: true, // Google emails are pre-verified
+      passwordHash: null,    // No password for OAuth users
+    });
+
+    const newUser = await userRepository.findByIdWithPassword(createdUser.id);
+    try {
+      await userRepository.touchLastSeen(newUser.id);
+    } catch (err) {
+      console.warn('[google-auth] touchLastSeen failed:', err?.message);
+    }
+    const token = signToken(newUser);
+    const safeUser = await userRepository.findById(newUser.id);
+    return successResponse({ token, user: safeUser, isNewUser: true });
+  } catch (error) {
+    console.error('Error in POST /api/auth/google:', error);
+    return NextResponse.json(
+      { success: false, error: 'Google authentication failed' },
+      { status: 500 },
+    );
+  }
+}

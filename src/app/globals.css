@@ -1,26 +1,279 @@
 @import "tailwindcss";
+@import "./styles/design-tokens.css";
+@import "./styles/page-shell.css";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --tutor-accent: var(--calico-blue-tutor);      /* #006bb3 — Calico tutor brand blue */
+  --tutor-accent-dark: var(--calico-blue-tutor-dark); /* #005694 */
+
+  /* ── Motion tokens (app-wide) ────────────────────
+     Used by [data-reveal] below and by any animation/transition that
+     wants the same feel. Override per-page if needed. */
+  --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
+  --reveal-duration: 0.4s;
+}
+
+/* ── Scroll reveal (app-wide) ───────────────────────
+   Pair with the `useScrollReveal` hook (src/app/hooks/useScrollReveal.js):
+   the hook attaches an IntersectionObserver that flips the attribute to
+   "visible" when the element enters the viewport. */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity   var(--reveal-duration) var(--ease-out-soft),
+    transform var(--reveal-duration) var(--ease-out-soft);
+  will-change: opacity, transform;
+}
+[data-reveal="visible"] {
+  opacity: 1;
+  transform: translateY(0);
+  will-change: auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal],
+  [data-reveal="visible"] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+    will-change: auto;
+  }
+}
+
+html {
+  /* Last-resort guard: prevents the whole page from ever growing a horizontal
+     scrollbar if some element (a fixed-position header, an unguarded fixed
+     width) overflows the viewport. The real fix is always making that element
+     shrink/wrap properly — see Header.css and Landing.module.css — this just
+     stops a regression from making content unreachable site-wide. */
+  overflow-x: hidden;
+}
+
+body {
+  font-family: var(--font-sans-stack);
+  margin: 0;
+  letter-spacing: var(--tracking-normal);
+  background: var(--app-body-bg);
+  background-image:
+    radial-gradient(ellipse 80% 50% at 50% -20%, var(--app-body-gradient-top), transparent),
+    radial-gradient(ellipse 60% 40% at 100% 50%, var(--app-body-gradient-side), transparent);
+  background-attachment: fixed;
+  animation: fadeIn 0.6s ease-out both;
+}
+
+/* Role-shell wrappers: contain horizontal overflow so any rogue child cannot
+   force the body to scroll horizontally. On mobile this protects the sticky
+   header and fixed bottom-nav from being pushed out of the visible viewport.
+   `clip` is preferred over `hidden`: it doesn't create a containing block for
+   position:fixed descendants, so the bottom-nav still anchors to the viewport. */
+.student-app-root,
+.tutor-app-root {
+  overflow-x: clip;
+}
+
+/* Reserve space for the fixed mobile bottom-nav (Header.css .bottom-nav) so
+   the last item of any scrollable view is never rendered underneath it.
+   Applied centrally to each role layout's main scroll container
+   (.app-shell-content under /home, .tutor-content under /tutor) instead of
+   per-page, and only when a .bottom-nav actually renders on this body. */
+@media (max-width: 768px) {
+  body:has(.bottom-nav) .app-shell-content,
+  body:has(.bottom-nav) .tutor-content {
+    padding-bottom: calc(var(--bottom-nav-height) + env(safe-area-inset-bottom, 0px));
+  }
+}
+
+body.dark-mode {
+  background: #282828;
+}
+
+/* Títulos — prefer semantic HTML + tokens via .title for legacy hero */
+.title {
+  font-weight: var(--font-weight-extrabold);
+  line-height: var(--leading-tight);
+  margin-bottom: var(--space-3);
+  font-size: var(--type-display);
+}
+
+/* Legacy utility palette — maps to brand; prefer tokens in new code */
+.PrimaryBackground {
+  background: #f5f0e5;
+  color: #7d7d7d;
+}
+.PrimaryText {
+  color: #000000;
+}
+.SecondaryBackground {
+  background: var(--calico-orange);
+}
+.AccentBackground {
+  background: #faa324;
+}
+.AccentText {
+  color: #cf3476;
+}
+.Background {
+  background: var(--calico-green-soft);
+}
+.BackgroundText {
+  color: var(--calico-green-soft);
+}
+.TextPrimary {
+  color: #333;
+}
+.TextSecondary {
+  color: #666;
+}
+
+.dark-mode .PrimaryBackground {
+  background: var(--calico-green);
+  color: #f1f1f1;
+}
+.dark-mode .PrimaryText {
+  color: var(--calico-green);
+}
+.dark-mode .SecondaryBackground {
+  background: #1a3c2f;
+}
+.dark-mode .AccentBackground {
+  background: #ff4f81;
+}
+.dark-mode .AccentText {
+  color: #ff4f81;
+}
+.dark-mode .Background {
+  background: #282828;
+}
+.dark-mode .BackgroundText {
+  color: #f1f1f1;
+}
+.dark-mode .TextPrimary {
+  color: #f1f1f1;
+}
+.dark-mode .TextSecondary {
+  color: #a0a0a0;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.fade-in {
+  opacity: 0;
+  animation: fadeIn 0.8s ease-out forwards;
+}
+.fade-in-up {
+  opacity: 0;
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+.slide-in-left {
+  opacity: 0;
+  animation: slideInLeft 0.8s ease-out forwards;
+}
+
+.hover-zoom {
+  transition: transform var(--duration-slow) var(--ease-standard),
+    box-shadow var(--duration-slow) var(--ease-standard);
+}
+.hover-zoom:hover {
+  transform: scale(1.05);
+  box-shadow: var(--shadow-lg);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #ededed;
-    --foreground: #ededed;
-  }
-}
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-mono);
+  --font-serif: var(--font-serif);
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+
+  --shadow-2xs: var(--shadow-2xs);
+  --shadow-xs: var(--shadow-xs);
+  --shadow-sm: var(--shadow-sm);
+  --shadow: var(--shadow);
+  --shadow-md: var(--shadow-md);
+  --shadow-lg: var(--shadow-lg);
+  --shadow-xl: var(--shadow-xl);
+  --shadow-2xl: var(--shadow-2xl);
+
+  --tracking-tighter: calc(var(--tracking-normal) - 0.05em);
+  --tracking-tight: calc(var(--tracking-normal) - 0.025em);
+  --tracking-normal: var(--tracking-normal);
+  --tracking-wide: calc(var(--tracking-normal) + 0.025em);
+  --tracking-wider: calc(var(--tracking-normal) + 0.05em);
+  --tracking-widest: calc(var(--tracking-normal) + 0.1em);
+
+  /* Calico scale — usable as p-calico-3, gap-calico-2, etc. */
+  --spacing-calico-1: var(--space-1);
+  --spacing-calico-2: var(--space-2);
+  --spacing-calico-3: var(--space-3);
+  --spacing-calico-4: var(--space-4);
+  --spacing-calico-5: var(--space-5);
+  --spacing-calico-6: var(--space-6);
+  --spacing-calico-7: var(--space-7);
 }
