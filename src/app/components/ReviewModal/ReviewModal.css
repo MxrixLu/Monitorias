@@ -1,0 +1,105 @@
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: var(--modal-backdrop);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: var(--z-modal);
+  backdrop-filter: blur(2px);
+  animation: fadeIn var(--duration-normal) var(--ease-standard);
+}
+
+.success-overlay {
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: none;
+}
+
+.modal-content {
+  background: #ffffff;
+  border-radius: var(--modal-radius);
+  padding: var(--space-5) 28px;
+  width: 90%;
+  max-width: 450px;
+  box-shadow: var(--elev-modal);
+  animation: scaleIn 0.25s var(--ease-standard);
+  text-align: center;
+  position: relative;
+}
+
+.modal-content h2 {
+  font-size: 1.4rem;
+  color: var(--calico-ink);
+  margin-bottom: var(--space-3);
+}
+
+.modal-content p {
+  font-size: var(--type-body-sm);
+  color: var(--calico-slate-700);
+  margin-bottom: var(--space-1);
+  text-align: left;
+}
+
+.close-modal-btn {
+  background: var(--calico-orange);
+  color: white;
+  padding: 10px 18px;
+  border-radius: var(--radius-sm);
+  border: none;
+  cursor: pointer;
+  font-weight: var(--font-weight-medium);
+  margin-top: var(--space-3);
+  transition: background var(--duration-normal) var(--ease-standard);
+}
+
+.close-modal-btn:hover {
+  background: var(--calico-orange-strong);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes scaleIn {
+  from {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Rating stars styling */
+.rating-stars {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-2);
+  margin: var(--space-3) 0;
+}
+
+.rating-stars button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: var(--space-1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition:
+    transform var(--duration-normal) var(--ease-standard),
+    filter var(--duration-normal) var(--ease-standard);
+}
+
+.rating-stars button:hover {
+  transform: scale(1.15);
+}
+
+.rating-stars button:active {
+  transform: scale(0.95);
+}

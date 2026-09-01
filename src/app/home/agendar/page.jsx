@@ -1,0 +1,313 @@
+"use client";
+
+import React, { Suspense, useEffect, useMemo, useState } from 'react';
+import Link from 'next/link';
+import { useRouter, useSearchParams } from 'next/navigation';
+import { CalendarSearch, ChevronLeft } from 'lucide-react';
+import { useAuth } from '../../context/SecureAuthContext';
+import { useI18n } from '../../../lib/i18n';
+import { SlotService } from '../../services/utils/SlotService';
+import { TutoringSessionService } from '../../services/core/TutoringSessionService';
+import { useScrollReveal } from '../../hooks/useScrollReveal';
+import SessionBookedModal from '../../components/SessionBookedModal/SessionBookedModal';
+import routes from '../../../routes';
+import { withReturnTo } from '../../../lib/utils/returnTo';
+import {
+  savePendingBooking,
+  clearPendingBooking,
+} from '../../services/utils/pendingBooking';
+import { Button } from '../../../components/ui/button';
+import BookingSummary from './BookingSummary';
+import BookingForm from './BookingForm';
+import { computeSessionAmount } from '../../../lib/payments/session-amount';
+
+/** Spinner used by the suspense boundary and the in-page slot check. */
+function PageSpinner() {
+    return (
+        <div className="page-container py-12 flex items-center justify-center min-h-[60vh]">
+            <div className="w-8 h-8 border-2 border-orange-500 border-t-transparent rounded-full animate-spin" />
+        </div>
+    );
+}
+
+/** Inner component — wrapped in Suspense by the default export so
+ *  useSearchParams() is safe even under static rendering. */
+function AgendarContent() {
+    const router = useRouter();
+    const searchParams = useSearchParams();
+    const { user, loading: authLoading } = useAuth();
+    const { t } = useI18n();
+
+    // 'checking' until SlotService responds; then 'available' or 'unavailable'.
+    // 'invalid' covers network/parse errors. Drives which view we render.
+    const [slotStatus, setSlotStatus] = useState('checking');
+    const [bookingSuccess, setBookingSuccess] = useState(null);
+    // Authoritative session total (COP), fetched from the course's real price ×
+    // duration. `null` while loading / if it can't be resolved — the display
+    // shows a placeholder rather than the old hardcoded 50 000 fallback. The
+    // actual charge is computed independently server-side (see create-intent).
+    const [sessionPrice, setSessionPrice] = useState(null);
+    // Re-scan for [data-reveal] children once the slot becomes available and
+    // the booking layout mounts (initial render only has spinner/error states).
+    const containerRef = useScrollReveal([slotStatus]);
+
+    // Canonical session snapshot from URL params. Memoized so the slot-check
+    // effect only fires when params actually change.
+    const sessionFromUrl = useMemo(() => {
+        const tutorId = searchParams.get('tutorId');
+        const start = searchParams.get('start');
+        const end = searchParams.get('end');
+        if (!tutorId || !start || !end) return null;
+
+        const slotIndexRaw = searchParams.get('slotIndex');
+        const priceRaw = searchParams.get('price');
+
+        return {
+            tutorId,
+            courseId: searchParams.get('courseId') || null,
+            tutorName: searchParams.get('tutorName') || '',
+            tutorEmail: searchParams.get('tutorEmail') || tutorId,
+            course: searchParams.get('course') || '',
+            scheduledDateTime: start,
+            endDateTime: end,
+            slotId: searchParams.get('slotId') || `${tutorId}-${start}`,
+            slotIndex: slotIndexRaw !== null ? Number(slotIndexRaw) : 0,
+            parentAvailabilityId: searchParams.get('parentAvailabilityId') || null,
+            price: priceRaw ? Number(priceRaw) : 50000,
+            location: searchParams.get('location') || 'Virtual',
+        };
+    }, [searchParams]);
+
+    // Defensive redirects: missing params, no session, or unauthenticated.
+    useEffect(() => {
+        if (authLoading) return;
+        if (!sessionFromUrl) {
+            router.replace(routes.SEARCH_TUTORS);
+            return;
+        }
+        if (!user || !user.isLoggedIn) {
+            // Anonymous visitor with a fully-selected slot: stash the booking
+            // URL (survives the register → verify-email detour via
+            // localStorage) AND pass it as ?returnTo= for the direct login
+            // path, so their selection is never lost.
+            const bookingUrl = window.location.pathname + window.location.search;
+            savePendingBooking(bookingUrl);
+            router.replace(withReturnTo(routes.LOGIN, bookingUrl));
+            return;
+        }
+        // Authenticated and viewing the booking — the handoff (if any) is
+        // fulfilled; clear it so a later login can't resurrect this URL.
+        clearPendingBooking();
+    }, [authLoading, sessionFromUrl, user, router]);
+
+    // Fetch the course's authoritative price and compute the session total
+    // (price/hour × duration). Mirrors the server-side charge so what the
+    // student sees matches what they'll be charged.
+    useEffect(() => {
+        if (!sessionFromUrl?.courseId) {
+            setSessionPrice(null);
+            return;
+        }
+        let cancelled = false;
+        const { courseId, scheduledDateTime, endDateTime } = sessionFromUrl;
+
+        fetch(`/api/courses/${courseId}`)
+            .then((r) => r.json())
+            .then((data) => {
+                if (cancelled) return;
+                const course = data?.course;
+                if (!course) {
+                    setSessionPrice(null);
+                    return;
+                }
+                try {
+                    setSessionPrice(
+                        computeSessionAmount({
+                            course,
+                            startTimestamp: scheduledDateTime,
+                            endTimestamp: endDateTime,
+                        }),
+                    );
+                } catch {
+                    setSessionPrice(null); // no valid price / bad interval
+                }
+            })
+            .catch((err) => {
+                if (cancelled) return;
+                console.error('[AgendarPage] Failed to load course price:', err);
+                setSessionPrice(null);
+            });
+
+        return () => {
+            cancelled = true;
+        };
+    }, [sessionFromUrl]);
+
+    // Re-validate slot availability against the server. Same call the calendar
+    // makes before opening the booking flow — guards against the slot getting
+    // booked by someone else between selection and confirmation.
+    useEffect(() => {
+        if (!sessionFromUrl) return;
+        let cancelled = false;
+        setSlotStatus('checking');
+
+        const slotForCheck = {
+            id: sessionFromUrl.slotId,
+            tutorId: sessionFromUrl.tutorId,
+            courseId: sessionFromUrl.courseId,
+            startDateTime: sessionFromUrl.scheduledDateTime,
+            endDateTime: sessionFromUrl.endDateTime,
+            parentAvailabilityId: sessionFromUrl.parentAvailabilityId,
+            slotIndex: sessionFromUrl.slotIndex,
+        };
+
+        SlotService.checkSlotAvailabilityRealTime(slotForCheck, TutoringSessionService)
+            .then((result) => {
+                if (cancelled) return;
+                setSlotStatus(result.available ? 'available' : 'unavailable');
+            })
+            .catch((err) => {
+                console.error('[AgendarPage] Error checking slot availability:', err);
+                if (!cancelled) setSlotStatus('invalid');
+            });
+
+        return () => {
+            cancelled = true;
+        };
+    }, [sessionFromUrl]);
+
+    if (authLoading || !sessionFromUrl || slotStatus === 'checking') {
+        return <PageSpinner />;
+    }
+
+    if (slotStatus === 'unavailable' || slotStatus === 'invalid') {
+        const isUnavailable = slotStatus === 'unavailable';
+        // Deep-link back to THIS tutor's calendar (with the subject
+        // pre-selected) so picking another slot is one click, not a re-search.
+        const tutorCalendarUrl = sessionFromUrl?.tutorId
+            ? routes.TUTOR_DETAIL(sessionFromUrl.tutorId, {
+                  courseId: sessionFromUrl.courseId,
+              })
+            : null;
+        return (
+            <div className="page-container py-12">
+                <div className="max-w-md mx-auto bg-white rounded-2xl shadow-sm border border-gray-100 p-8 text-center">
+                    <h1 className="text-xl font-bold text-gray-900 mb-2">
+                        {isUnavailable
+                            ? t('booking.slotGone.title')
+                            : t('booking.slotCheckError.title')}
+                    </h1>
+                    <p className="text-sm text-gray-500 mb-6">
+                        {isUnavailable
+                            ? t('booking.slotGone.message')
+                            : t('booking.slotCheckError.message')}
+                    </p>
+                    <div className="flex flex-col gap-3">
+                        {tutorCalendarUrl && (
+                            <Button asChild variant="cta" size="lg">
+                                <Link href={tutorCalendarUrl}>
+                                    <CalendarSearch className="w-4 h-4" />
+                                    {t('booking.slotGone.viewTutorSlots', {
+                                        tutor:
+                                            sessionFromUrl.tutorName ||
+                                            t('booking.slotGone.tutorFallback'),
+                                    })}
+                                </Link>
+                            </Button>
+                        )}
+                        <Button asChild variant="outline" size="lg">
+                            <Link href={routes.SEARCH_TUTORS}>
+                                <ChevronLeft className="w-4 h-4" />
+                                {t('booking.slotGone.backToSearch')}
+                            </Link>
+                        </Button>
+                    </div>
+                </div>
+            </div>
+        );
+    }
+
+    // Augment the URL snapshot with student info from the auth context.
+    // Keeping student data out of the URL avoids leaking PII into history/logs.
+    const fullSession = {
+        ...sessionFromUrl,
+        // Authoritative total from the course price (overrides the URL `price`,
+        // which was a stale 50 000 fallback). null until the fetch resolves.
+        price: sessionPrice,
+        studentId: user?.uid || user?.id || null,
+        studentName: user?.name || 'Estudiante',
+        studentPhone: user?.phone || '3000000000',
+        studentEmail: user?.email || '',
+    };
+
+    return (
+        <main ref={containerRef} className="page-container py-6 lg:py-10 min-h-[calc(100vh-5rem)]">
+            <nav className="flex items-center gap-1.5 text-sm text-gray-500 mb-4 flex-wrap">
+                <Link
+                    href={routes.SEARCH_TUTORS}
+                    className="inline-flex items-center gap-1 hover:text-gray-900 transition-colors"
+                >
+                    <ChevronLeft className="w-4 h-4" />
+                    Buscar tutores
+                </Link>
+                <span className="text-gray-300">/</span>
+                <span className="text-gray-900 font-medium truncate min-w-0">
+                    Agendar con {fullSession.tutorName || 'tutor'}
+                </span>
+            </nav>
+
+            <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-6">
+                Confirmación de Sesión
+            </h1>
+
+            <div className="grid lg:grid-cols-[minmax(280px,1fr)_2fr] gap-6 items-start">
+                <aside data-reveal className="lg:sticky lg:top-24">
+                    <BookingSummary session={fullSession} />
+                </aside>
+                <section data-reveal style={{ transitionDelay: '0.08s' }}>
+                    <BookingForm
+                        session={fullSession}
+                        onSuccess={(result) => setBookingSuccess(result)}
+                    />
+                </section>
+            </div>
+
+            {/* Success overlay — reuses the existing SessionBookedModal so
+                the success UX matches what users already see today. */}
+            <SessionBookedModal
+                isOpen={Boolean(bookingSuccess)}
+                onClose={() => router.push(routes.SEARCH_TUTORS)}
+                userType="student"
+                sessionData={
+                    bookingSuccess?.session
+                        ? {
+                              scheduledDateTime:
+                                  bookingSuccess.session.startTimestamp ||
+                                  fullSession.scheduledDateTime,
+                              tutorName:
+                                  bookingSuccess.session.tutor?.name || fullSession.tutorName,
+                              course:
+                                  bookingSuccess.session.course?.name || fullSession.course,
+                              location: bookingSuccess.session.locationType || 'Virtual',
+                              googleMeetLink: bookingSuccess.session.googleMeetLink || null,
+                          }
+                        : {
+                              scheduledDateTime: fullSession.scheduledDateTime,
+                              tutorName: fullSession.tutorName,
+                              course: fullSession.course,
+                              location: fullSession.location || 'Virtual',
+                              googleMeetLink: null,
+                          }
+                }
+            />
+        </main>
+    );
+}
+
+export default function AgendarPage() {
+    return (
+        <Suspense fallback={<PageSpinner />}>
+            <AgendarContent />
+        </Suspense>
+    );
+}

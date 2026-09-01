@@ -1,0 +1,530 @@
+/**
+ * AvailabilityService (Frontend)
+ *
+ * API client for availability operations - calls local Next.js API routes.
+ * Uses authFetch to automatically inject the JWT token.
+ * Never throws on HTTP errors — returns graceful defaults instead.
+ */
+
+import { authFetch } from '../authFetch';
+
+class AvailabilityServiceClass {
+  constructor() {
+    this.apiBase = '/api';
+  }
+
+  /**
+   * Get availability blocks for any tutor by userId and expand them into
+   * dated slot objects (startDateTime / endDateTime) that SlotService understands.
+   * Filters out slots within 6 hours automatically.
+   * NOTE: Booked session filtering is intentionally NOT done here at the block level
+   * because it would remove entire multi-hour blocks. Use getAvailabilitiesWithBookings
+   * for the calendar view which needs per-slot booked status.
+   *
+   * @param {number|string} tutorId - Numeric user ID of the tutor
+   * @returns {Promise<Array>}
+   */
+  async getAvailabilities(tutorId) {
+    const { ok, data } = await authFetch(`${this.apiBase}/availabilities?userId=${tutorId}`);
+    if (!ok || !Array.isArray(data?.availabilities)) return [];
+
+    let slots = this._expandBlocksToSlotObjects(data.availabilities, tutorId);
+    slots = this._filterSixHourRule(slots);
+
+    return slots;
+  }
+
+  /**
+   * Same as getAvailabilities but also returns bookedSessions so the calendar
+   * can mark individual hourly slots as booked without removing entire blocks.
+   *
+   * @param {number|string} tutorId
+   * @returns {Promise<{ slots: Array, bookedSessions: Array }>}
+   */
+  async getAvailabilitiesWithBookings(tutorId) {
+    const { ok, data } = await authFetch(`${this.apiBase}/availabilities?userId=${tutorId}`);
+    if (!ok || !Array.isArray(data?.availabilities)) return { slots: [], bookedSessions: [], bufferMinutes: 15 };
+
+    let slots = this._expandBlocksToSlotObjects(data.availabilities, tutorId);
+    slots = this._filterSixHourRule(slots);
+    const bookedSessions = data.bookedSessions || [];
+    const bufferMinutes = typeof data.bufferMinutes === 'number' ? data.bufferMinutes : 15;
+
+    return { slots, bookedSessions, bufferMinutes };
+  }
+
+  /**
+   * Filter out slots that overlap with booked sessions
+   * @param {Array} slots - Available time slots
+   * @param {Array} bookedSessions - Booked sessions with startTimestamp/endTimestamp
+   * @returns {Array} Filtered slots
+   */
+  _filterBookedSlots(slots, bookedSessions) {
+    if (!bookedSessions || bookedSessions.length === 0) return slots;
+    
+    return slots.filter(slot => {
+      const slotStart = new Date(slot.startDateTime);
+      const slotEnd = new Date(slot.endDateTime);
+      
+      // Check if this slot overlaps with any booked session
+      const overlaps = bookedSessions.some(session => {
+        const sessionStart = new Date(session.startTimestamp);
+        const sessionEnd = new Date(session.endTimestamp);
+        
+        // Two intervals overlap if: start1 < end2 AND start2 < end1
+        return slotStart < sessionEnd && sessionStart < slotEnd;
+      });
+      
+      return !overlaps; // Keep slot only if it doesn't overlap
+    });
+  }
+
+  /**
+   * Filter out slots that are within 6 hours from now (minimum booking notice)
+   * @param {Array} slots - Available time slots
+   * @returns {Array} Filtered slots
+   */
+  _filterSixHourRule(slots) {
+    const now = new Date();
+    const sixHoursFromNow = new Date(now.getTime() + 6 * 60 * 60 * 1000);
+    
+    return slots.filter(slot => {
+      const slotStart = new Date(slot.startDateTime);
+      return slotStart >= sixHoursFromNow;
+    });
+  }
+
+  /**
+   * Expand weekly DB blocks into dated slot objects compatible with SlotService.
+   * Each block (dayOfWeek + startTime/endTime) becomes one entry per matching
+   * date in the next `weeksAhead` weeks with full startDateTime/endDateTime.
+   *
+   * @param {Array} blocks  - Availability rows from the DB
+   * @param {number|string} tutorId
+   * @param {number} weeksAhead
+   */
+  _expandBlocksToSlotObjects(blocks, tutorId, weeksAhead = 12) {
+    if (!Array.isArray(blocks) || blocks.length === 0) return [];
+
+    const toHHMM = (v) => {
+      if (!v) return '00:00';
+      if (typeof v === 'string') {
+        const m = v.match(/^(\d{1,2}):(\d{2})/);
+        if (m) return `${m[1].padStart(2, '0')}:${m[2]}`;
+      }
+      const d = v instanceof Date ? v : new Date(v);
+      if (Number.isNaN(d.getTime())) return '00:00';
+      const h = d.getUTCHours().toString().padStart(2, '0');
+      const m = d.getUTCMinutes().toString().padStart(2, '0');
+      return `${h}:${m}`;
+    };
+
+    const slots = [];
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    const until = new Date(today);
+    until.setDate(until.getDate() + weeksAhead * 7);
+
+    for (let d = new Date(today); d <= until; d.setDate(d.getDate() + 1)) {
+      const dow = d.getDay();
+      const dateStr = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+      for (const block of blocks) {
+        if (block.dayOfWeek !== dow) continue;
+        const startHHMM = toHHMM(block.startTime);
+        const endHHMM   = toHHMM(block.endTime);
+        slots.push({
+          id:            `${block.id}-${dateStr}`,
+          tutorId:       tutorId,
+          tutorEmail:    String(tutorId),
+          title:         'Disponible',
+          description:   '',
+          location:      'Virtual',
+          startDateTime: `${dateStr}T${startHHMM}:00`,
+          endDateTime:   `${dateStr}T${endHHMM}:00`,
+          color:         '#2196F3',
+          googleEventId: null,
+          isBooked:      false,
+          course:        null,
+        });
+      }
+    }
+    return slots;
+  }
+
+  /**
+   * Get own availability blocks (tutor)
+   * @returns {Promise<Array>}
+   */
+  async getMyAvailabilities() {
+    const { ok, data } = await authFetch(`${this.apiBase}/availabilities/me`);
+    if (ok && data) return data.availabilities || [];
+    return [];
+  }
+
+  /**
+   * Semáforo de disponibilidad propio (tutor): horas libres en la ventana
+   * móvil y si alcanzan el mínimo. El umbral lo decide el servidor.
+   * @returns {Promise<object|null>} null si falla, para que la UI no bloquee
+   */
+  async getMyAvailabilityStatus() {
+    const { ok, data } = await authFetch(`${this.apiBase}/tutor/availability-status`);
+    if (ok && data?.success) return data.availability ?? null;
+    return null;
+  }
+
+  /**
+   * Avisa a la UI de que la disponibilidad cambió, para que el aviso del layout
+   * y el indicador del perfil se refresquen sin recargar la página. Se emite
+   * desde el servicio (y no desde cada pantalla) porque hay varias rutas de
+   * escritura y así ninguna se olvida de notificar.
+   */
+  _notifyAvailabilityChanged() {
+    if (typeof window === 'undefined') return;
+    window.dispatchEvent(new CustomEvent('availability-updated'));
+  }
+
+  /**
+   * Create a new availability block
+   * @param {{ dayOfWeek: number, startTime: string, endTime: string }} blockData
+   */
+  async createAvailability(blockData) {
+    const { ok, data } = await authFetch(`${this.apiBase}/availabilities`, {
+      method: 'POST',
+      body: JSON.stringify(blockData),
+    });
+    if (ok && data) {
+      this._notifyAvailabilityChanged();
+      return { success: true, availability: data.availability };
+    }
+    return { success: false, error: data?.error || 'Failed to create availability' };
+  }
+
+  /**
+   * Update an availability block
+   * @param {string} id
+   * @param {{ dayOfWeek?: number, startTime?: string, endTime?: string, label?: string|null }} updates
+   */
+  async updateAvailability(id, updates) {
+    const { ok, data } = await authFetch(`${this.apiBase}/availabilities/${id}`, {
+      method: 'PUT',
+      body: JSON.stringify(updates),
+    });
+    if (ok && data) {
+      this._notifyAvailabilityChanged();
+      return { success: true, availability: data.availability };
+    }
+    return {
+      success: false,
+      error: data?.error || 'Failed to update availability',
+      code: data?.code,
+    };
+  }
+
+  /**
+   * Delete an availability block
+   * @param {string} id
+   */
+  async deleteAvailability(id) {
+    const { ok, data } = await authFetch(`${this.apiBase}/availabilities/${id}`, {
+      method: 'DELETE',
+    });
+    if (ok) {
+      this._notifyAvailabilityChanged();
+      return { success: true };
+    }
+    return { success: false, error: data?.error || 'Failed to delete availability' };
+  }
+
+  /**
+   * Get joint availability for all tutors teaching a specific course.
+   * Uses /api/users/tutors to list tutors, then /api/availabilities/me per tutor (or a bulk endpoint).
+   */
+  async getJointAvailabilityByCourse(courseName, courseId = null) {
+    try {
+      const params = new URLSearchParams({ limit: '200' });
+      if (courseId) {
+        params.set('courseId', courseId);
+      } else if (courseName) {
+        params.set('course', courseName);
+      }
+      const { ok: tutorsOk, data: tutorsData } = await authFetch(
+        `${this.apiBase}/users/tutors?${params.toString()}`
+      );
+      if (!tutorsOk || !tutorsData) {
+        return { success: false, tutorsAvailability: [], totalTutors: 0, connectedTutors: 0, totalSlots: 0 };
+      }
+      const tutors = tutorsData.tutors || [];
+      if (tutors.length === 0) {
+        return { success: true, tutorsAvailability: [], totalTutors: 0, connectedTutors: 0, totalSlots: 0 };
+      }
+      const tutorNameMap = {};
+      const tutorIds = tutors.map(t => {
+        const id = t.uid || t.id;
+        tutorNameMap[id] = t.name || id;
+        return id;
+      });
+      const { ok, data } = await authFetch(`${this.apiBase}/availability/joint/multiple`, {
+        method: 'POST',
+        body: JSON.stringify({ tutorIds }),
+      });
+      if (!ok || !data) {
+        return { success: false, tutorsAvailability: [], totalTutors: tutors.length, connectedTutors: 0, totalSlots: 0 };
+      }
+      const tutorsAvailability = (data.tutorsAvailability || []).map(entry => ({
+        ...entry,
+        tutorName: tutorNameMap[entry.tutorId] || entry.tutorId,
+      }));
+      return {
+        success: true,
+        tutorsAvailability,
+        totalTutors: data.totalTutors,
+        connectedTutors: data.connectedTutors,
+        totalSlots: data.totalSlots,
+      };
+    } catch (error) {
+      console.error('Error in getJointAvailabilityByCourse:', error);
+      return { success: false, tutorsAvailability: [], totalTutors: 0, connectedTutors: 0, totalSlots: 0 };
+    }
+  }
+
+  /**
+   * Atomically replace all blocks for a given day of week
+   * @param {number} dayOfWeek  0 (Sun) – 6 (Sat)
+   * @param {Array<{ startTime: string, endTime: string }>} blocks
+   */
+  async bulkReplaceDay(dayOfWeek, blocks) {
+    const { ok, data } = await authFetch(`${this.apiBase}/availabilities/bulk-replace`, {
+      method: 'POST',
+      body: JSON.stringify({ dayOfWeek, blocks }),
+    });
+    if (ok && data) {
+      this._notifyAvailabilityChanged();
+      return { success: true, availabilities: data.availabilities };
+    }
+    return { success: false, error: data?.error || 'Failed to replace availabilities' };
+  }
+
+  /**
+   * Get own schedule settings (tutor)
+   */
+  async getMySchedule() {
+    const { ok, data } = await authFetch(`${this.apiBase}/schedules/me`);
+    if (ok && data) return { success: true, schedule: data.schedule };
+    return { success: false, schedule: null };
+  }
+
+  /**
+   * Update own schedule settings (tutor)
+   * @param {{ bufferTime?: number, maxSessionsPerDay?: number, minBookingNotice?: number, autoAcceptSession?: boolean }} settings
+   */
+  async updateMySchedule(settings) {
+    const { ok, data } = await authFetch(`${this.apiBase}/schedules/me`, {
+      method: 'PUT',
+      body: JSON.stringify(settings),
+    });
+    if (ok && data) return { success: true, schedule: data.schedule };
+    return { success: false, error: data?.error || 'Failed to update schedule' };
+  }
+
+  /**
+   * Validate time block data before creation
+   */
+  validateBlockData(blockData) {
+    const errors = [];
+    if (blockData.dayOfWeek === undefined || blockData.dayOfWeek === null) errors.push('El día de la semana es requerido');
+    if (!blockData.startTime) errors.push('La hora de inicio es requerida');
+    if (!blockData.endTime) errors.push('La hora de fin es requerida');
+
+    if (blockData.startTime && blockData.endTime) {
+      const start = new Date(`1970-01-01T${blockData.startTime}:00.000Z`);
+      const end = new Date(`1970-01-01T${blockData.endTime}:00.000Z`);
+      if (end <= start) errors.push('La hora de fin debe ser posterior a la hora de inicio');
+    }
+
+    return { isValid: errors.length === 0, errors };
+  }
+
+  /**
+   * @param {string} [_tutorKey] Legacy param — availability uses JWT; ignored.
+   * @returns {Promise<{ availabilitySlots: Array, connected: boolean, usingMockData: boolean }>}
+   */
+  async getAvailabilityWithFallback(_tutorKey) {
+    const [blocks, connRes] = await Promise.all([
+      this.getMyAvailabilities(),
+      authFetch(`${this.apiBase}/calendar/check-connection`, { credentials: 'include' }),
+    ]);
+    const connected =
+      !!connRes.ok &&
+      connRes.data?.connected &&
+      connRes.data?.tokenValid;
+    const availabilitySlots = this._expandWeeklyBlocksToDatedSlots(blocks);
+    return {
+      availabilitySlots,
+      connected,
+      usingMockData: false,
+    };
+  }
+
+  /**
+   * Expand availability blocks into dated rows for the calendar UI.
+   *
+   * - Recurring blocks (recurring=true): one entry per matching weekday for the
+   *   next `weeksAhead` weeks (existing behaviour).
+   * - One-time blocks (recurring=false): a single entry on their `specificDate`.
+   *
+   * @param {Array} blocks  Raw DB rows (may include recurring/specificDate fields)
+   */
+  _expandWeeklyBlocksToDatedSlots(blocks, weeksAhead = 12) {
+    if (!Array.isArray(blocks) || blocks.length === 0) return [];
+
+    const toHHMM = (v) => {
+      if (!v) return '00:00';
+      if (typeof v === 'string') {
+        const m = v.match(/^(\d{1,2}):(\d{2})/);
+        if (m) return `${m[1].padStart(2, '0')}:${m[2]}`;
+      }
+      const d = v instanceof Date ? v : new Date(v);
+      if (Number.isNaN(d.getTime())) return '00:00';
+      const h = d.getUTCHours().toString().padStart(2, '0');
+      const min = d.getUTCMinutes().toString().padStart(2, '0');
+      return `${h}:${min}`;
+    };
+
+    const slots = [];
+    const rangeStart = new Date();
+    rangeStart.setHours(0, 0, 0, 0);
+    const rangeEnd = new Date(rangeStart);
+    rangeEnd.setDate(rangeEnd.getDate() + weeksAhead * 7);
+
+    for (const block of blocks) {
+      const labelTrim = block.label?.trim?.() || '';
+      const isRecurring = block.recurring !== false; // default true for legacy rows
+
+      if (!isRecurring && block.specificDate) {
+        // One-time block — single entry on its specific date
+        const dateStr = typeof block.specificDate === 'string'
+          ? block.specificDate.substring(0, 10)
+          : new Date(block.specificDate).toISOString().substring(0, 10);
+
+        slots.push({
+          id: `${block.id}-${dateStr}`,
+          availabilityBlockId: block.id,
+          date: dateStr,
+          startTime: toHHMM(block.startTime),
+          endTime:   toHHMM(block.endTime),
+          label:     labelTrim,
+          title:     labelTrim || 'Disponible (única vez)',
+          description: '',
+          location:  '',
+          isBooked:  false,
+          recurring: false,
+        });
+      } else {
+        // Recurring block — one entry per matching weekday in range
+        for (let d = new Date(rangeStart); d <= rangeEnd; d.setDate(d.getDate() + 1)) {
+          if (d.getDay() !== block.dayOfWeek) continue;
+          const dateStr = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+          slots.push({
+            id: `${block.id}-${dateStr}`,
+            availabilityBlockId: block.id,
+            date: dateStr,
+            startTime: toHHMM(block.startTime),
+            endTime:   toHHMM(block.endTime),
+            label:     labelTrim,
+            title:     labelTrim || 'Disponible',
+            description: '',
+            location:  '',
+            isBooked:  false,
+            recurring: true,
+          });
+        }
+      }
+    }
+    return slots;
+  }
+
+  /** No-op — legacy Google auto-sync not used with PostgreSQL availability. */
+  stopAutoSync() {}
+
+  /**
+   * Validate "add slot" form (date + time fields) for UnifiedAvailability.
+   * @param {{ title?: string, date?: string, startTime?: string, endTime?: string }} slot
+   */
+  validateEventData(slot) {
+    const errors = [];
+    if (!slot.title || !String(slot.title).trim()) errors.push('El título es requerido');
+    if (!slot.date) errors.push('La fecha es requerida');
+    if (!slot.startTime) errors.push('La hora de inicio es requerida');
+    if (!slot.endTime) errors.push('La hora de fin es requerida');
+
+    if (slot.startTime && slot.endTime) {
+      const start = new Date(`1970-01-01T${slot.startTime}:00.000Z`);
+      const end = new Date(`1970-01-01T${slot.endTime}:00.000Z`);
+      if (end <= start) errors.push('La hora de fin debe ser posterior a la hora de inicio');
+    }
+
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    if (slot.date) {
+      const day = new Date(`${slot.date}T12:00:00`);
+      if (!Number.isNaN(day.getTime()) && day < today) {
+        errors.push('No se puede crear un horario en el pasado');
+      }
+    }
+
+    return { isValid: errors.length === 0, errors };
+  }
+
+  /**
+   * Create a weekly availability block from the modal (same day-of-week as chosen date).
+   * @param {string|number} [_tutorId] Ignored — server uses JWT.
+   * @param {{ date: string, startTime: string, endTime: string }} newSlot
+   */
+  async createAvailabilityEvent(_tutorId, newSlot) {
+    const parsed = new Date(`${newSlot.date}T12:00:00`);
+    if (Number.isNaN(parsed.getTime())) {
+      return { success: false, message: 'Fecha inválida' };
+    }
+    const dayOfWeek = parsed.getDay();
+    const result = await this.createAvailability({
+      dayOfWeek,
+      startTime: newSlot.startTime,
+      endTime: newSlot.endTime,
+    });
+    if (result.success) {
+      return { success: true, message: 'Horario agregado', availability: result.availability };
+    }
+    return { success: false, message: result.error || 'No se pudo crear el horario' };
+  }
+
+  /**
+   * Sync availability from the tutor's "Disponibilidad" Google Calendar.
+   * Calls POST /api/availabilities/sync-from-calendar (credentials: include so
+   * the httpOnly calendar cookies are forwarded automatically).
+   *
+   * @returns {Promise<{ success: boolean, synced: number, removed: number, skipped: number, total: number, error?: string }>}
+   */
+  async intelligentSync(_tutorId, _calendarName, _daysAhead) {
+    const { ok, data } = await authFetch(
+      `${this.apiBase}/availabilities/sync-from-calendar`,
+      { method: 'POST', credentials: 'include' },
+    );
+
+    if (ok && data?.success) {
+      this._notifyAvailabilityChanged();
+      return {
+        success: true,
+        synced:  data.synced  ?? 0,
+        removed: data.removed ?? 0,
+        skipped: data.skipped ?? 0,
+        total:   data.total   ?? 0,
+      };
+    }
+
+    return { success: false, error: data?.error || 'Error al sincronizar el calendario.' };
+  }
+}
+
+const AvailabilityService = new AvailabilityServiceClass();
+export { AvailabilityService };
+export default AvailabilityService;

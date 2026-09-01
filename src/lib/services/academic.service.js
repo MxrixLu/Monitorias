@@ -1,0 +1,158 @@
+/**
+ * Academic Service
+ * Business logic for careers, courses, and tutor-course assignments.
+ */
+
+import * as academicRepository from '../repositories/academic.repository';
+import * as userRepository from '../repositories/user.repository';
+import * as notificationService from './notification.service';
+import * as courseNotifyService from './course-notify.service';
+import { sendCourseRequestNotification } from './email.service';
+
+// ===== CAREERS =====
+
+export async function getAllCareers() {
+  return academicRepository.findAllCareers();
+}
+
+export async function getCareerById(id) {
+  return academicRepository.findCareerById(id);
+}
+
+export async function getCareerByCode(code) {
+  return academicRepository.findCareerByCode(code);
+}
+
+// ===== COURSES =====
+
+export async function getAllCourses(limit) {
+  return academicRepository.findAllCourses(limit);
+}
+
+export async function getCourseById(id) {
+  return academicRepository.findCourseById(id);
+}
+
+export async function getCourseByCode(code) {
+  return academicRepository.findCourseByCode(code);
+}
+
+export async function createCourse(data) {
+  return academicRepository.createCourse(data);
+}
+
+export async function updateCourse(id, data) {
+  return academicRepository.updateCourse(id, data);
+}
+
+export async function deleteCourse(id) {
+  return academicRepository.deleteCourse(id);
+}
+
+// ===== TUTOR COURSES =====
+
+export async function getTutorCourses(tutorId, limit = 50) {
+  return academicRepository.findTutorCourses(tutorId, limit);
+}
+
+export async function getTutorCoursesByStatus(tutorId, status, limit = 50) {
+  return academicRepository.findTutorCoursesByStatus(tutorId, status, limit);
+}
+
+export async function getTutorsForCourse(courseId, limit = 50) {
+  return academicRepository.findTutorsForCourse(courseId, limit);
+}
+
+/**
+ * Tutor (existing) requests one or more new courses.
+ * All courses are created as Pending. An admin notification email is fired.
+ *
+ * @param {string} tutorId
+ * @param {Array<{ courseId: string, experience?: string, workSampleUrl?: string }>} courses
+ * @param {boolean} isExistingTutor - true when the tutor is already approved
+ */
+export async function requestCourses(tutorId, courses, isExistingTutor = false) {
+  const tutorCourses = await academicRepository.addTutorCourses(tutorId, courses);
+
+  const [tutor, courseRecords] = await Promise.all([
+    userRepository.findById(tutorId),
+    Promise.all(tutorCourses.map((tc) => tc.course)),
+  ]);
+
+  const courseRequests = tutorCourses.map((tc) => ({
+    courseId: tc.courseId,
+    courseName: tc.course.name,
+    workSampleUrl: tc.workSampleUrl || null,
+  }));
+
+  try {
+    await sendCourseRequestNotification(
+      { id: tutorId, name: tutor.name, email: tutor.email },
+      courseRequests,
+      isExistingTutor,
+    );
+  } catch (err) {
+    console.error('[AcademicService] Admin course-request email failed:', err.message);
+  }
+
+  return tutorCourses;
+}
+
+export async function addTutorCourse(tutorId, courseId, { experience, workSampleUrl } = {}) {
+  return academicRepository.addTutorCourse(tutorId, courseId, { experience, workSampleUrl });
+}
+
+/**
+ * Admin approves a pending tutor course.
+ */
+export async function approveTutorCourse(tutorId, courseId) {
+  const updated = await academicRepository.updateTutorCourseStatus(tutorId, courseId, 'Approved');
+  try {
+    await courseNotifyService.notifyPendingSubscribersForCourse(courseId);
+  } catch (err) {
+    console.error('[AcademicService] Notify Me evaluation failed after course approval:', err.message);
+  }
+
+  // Get course name and notify tutor
+  try {
+    const course = await academicRepository.findCourseById(courseId);
+    if (course) {
+      await notificationService.notifyCourseApproved(tutorId, course.name);
+    }
+  } catch (err) {
+    console.warn(`Failed to send course approval notification: ${err.message}`);
+  }
+  
+  return updated;
+}
+
+/**
+ * Admin rejects a pending tutor course.
+ */
+export async function rejectTutorCourse(tutorId, courseId) {
+  const updated = await academicRepository.updateTutorCourseStatus(tutorId, courseId, 'Rejected');
+  
+  // Get course name and notify tutor (fire-and-forget)
+  try {
+    const course = await academicRepository.findCourseById(courseId);
+    if (course) {
+      await notificationService.notifyCourseRejected(tutorId, course.name);
+    }
+  } catch (err) {
+    console.warn(`Failed to send course rejection notification: ${err.message}`);
+  }
+  
+  return updated;
+}
+
+export async function updateTutorCourseStatus(tutorId, courseId, status) {
+  return academicRepository.updateTutorCourseStatus(tutorId, courseId, status);
+}
+
+export async function removeTutorCourse(tutorId, courseId) {
+  return academicRepository.removeTutorCourse(tutorId, courseId);
+}
+
+export async function getAllPendingCourseRequests() {
+  return academicRepository.findAllPendingCourseRequests();
+}
